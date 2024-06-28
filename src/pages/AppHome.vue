@@ -13,10 +13,11 @@
         </div>
     </div>
 
-    <div class="p-4 mb-5 rounded-3 container my-4 custom-jumbp-background custom-font">
+    <div class="p-4 mb-5 rounded-3 container my-4 custom-jumbp-background overflow-hidden" style="background: rgb(80,0,0);
+background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rgba(253,181,22,1) 50%);">
         <div class="container-fluid py-5 custom-jumbotron">
             <div>
-                <h1 class="display-2 fw-bold mb-5" style="color: #B7450A;">Hai fame?</h1>
+                <h1 class="display-1 fw-bold mb-5" style="color: #B7450A;">Hai fame?</h1>
                 <p class="col-md-8 fs-4 w-100">Scopri una vasta selezione di ristoranti locali e ordina i tuoi piatti
                     preferiti
                     con pochi clic. Siamo qui per rendere la tua esperienza di food delivery veloce, comoda e deliziosa.
