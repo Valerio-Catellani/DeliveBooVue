@@ -1,11 +1,15 @@
 <template>
-        <div class="video-container mb-5">
+    <div class="video-container mb-5">
         <video autoplay muted loop>
             <source src="/public/images/Food Delivery Advertisement (Ken).mp4" type="video/mp4">
         </video>
         <div class="video-overlay">
-            <h1 class="custom-font text-decoration-underline" style="color:rgb(253, 181, 22);">DeliveBoo, il gusto che
-                vuoi tu!</h1>
+            <div class="container">
+                <h1 class="custom-font" style="color:rgb(253, 181, 22); font-size: 5rem; text-align: left">DeliveBoo,
+                    <br>il gusto che vuoi tu!
+                </h1>
+            </div>
+
         </div>
     </div>
 
@@ -19,8 +23,8 @@
                 </p>
             </div>
             <div class="d-flex justify-content-center align-items-center mb-5">
-    <div id="hamburger-3d" style="width: 500px; height: 500px;"></div>
-</div>
+                <div id="hamburger-3d" style="width: 500px; height: 500px;"></div>
+            </div>
         </div>
     </div>
     <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
@@ -150,14 +154,15 @@
         </ul>
     </div>
     <div class="parallax-milano">
-        <div class="parallax-content container my-4 custom-jumbp-background custom-font d-flex justify-content-around">
+        <div class="parallax-content container my-4 custom-font d-flex justify-content-around">
             <div>
                 <h1 style="color: #B7450A;">Attualmente attivi a Milano</h1>
                 <p class="fs-4">DeliveBoo è attualmente attiva solo a Milano con i suoi servizi <br> ma presto arriverà
                     anche in altre città!</p>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Rimani aggiornato:</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                        placeholder="name@example.com">
                     <button class="btn mt-3 btn-danger">Invia</button>
                 </div>
             </div>
@@ -252,7 +257,7 @@ export default {
                 model.position.sub(center);
 
                 // scala del modello
-                model.scale.set(1, 1, 1); 
+                model.scale.set(1, 1, 1);
 
                 scene.add(model);
             }, undefined, (error) => {
@@ -286,7 +291,7 @@ export default {
             next(vm => {
                 vm.initializeCarousel();
                 vm.initializeScrollEffect();
-                vm.create3DHamburger(); 
+                vm.create3DHamburger();
             });
         }
     },
@@ -294,7 +299,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .custom-jumbotron {
     display: flex;
     align-items: center;
@@ -307,9 +311,9 @@ export default {
 }
 
 #hamburger-3d {
-    width: 50%; 
-    height: 50%; 
-    margin: 0 auto; 
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
 }
 
 .custom-jumbp-background {
@@ -563,22 +567,35 @@ article:has(:hover, :focus) {
 
 /*qui stile effetto parallasse */
 .parallax-milano {
-    background-image: url('/public/images/pexels-photo-6274557.jpeg'); 
-    min-height: 500px;
+    background-image: url("https://images.pexels.com/photos/409127/pexels-photo-409127.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    /*background-image: url('/public/images/pexels-photo-6274557.jpeg');*/
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 500px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
+.parallax-milano::after {
+
+    content: '';
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+
 .parallax-content {
-    background: rgba(255, 255, 255, 0.8);
+    /*background: rgba(255, 255, 255, 0.8);*/
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    color: #fff;
+    z-index: 999;
 }
-
 </style>
