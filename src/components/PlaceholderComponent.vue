@@ -1,1 +1,0 @@
-@use '../assets/styles/partials/variables' as *;
