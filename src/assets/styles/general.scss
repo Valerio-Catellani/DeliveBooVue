@@ -20,8 +20,6 @@ $fa-font-path: '../fonts/webfonts';
 }
 
 body {
-background-image: radial-gradient(#ff6e47 2px, transparent 2px), radial-gradient(#ff6e47 2px, transparent 2px);
-background-size: 32px 32px;
-background-position: 0 0, 16px 16px;
-background-color: #fbfbfb;
+    background: rgb(245,245,220);
+background: linear-gradient(90deg, rgba(245,245,220,1) 0%, rgba(245,245,220,1) 100%);
 }

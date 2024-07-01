@@ -104,7 +104,8 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
         </section>
     </div>
     <!-- carosello -->
-    <h2 class="container display-3 fw-bold pb-3 custom-font mb-5" style="color:#B7450A;">I nostri partner:</h2>
+     <div class="bg-light shadow-sm ">
+    <h2 class="container display-3 fw-bold pb-3 custom-font mb-5 " style="color:#B7450A;">I nostri partner:</h2>
     <div class="carousel p-4">
         <ul class="carousel-slides">
             <li class="carousel-slide" data-number="0">
@@ -154,6 +155,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
             </li>
         </ul>
     </div>
+</div>
     <div class="parallax-milano">
         <div class="parallax-content container my-4 custom-font d-flex justify-content-around">
             <div>
