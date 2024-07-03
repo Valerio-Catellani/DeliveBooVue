@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-v-base
-=======
 <template>
 
 </template>
