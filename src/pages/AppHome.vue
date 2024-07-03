@@ -53,12 +53,20 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
         <MultiSelect />
     </div>
 
+    <div class="container">
+        <div class="row">
+            <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
+                :key="restaurant.id" :props="restaurant" />
+        </div>
+    </div>
+
+
+
+
     <div class="p-0 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5 rounded-3 overflow-hidden">
         <div class="w-100 overflow-hidden" style="height: 500px;">
             <img class="img-fluid w-100" src="/public/images/partner.jpg" alt="lavora-con-noi" />
         </div>
-
-
         <div class="article-body mx-5 bg-light rounded-3">
             <h2>Hai un Ristorante? Registrati gratuitamente al sito e inizia a Guadagnare</h2>
             <p>
@@ -76,82 +84,6 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
         </div>
 
 
-
-        <!--         
-
-        <section class="articles">
-            <article class="w-100">
-                <div class="article-wrapper w-100">
-                    <figure>
-                        <img src="/public/images/partner.jpg" alt="" />
-                    </figure>
-                    <div class="article-body">
-                        <h2>Hai un Ristorante? Registrati gratuitamente al sito e inizia </h2>
-                        <p>
-                            Raggiungi più clienti con DeliveBoo. Gestiamo noi la consegna, così tu puoi dedicarti a
-                            offrire i migliori piatti e prodotti.
-                        </p>
-                        <a href="#" class="read-more">
-                            Scopri di più! <span class="sr-only">about this is some title</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article> -->
-        <!-- <article class="d-none">
-
-                <div class="article-wrapper">
-                    <figure>
-                        <img src="/public/images/eco.webp" alt="" />
-                    </figure>
-                    <div class="article-body">
-                        <h2>Sostenibilità Ambientale</h2>
-                        <p>
-                            Consegniamo i tuoi piatti preferiti riducendo l'impatto ambientale grazie all'uso di mezzi
-                            elettrici e packaging eco-friendly.
-                        </p>
-                        <a href="#" class="read-more">
-                            Scopri di più! <span class="sr-only">about this is some title</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article>
-            <article class="d-none">
-
-                <div class="article-wrapper">
-                    <figure>
-                        <img src="/public/images/image.webp" alt="" />
-                    </figure>
-                    <div class="article-body">
-                        <h2>Consegna con noi</h2>
-                        <p>
-                            La libertà di consegnare dove e quando vuoi, con ottimi guadagni, convenzioni e sconti
-                            riservati a te.
-                        </p>
-                        <a href="#" class="read-more">
-                            Scopri di più! <span class="sr-only">about this is some title</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article> 
-        </section>-->
     </div>
     <!-- carosello -->
     <div class="bg-light shadow-sm ">
@@ -225,13 +157,24 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 
 <script>
 import MultiSelect from '../components/MultiSelect.vue';
+import RestaurantCardComponent from '../components/RestaurantCardComponent.vue';
+import { store } from '../store';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 
 export default {
     name: 'AppHome',
-    components: { MultiSelect },
+    components: {
+        MultiSelect,
+        RestaurantCardComponent,
+    },
+    data() {
+        return {
+            store
+        }
+    },
+
     mounted() {
         this.initializeCarousel();
         this.initializeScrollEffect();

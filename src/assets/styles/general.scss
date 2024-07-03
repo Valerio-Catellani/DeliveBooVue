@@ -29,3 +29,12 @@ body {
   border-radius: 5px;
   font-size: 2rem;
 }
+
+.svg-container {
+  height: 50px;
+  width: 50px;
+  svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
