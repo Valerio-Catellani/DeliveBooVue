@@ -1,24 +1,31 @@
-@use './partials/variables' as *;
+@use "./partials/variables" as *;
 
+$fa-font-path: "../fonts/webfonts";
 
-$fa-font-path: '../fonts/webfonts';   
+@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "@fortawesome/fontawesome-free/scss/regular.scss";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import "@fortawesome/fontawesome-free/scss/brands.scss";
 
-@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import '@fortawesome/fontawesome-free/scss/regular.scss';
-@import '@fortawesome/fontawesome-free/scss/solid.scss';
-@import '@fortawesome/fontawesome-free/scss/brands.scss';
+@import "bootstrap/scss/bootstrap";
 
-
-@import 'bootstrap/scss/bootstrap';
-
-
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
 * {
-    font-family: $basefont;
+  font-family: $basefont;
 }
 
 body {
-    background-color:whitesmoke;
+  background-color: whitesmoke;
+}
+
+.article-body {
+  transform: translateY(-30%);
+}
+
+.important-btn {
+  background-color: $title-primary;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 2rem;
 }
