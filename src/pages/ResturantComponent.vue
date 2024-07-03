@@ -9,7 +9,7 @@
             <div class="img-logo">
                 <img src="/public/images/kfc.webp" alt="nome resturant" class="logo-resturant">
             </div>
-            <div class="info">
+            <div class="info text-center">
                 <h2>Info resturant</h2>
             </div>
         </div>
@@ -47,12 +47,19 @@ export default {
 .img-logo {
     display: flex;
     align-content: center;
-    border: 1px solid green;
+    margin-bottom: 100px;
+    justify-content: center;
 }
 
 .logo-resturant {
     height: 180px;
     width: 180px;
     border-radius: 50%;
+
+}
+
+img {
+    position: absolute;
+    top: 250px;
 }
 </style>
