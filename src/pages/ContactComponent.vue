@@ -1,13 +1,19 @@
 <template>
     <h1>Contact Us</h1>
+    <PaymentComponent />
+
 
 </template>
 
 <script>
 import { store } from '../store';
+import PaymentComponent from '@/components/PaymentComponent.vue';
 import axios from 'axios';
 export default {
     name: 'ContactComponent',
+    components: {
+        PaymentComponent
+    },
     data() {
         return {
             store,

@@ -48,18 +48,46 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
             </div>
         </div>
     </div>
+
     <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
        <MultiSelect/>
     </div>
     <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
+
+    <div class="p-0 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5 rounded-3 overflow-hidden">
+        <div class="w-100 overflow-hidden" style="height: 500px;">
+            <img class="img-fluid w-100" src="/public/images/partner.jpg" alt="lavora-con-noi" />
+        </div>
+
+
+        <div class="article-body mx-5 bg-light rounded-3">
+            <h2>Hai un Ristorante? Registrati gratuitamente al sito e inizia a Guadagnare</h2>
+            <p>
+                Raggiungi più clienti con DeliveBoo. Gestiamo noi la consegna, così tu puoi dedicarti a
+                offrire i migliori piatti e prodotti.
+            </p>
+            <a href="http://127.0.0.1:8000/register">
+                <button class="learn-more" style="scale: 1.3;">
+                    <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text ps-3">Registrati Ora!</span>
+                </button>
+            </a>
+        </div>
+
+
+
+        <!--         
+
         <section class="articles">
-            <article>
-                <div class="article-wrapper">
+            <article class="w-100">
+                <div class="article-wrapper w-100">
                     <figure>
                         <img src="/public/images/partner.jpg" alt="" />
                     </figure>
                     <div class="article-body">
-                        <h2>Diventa nostro partner</h2>
+                        <h2>Hai un Ristorante? Registrati gratuitamente al sito e inizia </h2>
                         <p>
                             Raggiungi più clienti con DeliveBoo. Gestiamo noi la consegna, così tu puoi dedicarti a
                             offrire i migliori piatti e prodotti.
@@ -75,8 +103,8 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                         </a>
                     </div>
                 </div>
-            </article>
-            <article>
+            </article> -->
+        <!-- <article class="d-none">
 
                 <div class="article-wrapper">
                     <figure>
@@ -100,7 +128,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                     </div>
                 </div>
             </article>
-            <article>
+            <article class="d-none">
 
                 <div class="article-wrapper">
                     <figure>
@@ -123,8 +151,8 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                         </a>
                     </div>
                 </div>
-            </article>
-        </section>
+            </article> 
+        </section>-->
     </div>
     <!-- carosello -->
     <div class="bg-light shadow-sm ">
@@ -308,14 +336,14 @@ export default {
             const animate = () => {
                 requestAnimationFrame(animate);
                 if (model) {
-                    const scrollY = window.scrollY;
-                    model.rotation.y = scrollY * 0.001; // Adjust rotation speed
+                    model.rotation.y += 0.01; // Adjust rotation speed
                 }
                 renderer.render(scene, camera);
             };
 
             animate();
         },
+
         beforeRouteEnter(to, from, next) {
             next(vm => {
                 vm.initializeCarousel();
@@ -643,7 +671,9 @@ button {
 }
 
 button.learn-more {
-    width: 12rem;
+
+    width: 14rem;
+
     height: auto;
 }
 
