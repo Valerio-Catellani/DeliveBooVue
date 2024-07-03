@@ -326,14 +326,14 @@ export default {
             const animate = () => {
                 requestAnimationFrame(animate);
                 if (model) {
-                    const scrollY = window.scrollY;
-                    model.rotation.y = scrollY * 0.001; // Adjust rotation speed
+                    model.rotation.y += 0.01; // Adjust rotation speed
                 }
                 renderer.render(scene, camera);
             };
 
             animate();
         },
+
         beforeRouteEnter(to, from, next) {
             next(vm => {
                 vm.initializeCarousel();
