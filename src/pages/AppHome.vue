@@ -23,30 +23,42 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                     con pochi clic. Siamo qui per rendere la tua esperienza di food delivery veloce, comoda e deliziosa.
                 </p>
                 <button class="learn-more">
-  <span class="circle" aria-hidden="true">
-  <span class="icon arrow"></span>
-  </span>
-  <span class="button-text">Ordina ora!</span>
-</button>
-<div class="icons d-flex flex-column">
-    <div class="icon-text">
-        <i class="fas fa-shipping-fast"></i> 
-        <span>Consegna veloce</span>
-    </div>
-    <div class="icon-text">
-        <i class="fas fa-thumbs-up"></i> 
-        <span>Servizio affidabile</span>
-    </div>
-    <div class="icon-text">
-        <i class="fas fa-utensils"></i> 
-        <span>Ampia scelta di piatti</span>
-    </div>
-</div>
+                    <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text">Ordina ora!</span>
+                </button>
+                <div class="icons d-flex flex-column">
+                    <div class="icon-text">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Consegna veloce</span>
+                    </div>
+                    <div class="icon-text">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>Servizio affidabile</span>
+                    </div>
+                    <div class="icon-text">
+                        <i class="fas fa-utensils"></i>
+                        <span>Ampia scelta di piatti</span>
+                    </div>
+                </div>
             </div>
             <div class="d-flex justify-content-center align-items-center mb-5">
                 <div id="hamburger-3d" style="width: 500px; height: 500px;"></div>
             </div>
         </div>
+    </div>
+    <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
+        <select data-mdb-select-init multiple>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            <option value="4">Four</option>
+            <option value="5">Five</option>
+            <option value="6">Six</option>
+            <option value="7">Seven</option>
+            <option value="8">Eight</option>
+        </select>
     </div>
     <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
         <section class="articles">
@@ -124,58 +136,58 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
         </section>
     </div>
     <!-- carosello -->
-     <div class="bg-light shadow-sm ">
-    <h2 class="container display-3 fw-bold pb-3 custom-font mb-5 " style="color:#B7450A;">I nostri partner:</h2>
-    <div class="carousel p-4">
-        <ul class="carousel-slides">
-            <li class="carousel-slide" data-number="0">
-                <img src="/public/images/bk_logo_new.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/icon-donut.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/icon-pizza.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/icon-wine.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/kfc.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/mcdonalds-logo-green-250x250.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/old-wild-west.webp" class=" carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/icon-vegan.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide" data-number="0">
-                <img src="/public/images/bk_logo_new.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/icon-donut.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/icon-pizza.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/icon-wine.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/kfc.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/mcdonalds-logo-green-250x250.webp" alt="" class="carousel-item-img">
-            </li>
-            <li class="carousel-slide">
-                <img src="/public/images/old-wild-west.webp" class=" carousel-item-img">
-            </li>
-        </ul>
+    <div class="bg-light shadow-sm ">
+        <h2 class="container display-3 fw-bold pb-3 custom-font mb-5 " style="color:#B7450A;">I nostri partner:</h2>
+        <div class="carousel p-4">
+            <ul class="carousel-slides">
+                <li class="carousel-slide" data-number="0">
+                    <img src="/public/images/bk_logo_new.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/icon-donut.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/icon-pizza.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/icon-wine.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/kfc.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/mcdonalds-logo-green-250x250.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/old-wild-west.webp" class=" carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/icon-vegan.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide" data-number="0">
+                    <img src="/public/images/bk_logo_new.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/icon-donut.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/icon-pizza.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/icon-wine.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/kfc.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/mcdonalds-logo-green-250x250.webp" alt="" class="carousel-item-img">
+                </li>
+                <li class="carousel-slide">
+                    <img src="/public/images/old-wild-west.webp" class=" carousel-item-img">
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
     <div class="parallax-milano">
         <div class="parallax-content container my-4 custom-font d-flex justify-content-around">
             <div>
@@ -623,94 +635,95 @@ article:has(:hover, :focus) {
 }
 
 button {
- position: relative;
- display: inline-block;
- cursor: pointer;
- outline: none;
- border: 0;
- vertical-align: middle;
- text-decoration: none;
- background: transparent;
- padding: 0;
- font-size: inherit;
- font-family: inherit;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
 }
 
 button.learn-more {
- width: 12rem;
- height: auto;
+    width: 12rem;
+    height: auto;
 }
 
 button.learn-more .circle {
- transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
- position: relative;
- display: block;
- margin: 0;
- width: 3rem;
- height: 3rem;
- background: #282936;
- border-radius: 1.625rem;
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: #282936;
+    border-radius: 1.625rem;
 }
 
 button.learn-more .circle .icon {
- transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
- position: absolute;
- top: 0;
- bottom: 0;
- margin: auto;
- background: #fff;
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
 }
 
 button.learn-more .circle .icon.arrow {
- transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
- left: 0.625rem;
- width: 1.125rem;
- height: 0.125rem;
- background: none;
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
 }
 
 button.learn-more .circle .icon.arrow::before {
- position: absolute;
- content: "";
- top: -0.29rem;
- right: 0.0625rem;
- width: 0.625rem;
- height: 0.625rem;
- border-top: 0.125rem solid #fff;
- border-right: 0.125rem solid #fff;
- transform: rotate(45deg);
+    position: absolute;
+    content: "";
+    top: -0.29rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    transform: rotate(45deg);
 }
 
 button.learn-more .button-text {
- transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- bottom: 0;
- padding: 0.75rem 0;
- margin: 0 0 0 1.85rem;
- color: #282936;
- font-weight: 700;
- line-height: 1.6;
- text-align: center;
- text-transform: uppercase;
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 0;
+    margin: 0 0 0 1.85rem;
+    color: #282936;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 button:hover .circle {
- width: 100%;
+    width: 100%;
 }
 
 button:hover .circle .icon.arrow {
- background: #fff;
- transform: translate(1rem, 0);
+    background: #fff;
+    transform: translate(1rem, 0);
 }
 
 button:hover .button-text {
- color: #fff;
+    color: #fff;
 }
+
 .icons i {
-    font-size: 50px; 
+    font-size: 50px;
     margin: 10px 0;
     display: block;
 
