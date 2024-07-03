@@ -49,16 +49,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
         </div>
     </div>
     <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
-        <select data-mdb-select-init multiple>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-            <option value="4">Four</option>
-            <option value="5">Five</option>
-            <option value="6">Six</option>
-            <option value="7">Seven</option>
-            <option value="8">Eight</option>
-        </select>
+       <MultiSelect/>
     </div>
     <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
         <section class="articles">
@@ -206,11 +197,14 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 </template>
 
 <script>
+import MultiSelect from '../components/MultiSelect.vue';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
+
 export default {
     name: 'AppHome',
+    components: { MultiSelect },
     mounted() {
         this.initializeCarousel();
         this.initializeScrollEffect();
