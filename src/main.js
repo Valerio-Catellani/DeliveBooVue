@@ -3,7 +3,7 @@ import "./assets/styles/general.scss";
 import { createApp } from "vue";
 import { router } from "./router";
 
-import 'vue-multiselect/dist/vue-multiselect.css';
+// import 'vue-multiselect/dist/vue-multiselect.css';
 
 
 

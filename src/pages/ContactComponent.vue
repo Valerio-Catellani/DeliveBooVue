@@ -1,5 +1,6 @@
 <template>
     <h1>Contact Us</h1>
+    <MultiSelectComponent />
     <PaymentComponent />
 
 
@@ -8,11 +9,14 @@
 <script>
 import { store } from '../store';
 import PaymentComponent from '@/components/PaymentComponent.vue';
+import MultiSelectComponent from '@/components/MultiSelectComponent.vue';
+
 import axios from 'axios';
 export default {
     name: 'ContactComponent',
     components: {
-        PaymentComponent
+        PaymentComponent,
+        MultiSelectComponent
     },
     data() {
         return {

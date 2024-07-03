@@ -50,9 +50,8 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
     </div>
 
     <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
-       <MultiSelect/>
+        <MultiSelect />
     </div>
-    <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
 
     <div class="p-0 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5 rounded-3 overflow-hidden">
         <div class="w-100 overflow-hidden" style="height: 500px;">
