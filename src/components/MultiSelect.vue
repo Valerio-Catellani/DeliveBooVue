@@ -41,10 +41,15 @@ export default {
       store.api_data.typologies.allTypologies.data.forEach(element => {
         this.options.push({ text: element.name, value: element.slug, icon: element.icon })
       })
+    },
+    async showRestaurants() {
+      await store.methods.getAllElements('restaurants');
     }
+
   },
   created() {
     this.addOptions();
+    this.showRestaurants();
   },
 };
 </script>
