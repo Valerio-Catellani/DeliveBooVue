@@ -29,7 +29,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                     </span>
                     <span class="button-text">Ordina ora!</span>
                     <div class="w-50">
-                        <img class="cibbo" src="/images/Image.png" alt="">
+                        <img class="food-overflow" src="/images/Image.png" alt="">
                     </div>
                 </a>
             </div>
@@ -49,10 +49,12 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 
     </div>
     <div class="container">
-        <div class="row mt-3">
+        <div class="row mt-3" v-if="!store.loading">
             <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
                 :key="restaurant.id" :props="restaurant" />
         </div>
+        <div class="col-12 d-flex justify-content-center display-3 fw-bold mb-5" style="color: #B7450A;" v-if="store.api_data.restaurants.allRestaurants.data.length < 1">Nessun Ristorante trovato con le categorie selezionate</div>
+        <ApiLoader v-else />
     </div>
 
     <div class="container">
@@ -156,6 +158,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 <script>
 import MultiSelect from '../components/MultiSelect.vue';
 import RestaurantCardComponent from '../components/RestaurantCardComponent.vue';
+import ApiLoader from '../components/ApiLoader.vue';
 import { store } from '../store';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -166,6 +169,7 @@ export default {
     components: {
         MultiSelect,
         RestaurantCardComponent,
+        ApiLoader
     },
     data() {
         return {
@@ -713,7 +717,7 @@ a:hover .button-text {
     display: block;
 }
 
-.cibbo {
+.food-overflow {
     position: absolute;
     bottom: 290px;
     right: -240px;

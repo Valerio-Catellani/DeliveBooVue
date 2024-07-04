@@ -45,6 +45,7 @@ export default {
       })
     },
     async showRestaurants() {
+      
       await store.methods.getAllElements('restaurants');
     }
 

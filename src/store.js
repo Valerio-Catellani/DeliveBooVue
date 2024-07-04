@@ -37,6 +37,7 @@ export const store = reactive({
     // params = { page: 1, type: '' } da inserire dnetro alla funzione getMovies
 
     async getAllElements(element, params = {}) {
+      store.loading = true;
       return axios.get(`${store.apiBaseUrl}/get-${element}`, { params }).then((response) => {
         switch (element) {
           case 'typologies': {
@@ -52,6 +53,8 @@ export const store = reactive({
       }).catch((error) => {
         console.log(error);
         router.push({ name: 'not-found' })
+      }).finally(() => {
+        store.loading = false;
       })
     },
 

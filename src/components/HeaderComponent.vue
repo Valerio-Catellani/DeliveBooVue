@@ -2,7 +2,9 @@
     <header>
         <nav class="navbar position-fixed top-0 w-100 navbar-expand-lg custom-font custom-nav" >
             <div class="container-fluid">
-                <a class="navbar-brand" style="color: #B7450A;" href="#">DeliveBoo</a>
+                <a class="navbar-brand" href="#">
+                    <img class="logo" src="../../src/assets/img/logo-trasparente.png" alt="">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -70,5 +72,9 @@ export default {
 nav {
     z-index: 9000;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.logo {
+    width:93px;
 }
 </style>
