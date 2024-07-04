@@ -28,9 +28,9 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                         <span class="icon arrow"></span>
                     </span>
                     <span class="button-text">Ordina ora!</span>
-                    <div class="w-50">
-                        <img class="food-overflow" src="/images/Image.png" alt="">
-                    </div>
+                    <div class="w-50 d-none d-lg-block">
+  <img class="food-overflow" src="/images/Image.png" alt="Food Overflow">
+</div>
                 </a>
             </div>
             <div class="d-flex justify-content-center align-items-center mb-5">
@@ -146,12 +146,12 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                 <h1 style="color: #B7450A;">Attualmente attivi a Milano</h1>
                 <p class="fs-4">DeliveBoo è attualmente attiva solo a Milano con i suoi servizi <br> ma presto arriverà
                     anche in altre città!</p>
-                <div class="mb-3">
+             <!--    <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Rimani aggiornato:</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1"
                         placeholder="name@example.com">
                     <button class="btn mt-3 btn-danger">Invia</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -340,6 +340,19 @@ export default {
     height: 400px;
     overflow: hidden;
 }
+
+.video-container:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to bottom, rgba(202, 59, 59, 0),#F5F5F5 100%);
+  width: 100%;
+  height: 4em;
+}
+
 
 .video-container video {
     position: absolute;
