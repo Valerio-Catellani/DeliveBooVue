@@ -19,6 +19,7 @@ export const store = reactive({
         data: [],
         infoPagination: []
       },
+      singleRestaurant: []
     },
 
   },
@@ -36,7 +37,6 @@ export const store = reactive({
     // params = { page: 1, type: '' } da inserire dnetro alla funzione getMovies
 
     async getAllElements(element, params = {}) {
-
       return axios.get(`${store.apiBaseUrl}/get-${element}`, { params }).then((response) => {
         switch (element) {
           case 'typologies': {
@@ -54,6 +54,17 @@ export const store = reactive({
         router.push({ name: 'not-found' })
       })
     },
+
+    //  # ottieni uno specifico ristorante (restaurant-slug)
+    //http://127.0.0.1:8000/api/get-restaurants/ristorante-onisto
+    async getRestaurantBySlug(slug) {
+      return axios.get(`${store.apiBaseUrl}/get-restaurants/${slug}`).then((response) => {
+        console.log('response', response.data.results);
+        store.api_data.restaurants.singleRestaurant = response.data.results;
+      })
+
+    }
+
 
 
   },
