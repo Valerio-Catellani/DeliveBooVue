@@ -5,34 +5,34 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-sm-4 col-md-3 item">
-                        <h3>Services</h3>
+                        <h3>Servizi</h3>
                         <ul>
                             <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Sviluppo</a></li>
                             <li><a href="#">Hosting</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-4 col-md-3 item">
-                        <h3>About</h3>
+                        <h3>Chi siamo</h3>
                         <ul>
-                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Azienda</a></li>
                             <li><a href="#">Team</a></li>
                             <li><a href="#">Legacy</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-4 col-md-3 item">
-                        <h3>Careers</h3>
+                        <h3>Carriere</h3>
                         <ul>
-                            <li><a href="#">Job openings</a></li>
-                            <li><a href="#">Employee success</a></li>
-                            <li><a href="#">Benefits</a></li>
+                            <li><a href="#">Posizioni aperte</a></li>
+                            <li><a href="#">Successo dei dipendenti</a></li>
+                            <li><a href="#">Benefici</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 item social"><a href="#"><i class="fa-brands fa-facebook"></i></a><a
                             href="#"><i class="fa-brands fa-x-twitter"></i></a><a href="#"><i
                                 class="fa-brands fa-snapchat"></i></a><a href="#"><i
                                 class="fa-brands fa-instagram"></i></a>
-                        <p class="copyright">Company Name © 2018</p>
+                        <p class="copyright">DeliveBoo © 2024</p>
                     </div>
                 </div>
             </div>
@@ -40,6 +40,7 @@
     </div>
     </footer>
 </template>
+
 
 <script>
     export default {
