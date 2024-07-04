@@ -1,7 +1,7 @@
 <template>
     <div class="video-container mb-5">
         <video autoplay muted loop>
-            <source src="/images/Food Delivery Advertisement (Ken).mp4" type="video/mp4">
+            <source src="/images/0705.mov" type="video/mp4">
         </video>
         <div class="video-overlay">
             <div class="container">
