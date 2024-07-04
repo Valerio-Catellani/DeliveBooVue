@@ -13,12 +13,13 @@
         </div>
     </div>
 
-    <div  class="p-4 mb-5 rounded-3 position-relative container my-4 custom-jumbp-background overflow-hidden" style="background: rgb(80,0,0);
+    <div class="p-4 mb-5 rounded-3 position-relative container my-4 custom-jumbp-background overflow-hidden" style="background: rgb(80,0,0);
 background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rgba(253,181,22,1) 50%);">
         <div class="container-fluid py-5 custom-jumbotron">
             <div class="d-flex flex-column justify-content-start">
                 <h1 class="display-1 fw-bold mb-5 z-3" style="color: #B7450A;">Hai fame?</h1>
-                <p class="col-md-8 fs-4 w-100 z-3">Scopri una vasta selezione di ristoranti locali e ordina i tuoi piatti
+                <p class="col-md-8 fs-4 w-100 z-3">Scopri una vasta selezione di ristoranti locali e ordina i tuoi
+                    piatti
                     preferiti
                     con pochi clic. Siamo qui per rendere la tua esperienza di food delivery veloce, comoda e deliziosa.
                 </p>
@@ -28,7 +29,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                     </span>
                     <span class="button-text">Ordina ora!</span>
                     <div class="w-50">
-                        <img class="cibbo"src="/images/Image.png" alt="">
+                        <img class="cibbo" src="/images/Image.png" alt="">
                     </div>
                 </a>
             </div>
@@ -36,24 +37,27 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                 <div id="hamburger-3d" style="width: 500px; height: 500px;"></div>
             </div>
         </div>
-        <div id="multiselect"><!-- questo div è vuoto serve solo per lo scroll al premere del bottonee "ordina ora" --></div>
+        <div id="multiselect"><!-- questo div è vuoto serve solo per lo scroll al premere del bottonee "ordina ora" -->
+        </div>
     </div>
 
-    
+
 
     <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
-        <h1 class="display-3 fw-bold mb-5" style="color: #B7450A;">Seleziona per categoria.</h1>
+        <h1 class="display-3 fw-bold mb-5" style="color: #B7450A;">Di cosa hai Voglia oggi?</h1>
         <MultiSelect />
+
+    </div>
+    <div class="container">
         <div class="row mt-3">
-           <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
-        :key="restaurant.id" :props="restaurant" />
+            <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
+                :key="restaurant.id" :props="restaurant" />
         </div>
-        
     </div>
 
     <div class="container">
         <div class="row">
-           
+
         </div>
     </div>
 
@@ -592,7 +596,8 @@ article:has(:hover, :focus) {
     z-index: 999;
 }
 
-button, a {
+button,
+a {
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -606,14 +611,16 @@ button, a {
     font-family: inherit;
 }
 
-button.learn-more, a.learn-more {
+button.learn-more,
+a.learn-more {
 
     width: 14rem;
 
     height: auto;
 }
 
-button.learn-more .circle, a.learn-more .circle  {
+button.learn-more .circle,
+a.learn-more .circle {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     position: relative;
     display: block;
@@ -624,7 +631,8 @@ button.learn-more .circle, a.learn-more .circle  {
     border-radius: 1.625rem;
 }
 
-button.learn-more .circle .icon, a.learn-more .circle .icon {
+button.learn-more .circle .icon,
+a.learn-more .circle .icon {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     position: absolute;
     top: 0;
@@ -633,7 +641,8 @@ button.learn-more .circle .icon, a.learn-more .circle .icon {
     background: #fff;
 }
 
-button.learn-more .circle .icon.arrow, a.learn-more .circle .icon.arrow {
+button.learn-more .circle .icon.arrow,
+a.learn-more .circle .icon.arrow {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     left: 0.625rem;
     width: 1.125rem;
@@ -641,7 +650,8 @@ button.learn-more .circle .icon.arrow, a.learn-more .circle .icon.arrow {
     background: none;
 }
 
-button.learn-more .circle .icon.arrow::before, a.learn-more .circle .icon.arrow::before {
+button.learn-more .circle .icon.arrow::before,
+a.learn-more .circle .icon.arrow::before {
     position: absolute;
     content: "";
     top: -0.29rem;
@@ -653,7 +663,8 @@ button.learn-more .circle .icon.arrow::before, a.learn-more .circle .icon.arrow:
     transform: rotate(45deg);
 }
 
-button.learn-more .button-text, a.learn-more .button-text {
+button.learn-more .button-text,
+a.learn-more .button-text {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     position: absolute;
     top: 0;
@@ -669,16 +680,19 @@ button.learn-more .button-text, a.learn-more .button-text {
     text-transform: uppercase;
 }
 
-button:hover .circle, a:hover .circle {
+button:hover .circle,
+a:hover .circle {
     width: 100%;
 }
 
-button:hover .circle .icon.arrow, a:hover .circle .icon.arrow  {
+button:hover .circle .icon.arrow,
+a:hover .circle .icon.arrow {
     background: #fff;
     transform: translate(1rem, 0);
 }
 
-button:hover .button-text, a:hover .button-text  {
+button:hover .button-text,
+a:hover .button-text {
     color: #fff;
 }
 
@@ -706,8 +720,4 @@ button:hover .button-text, a:hover .button-text  {
     transform: rotate(140deg);
     width: 600px;
 }
-
-
-
-
 </style>
