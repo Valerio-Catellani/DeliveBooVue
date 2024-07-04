@@ -74,7 +74,7 @@
     font-weight: 900;
     font-size: large;
    a{
-    color: #902B06;
+    color: #e15624;
    }
   }
   

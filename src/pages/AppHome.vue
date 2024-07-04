@@ -337,22 +337,9 @@ export default {
     padding-top: 70px;
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 500px;
     overflow: hidden;
 }
-
-.video-container:after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
-  pointer-events: none;
-  background-image: linear-gradient(to bottom, rgba(202, 59, 59, 0),#F5F5F5 100%);
-  width: 100%;
-  height: 4em;
-}
-
 
 .video-container video {
     position: absolute;
