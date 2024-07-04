@@ -49,10 +49,11 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 
     </div>
     <div class="container">
-        <div class="row mt-3">
+        <div class="row mt-3" v-if="!store.loading">
             <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
                 :key="restaurant.id" :props="restaurant" />
         </div>
+        <ApiLoader v-else />
     </div>
 
     <div class="container">
@@ -156,6 +157,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 <script>
 import MultiSelect from '../components/MultiSelect.vue';
 import RestaurantCardComponent from '../components/RestaurantCardComponent.vue';
+import ApiLoader from '../components/ApiLoader.vue';
 import { store } from '../store';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -166,6 +168,7 @@ export default {
     components: {
         MultiSelect,
         RestaurantCardComponent,
+        ApiLoader
     },
     data() {
         return {
