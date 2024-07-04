@@ -68,7 +68,7 @@
 								</svg>
 							</div>
 							<div class="fs-5">
-								+39 {{ restaurant.phone }}
+								<a href="tel:{{ restaurant.phone }}">{{ restaurant.phone }}</a>
 							</div>
 						</div>
 					</div>
@@ -83,10 +83,9 @@
 	<section>
 
 		<div class="container">
-			<h2 class="text-center py-5">Menu</h2>
+			<h2 class="text-center py-4 display-4">Menu</h2>
 			<div class="row">
-				<DishCardComponent></DishCardComponent>
-
+				<DishCardComponent v-for="dish in restaurant.dishes" :key="dish.id" :dish="dish"></DishCardComponent>
 			</div>
 		</div>
 	</section>
