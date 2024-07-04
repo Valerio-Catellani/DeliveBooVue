@@ -28,6 +28,7 @@ export const store = reactive({
   animation: {
 
   },
+  loading: false,
 
   params: {
 
@@ -42,14 +43,23 @@ export const store = reactive({
         switch (element) {
           case 'typologies': {
             store.api_data.typologies.allTypologies.data = response.data.results.data;
+            store.api_data.typologies.allTypologies.data.forEach(element => {
+              if (!element.image.startsWith('http')) {
+                element.image = `${store.imgBasePath}${element.image}`
+              }
+            });
             break;
           }
           case 'restaurants': {
             store.api_data.restaurants.allRestaurants.data = response.data.results.data;
+            store.api_data.restaurants.allRestaurants.data.forEach(element => {
+              if (!element.image.startsWith('http')) {
+                element.image = `${store.imgBasePath}${element.image}`
+              }
+            });
             break;
           }
         }
-        console.log('all api_data', store.api_data);
       }).catch((error) => {
         console.log(error);
         router.push({ name: 'not-found' })
@@ -61,9 +71,17 @@ export const store = reactive({
     //  # ottieni uno specifico ristorante (restaurant-slug)
     //http://127.0.0.1:8000/api/get-restaurants/ristorante-onisto
     async getRestaurantBySlug(slug) {
+      store.loading = true;
       return axios.get(`${store.apiBaseUrl}/get-restaurants/${slug}`).then((response) => {
-        console.log('response', response.data.results);
         store.api_data.restaurants.singleRestaurant = response.data.results;
+        if (!store.api_data.restaurants.singleRestaurant[0].image.startsWith('http')) {
+          store.api_data.restaurants.singleRestaurant[0].image = `${store.imgBasePath}${store.api_data.restaurants.singleRestaurant[0].image}`
+        }
+      }).catch((error) => {
+        console.log(error);
+        router.push({ name: 'not-found' })
+      }).finally(() => {
+        store.loading = false;
       })
 
     }

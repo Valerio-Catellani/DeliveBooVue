@@ -1,5 +1,5 @@
 <template>
-    <div class="col-xl-6 col-12 my-2 p-4">
+    <div class="dish-container col-xl-6 col-12 my-2 p-4 " ref="cardEnter">
         <div class="dish d-flex overflow-hidden shadow rounded-3">
             <div class="dish-img">
                 <img :src="dish.image" :alt="dish.name" width="300" height="300">
@@ -36,10 +36,37 @@ export default {
 
     props: ['dish'],
 
+    mounted() {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
+                    entry.target.style.transform = "translateX(0)"
+                } else {
+                    // if (window.innerWidth > 1200) {
+                    entry.target.className.includes('dish-right') ? entry.target.style.transform = "translateX(+10%)" : entry.target.style.transform = "translateX(-10%)"
+
+                    // } else {
+                    //     entry.target.style.transform = "rotateY(0deg) rotateX(15deg)"
+                    // }
+
+                }
+            });
+        }, {
+            threshold: 0.7 // Imposta il threshold al 50%
+        });
+        observer.observe(this.$refs.cardEnter);
+
+    }
+
 }
 </script>
 
 <style lang="scss" scoped>
+.dish-container {
+
+    transition: transform 0.5s ease-in-out;
+}
+
 .dish {
     height: 300px;
 

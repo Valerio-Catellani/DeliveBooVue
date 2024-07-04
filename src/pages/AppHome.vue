@@ -53,8 +53,10 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
             <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
                 :key="restaurant.id" :props="restaurant" />
         </div>
-        <div class="col-12 d-flex justify-content-center display-3 fw-bold mb-5" style="color: #B7450A;" v-if="store.api_data.restaurants.allRestaurants.data.length < 1">Nessun Ristorante trovato con le categorie selezionate</div>
-        <ApiLoader v-else />
+        <div class="col-12 d-flex justify-content-center display-3 fw-bold mb-5" style="color: #B7450A;"
+            v-if="store.api_data.restaurants.allRestaurants.data.length < 1">Nessun Ristorante trovato con le categorie
+            selezionate</div>
+        <!-- <ApiLoader v-else /> -->
     </div>
 
     <div class="container">

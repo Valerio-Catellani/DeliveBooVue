@@ -1,7 +1,7 @@
 <template>
     <div class="col-6 col-lg-3 mb-4 d-flex">
-        <router-link :to="`/restaurant/${props.slug}`" class="text-decoration-none">
-            <div class="card flex-fill">
+        <router-link :to="`/restaurant/${props.slug}`" class="text-decoration-none w-100">
+            <div class="card flex-fill w-100">
                 <div class="ratio ratio-16x9">
                     <img v-if="props.image" :src="props.image" class="card-img-top p-1 rounded-4" :alt="props.name">
                     <div v-else class="placeholder p-1 rounded-4">
@@ -35,6 +35,9 @@ export default {
         }
     },
     created() {
+        console.log(this.props.image);
+    },
+    methods: {
     }
 }
 </script>
@@ -48,7 +51,9 @@ export default {
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s;
-    img, .placeholder {
+
+    img,
+    .placeholder {
         width: 100%;
         height: 100%;
         display: flex;
