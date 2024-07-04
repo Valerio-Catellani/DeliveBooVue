@@ -17,7 +17,9 @@ $fa-font-path: "../fonts/webfonts";
 
 body {
   background-color: whitesmoke;
+  scroll-behavior: smooth;
 }
+
 
 .article-body {
   transform: translateY(-30%);
