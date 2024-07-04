@@ -1,5 +1,5 @@
 <template>
-    <div class="col-6 col-lg-3 mb-4 d-flex">
+    <div class="col-12 col-md-6 col-lg-3 mb-4 d-flex">
         <div class="card flex-fill">
             <div class="ratio ratio-16x9">
                 <img :src="props.image" class="card-img-top p-1 rounded-4" :alt="props.name">

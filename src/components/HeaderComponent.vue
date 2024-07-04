@@ -1,26 +1,31 @@
 <template>
     <header>
         <nav class="navbar position-fixed top-0 w-100 navbar-expand-lg custom-font custom-nav" >
-        <div class="container-fluid">
-            <a class="navbar-brand" style="color: #B7450A;" href="#">DeliveBoo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
+            <div class="container-fluid">
+                <a class="navbar-brand" style="color: #B7450A;" href="#">DeliveBoo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
                         <li class="nav-item" v-for="(link, index) in menuItems" :key="index">
-                            <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
-                            <router-link :to="{ name: link.routeName }" class="nav-link" active-class="active">
-                                {{ link.label }}
-                            </router-link>
+                            <template v-if="link.routeName !== 'partner'">
+                                <router-link :to="{ name: link.routeName }" class="nav-link" active-class="active">
+                                    {{ link.label }}
+                                </router-link>
+                            </template>
+                            <template v-else>
+                                <a :href="link.externalUrl" class="nav-link">
+                                    {{ link.label }}
+                                </a>
+                            </template>
                         </li>
-
                     </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     </header>
 </template>
 
@@ -36,7 +41,8 @@ export default {
                 },
                 {
                     label: 'Diventa Partner',
-                    routeName :'partner'
+                    routeName: 'partner',
+                    externalUrl: 'http://127.0.0.1:8000/register'
                 },
                 {
                     label: 'About',
@@ -46,8 +52,7 @@ export default {
                     label: 'Contact',
                     routeName: 'contact'
                 },
-            ],
-            show: false
+            ]
         }
     }
 }
@@ -60,9 +65,9 @@ export default {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    }
+}
 
-    nav {
+nav {
     z-index: 9000;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
