@@ -29,7 +29,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                     </span>
                     <span class="button-text">Ordina ora!</span>
                     <div class="w-50">
-                        <img class="cibbo" src="/images/Image.png" alt="">
+                        <img class="food-overflow" src="/images/Image.png" alt="">
                     </div>
                 </a>
             </div>
@@ -713,7 +713,7 @@ a:hover .button-text {
     display: block;
 }
 
-.cibbo {
+.food-overflow {
     position: absolute;
     bottom: 290px;
     right: -240px;
