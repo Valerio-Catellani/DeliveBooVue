@@ -34,6 +34,8 @@ export default {
       if (this.selectedValues.length > 0) {
         const selectedStrings = this.selectedValues.map(element => element.text).join(',');
         store.methods.getAllElements('restaurants', { typology: selectedStrings, match: 'all' });
+      } else {
+        this.showRestaurants();
       }
     },
     async addOptions() {
@@ -60,6 +62,10 @@ export default {
 
 .multiselect__tag {
   background: #B7450A;
+}
+
+.multiselect__tags {
+  padding: 8px 40px 8px 8px !important;
 }
 
 .custom-tag {

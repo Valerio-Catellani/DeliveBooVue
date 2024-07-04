@@ -1,21 +1,5 @@
 <template>
-<<<<<<< HEAD
-    <div class="col-12 col-md-6 col-lg-3 mb-4 d-flex">
-        <div class="card flex-fill">
-            <div class="ratio ratio-16x9">
-                <img :src="props.image" class="card-img-top p-1 rounded-4" :alt="props.name">
-            </div>
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">{{ props.name }}</h5>
-                <p class="text-secondary fw-light fs-6">{{ props.address }}</p>
-                <hr class="m-0">
-                <span>Categorie:</span>
-                <div class="icons-container d-flex gap-2 mb-3">
 
-                    <template v-for="typo in props.typologies" :key="typo.id">
-                        <div class="svg-container" v-html="typo.icon"></div>
-                    </template>
-=======
     <div class="col-6 col-lg-3 mb-4 d-flex">
         <router-link :to="`/restaurant/${props.slug}`" class="text-decoration-none">
             <div class="card flex-fill">
@@ -42,7 +26,7 @@
                                 fill="black"></path>
                         </svg>
                     </button> -->
->>>>>>> 10a0cbe026731e8106bc8c5993e76b531cf81b8c
+
                 </div>
             </div>
         </router-link>

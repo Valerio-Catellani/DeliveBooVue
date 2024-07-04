@@ -34,10 +34,11 @@
 			<div class="col-12 rest-card bg-light rounded-5 shadow">
 				<!-- <div class="absolute-card-logo"> -->
 				<div class="img-logo">
-					<img class="logo logo-resturant" src="/public/images/kfc.webp" alt="nome resturant">
-					<!-- <div v-else class="placeholder-logo">
-	
-						</div> -->
+					<img v-if="restaurant.logo" class="logo logo-resturant" src="/public/images/kfc.webp"
+						alt="nome resturant">
+					<div v-else class="placeholder-logo logo-resturant bg-warning">
+
+					</div>
 				</div>
 				<div class="info-res text-center">
 					<h1 class="display-3 fw-bold">{{ restaurant.name }}</h1>
