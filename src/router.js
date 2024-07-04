@@ -5,7 +5,7 @@ import PartenerComponent from "./pages/PartnerComponent.vue";
 import NotFound from "./pages/NotFound.vue";
 import ContactComponent from "./pages/ContactComponent.vue";
 import AboutComponent from "./pages/AboutComponent.vue";
-import ResturantComponent from "./pages/ResturantComponent.vue";
+import RestaurantComponent from "./pages/RestaurantComponent.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -31,9 +31,9 @@ const router = createRouter({
       component: PartenerComponent,
     },
     {
-      path: "/resturant",
-      name: "resturant",
-      component: ResturantComponent,
+      path: "/restaurant/:slug",
+      name: "restaurant-details",
+      component: RestaurantComponent,
     },
     {
       path: "/:pathMatch(.*)*",
