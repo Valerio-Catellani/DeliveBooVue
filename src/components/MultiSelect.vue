@@ -1,31 +1,34 @@
 <template>
-  <div>
-    <multiselect v-model="selectedValues" :options="options" :multiple="true" :close-on-select="false"
-      :clear-on-select="false" :preserve-search="true" placeholder="Seleziona una o più Categorie" label="text"
-      track-by="value" :preselect-first="true" @update:modelValue="handChange">
-      <template #tag="{ option, remove }">
-        <span class="custom-tag d-inline-block px-2">
-          <span class="svg-container d-inline-block pe-2" v-html="option.icon"></span> <!-- Percorso dell'SVG -->
-          {{ option.text }}
-          <span class="remove-icon" @click="remove(option)">×</span>
-        </span>
-      </template>
-    </multiselect>
-  </div>
+
+    <div class="row gap-1 d-flex justify-content-evenly">
+      <div class="col-12 col-md-6 col-lg-2 mb-4" v-for="option in options" :key="option.value">
+        <div class="category-card d-flex flex-column justify-content-center align-items-center"
+          :class="{ 'category-card-selected': selectedValues.includes(option) }" @click="toggleSelection(option)">
+
+          <div class="image">
+            <img v-if="option.image" :src="option.image" class="card-img-top mb-2 img-fluid" alt="category image">
+            <div class="overlay">
+              <div class="svg-container" v-if="option.icon">
+                <div v-html="option.icon"></div>
+              </div>
+              <div class="category-card-text">{{ option.text }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </template>
 
+
+
 <script>
-import Multiselect from 'vue-multiselect';
 import { store } from '../store';
 
 export default {
-  components: {
-    Multiselect
-  },
   data() {
     return {
-      options: [
-      ],
+      options: [],
       selectedValues: []
     };
   },
@@ -40,15 +43,28 @@ export default {
     },
     async addOptions() {
       await store.methods.getAllElements('typologies');
-      store.api_data.typologies.allTypologies.data.forEach(element => {
-        this.options.push({ text: element.name, value: element.slug, icon: element.icon })
-      })
+      const typologies = store.api_data.typologies.allTypologies.data;
+      typologies.forEach(element => {
+        this.options.push({
+          text: element.name,
+          value: element.slug,
+          icon: element.icon,
+          image: element.image
+        });
+      });
     },
     async showRestaurants() {
-      
       await store.methods.getAllElements('restaurants');
+    },
+    toggleSelection(option) {
+      const index = this.selectedValues.findIndex(item => item.value === option.value);
+      if (index === -1) {
+        this.selectedValues.push(option);
+      } else {
+        this.selectedValues.splice(index, 1);
+      }
+      this.handChange();
     }
-
   },
   created() {
     this.addOptions();
@@ -58,35 +74,65 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'vue-multiselect/dist/vue-multiselect.css';
 @import '../assets/styles/general.scss';
 
-.multiselect__tag {
-  background: #B7450A;
-}
+.category-card {
 
-.multiselect__tags {
-  padding: 8px 40px 8px 8px !important;
-}
+  border-radius: 20px;
+  overflow: hidden;
 
-.custom-tag {
-  background: #B7450A;
-  border-radius: 4px;
-  height: 50px;
-  padding-bottom: 5px;
-  margin: 2px;
-  font-size: 20px;
-  color: white;
-}
 
-.tag-icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 5px;
-}
 
-.remove-icon {
-  margin-left: 5px;
+
   cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  border: 2px solid transparent;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &.category-card-selected {
+    border-color: #3cff00;//colore a caso che mi sembra suggerisca il fatto che la card è attiva
+  }
+
+  .image {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 50%;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.5);
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 10px;
+
+      .category-card-text {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
 }
 </style>
