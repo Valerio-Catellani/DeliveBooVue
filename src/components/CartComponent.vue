@@ -1,6 +1,6 @@
 <template>
     <h2>Il tuo carrello</h2>
-    <div v-for="(item, index) in cart" :key="index">
+    <div v-for="(item, index) in store.cart" :key="index">
         <ul>
             <li>{{ item.nome }}</li>
             <li>{{ item.img }}</li>
@@ -10,7 +10,7 @@
     </div>
     <button @click="addToCart(item)">Aggiungi al carrello</button>
     <button 
-        v-if="cart.length > 0" 
+        v-if="store.cart.length > 0" 
         @click="clearCart()">Svuota carrello
     </button>
 
@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             store,
-            cart: [],
+            
         }
     },
     methods: {
@@ -33,29 +33,29 @@ export default {
             const savedCart = localStorage.getItem('cart');
             //se non c'è lo creo
             if (!savedCart) {
-                this.cart = [];
+                store.cart = [];
                 localStorage.setItem('cart', JSON.stringify(this.cart));
             }
             //se c'è lo carico
             else {
-                this.cart = JSON.parse(savedCart);
+                store.cart = JSON.parse(savedCart);
             }
 
         },
         savedCart() {
-            this.cart = JSON.parse(localStorage.getItem('cart'));
-            console.log(this.cart);
+            store.cart = JSON.parse(localStorage.getItem('cart'));
+            console.log(store.cart);
         },
         addToCart(item) {
-            this.cart.push({ nome: 'prova', prezzo: 10, img: 'https://picsum.photos/200/300', qty: 1 });
-            console.log(this.cart);
-            localStorage.setItem('cart', JSON.stringify(this.cart));
+            store.cart.push({ nome: 'prova', prezzo: 10, img: 'https://picsum.photos/200/300', qty: 1 });
+            console.log(store.cart);
+            localStorage.setItem('cart', JSON.stringify(store.cart));
         },
         removeFromCart(item) {
         },
         clearCart() {
-            this.cart = [];
-            localStorage.setItem('cart', JSON.stringify(this.cart));
+            store.cart = [];
+            localStorage.setItem('cart', JSON.stringify(store.cart));
         }
 
     },
@@ -64,7 +64,7 @@ export default {
         this.loadCart();
         // this.savedCart();
         // this.addToCart();
-        console.log(this.cart);
+        console.log(store.cart);
 
     }
 }

@@ -18,7 +18,8 @@
                 <p class="dish-ingredients p-1">{{ dish.ingredients }}</p>
                 <h5>Prezzo: <span>{{ dish.price }}</span>€</h5>
 
-                <button class="recipe-save " type="button">
+                <button class="recipe-save " type="button"
+                @click="addToCart(dish)">
                     <span><i class="fa-solid fa-cart-shopping"></i>Add to cart</span>
                 </button>
 
@@ -31,10 +32,18 @@
 </template>
 
 <script>
+import { store } from '../store';
 export default {
     name: 'DishCardComponent',
 
     props: ['dish'],
+    
+    methods: {
+       addToCart(dish) {
+        store.cart.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1 });
+        localStorage.setItem('cart', JSON.stringify(store.cart));
+       }
+    },
 
     mounted() {
         const observer = new IntersectionObserver(entries => {
