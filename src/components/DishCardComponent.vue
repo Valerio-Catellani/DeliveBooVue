@@ -18,8 +18,7 @@
                 <p class="dish-ingredients p-1">{{ dish.ingredients }}</p>
                 <h5>Prezzo: <span>{{ dish.price }}</span>€</h5>
 
-                <button class="recipe-save " type="button"
-                @click="addToCart(dish)">
+                <button class="recipe-save " type="button" @click="addToCart(dish)">
                     <span><i class="fa-solid fa-cart-shopping"></i>Add to cart</span>
                 </button>
 
@@ -37,12 +36,46 @@ export default {
     name: 'DishCardComponent',
 
     props: ['dish'],
-    
+
     methods: {
-       addToCart(dish) {
-        store.cart.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1 });
-        localStorage.setItem('cart', JSON.stringify(store.cart));
-       }
+        addToCart(dish) {
+
+            // controllo se ci sono elementi nel carrello
+            let myCart = localStorage.getItem('cart');
+            myCart = JSON.parse(myCart);
+
+            // se non ci sono li aggiungo
+            if (!myCart.length) {
+                console.log('nessun elemento nel carrello');
+                store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1 });
+                localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+            }
+            // se ci sono 
+            else if (myCart.length) {
+                console.log(myCart);
+                
+                for (let index = 0; index < myCart.length; index++) {
+                    const element = myCart[index];
+
+                    // se l'elemento esiste nel carrello incremento la qty
+                    if (element.nome == dish.name) {
+                        element.qty++;
+                        store.cart.dishes = myCart;
+                        localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                        break;
+                    }
+
+                    // se l'elemento non esiste lo aggiungo
+                    else {
+                        store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug });
+                        localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                        console.log(store.cart.dishes);
+                    }
+                };
+
+            }
+
+        }
     },
 
     mounted() {

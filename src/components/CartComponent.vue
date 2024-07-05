@@ -1,6 +1,6 @@
 <template>
     <h2>Il tuo carrello</h2>
-    <div v-for="(item, index) in store.cart" :key="index">
+    <div v-for="(item, index) in store.cart.dishes" :key="index">
         <ul>
             <li>{{ item.nome }}</li>
             <li>{{ item.img }}</li>
@@ -10,7 +10,7 @@
     </div>
     <button @click="addToCart(item)">Aggiungi al carrello</button>
     <button 
-        v-if="store.cart.length > 0" 
+        v-if="store.cart.dishes.length > 0" 
         @click="clearCart()">Svuota carrello
     </button>
 
@@ -33,29 +33,29 @@ export default {
             const savedCart = localStorage.getItem('cart');
             //se non c'è lo creo
             if (!savedCart) {
-                store.cart = [];
+                store.cart.dishes = [];
                 localStorage.setItem('cart', JSON.stringify(this.cart));
             }
             //se c'è lo carico
             else {
-                store.cart = JSON.parse(savedCart);
+                store.cart.dishes = JSON.parse(savedCart);
             }
 
         },
         savedCart() {
-            store.cart = JSON.parse(localStorage.getItem('cart'));
-            console.log(store.cart);
+            store.cart.dishes = JSON.parse(localStorage.getItem('cart'));
+            console.log(store.cart.dishes);
         },
         addToCart(item) {
-            store.cart.push({ nome: 'prova', prezzo: 10, img: 'https://picsum.photos/200/300', qty: 1 });
-            console.log(store.cart);
-            localStorage.setItem('cart', JSON.stringify(store.cart));
+            store.cart.dishes.push({ nome: 'prova', prezzo: 10, img: 'https://picsum.photos/200/300', qty: 1 });
+            console.log(store.cart.dishes);
+            localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
         },
         removeFromCart(item) {
         },
         clearCart() {
-            store.cart = [];
-            localStorage.setItem('cart', JSON.stringify(store.cart));
+            store.cart.dishes = [];
+            localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
         }
 
     },
@@ -64,7 +64,7 @@ export default {
         this.loadCart();
         // this.savedCart();
         // this.addToCart();
-        console.log(store.cart);
+        console.log(store.cart.dishes);
 
     }
 }

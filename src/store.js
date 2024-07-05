@@ -33,7 +33,10 @@ export const store = reactive({
   params: {
 
   },
-  cart: [],
+  cart: {
+    restaurantSlug : '',
+    dishes: [],
+  },
 
   methods: {
     // params = { page: 1, type: '' } da inserire dnetro alla funzione getMovies
