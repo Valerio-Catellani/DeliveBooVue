@@ -3,9 +3,9 @@
     <h2 class="title">Il tuo carrello</h2>
 
     <div v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto</div>
-    <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId">Il tuo carrello si riferisce ad un
-        altro ristorante, svuotalo se vuoi continuare o vai al pagamento</div>
 
+    <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.actualVisitedRestaurantId !== null">Il tuo carrello si riferisce ad un altro ristorante, svuotalo se vuoi continuare o vai al pagamento</div>
+    
     <div v-for="(item, index) in store.cart.dishes" :key="index">
         <ul>
             <li>{{ item.nome }}</li>
@@ -26,6 +26,9 @@
 
     <button v-if="store.cart.dishes.length > 0" @click="clearCart()">Svuota carrello
     </button>
+    <RouterLink :to="{ name: 'payment' }" v-if="store.cart.dishes.length > 0">Vai al pagamento</RouterLink>
+ 
+    
 
 </template>
 
@@ -49,9 +52,9 @@ export default {
             const savedCart = localStorage.getItem('cart');
             //se non c'è lo creo
             if (!savedCart) {
-                console.log('create cart');
-                store.cart.dishes = [];
-                localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                // console.log('create cart');
+                // store.cart.dishes = [];
+                // localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
             }
             //se c'è lo carico
             else {
@@ -61,11 +64,14 @@ export default {
                 let myCart = store.cart.dishes;
                 console.log(localStorage);
                 if (myCart.length > 0) {
+                    console.log(localStorage, 'localStorage');
                     store.cart.restaurantId = myCart[0].restaurant_id;
-                    console.log(store.cart.restaurantId, 'store.cart.restaurantId');
-                    // if (!store.cart.actualVisitedRestaurantId) {
-                    //     store.cart.actualVisitedRestaurantId = myCart[0].restaurant_id;
-                    // }
+
+                    const activeId = JSON.parse(localStorage.getItem('activeRestaurant'));
+                    
+                    // console.log(activeId, 'activeId');
+                    store.cart.actualVisitedRestaurantId = activeId;
+
                 }
 
 
@@ -93,6 +99,12 @@ export default {
                 console.log('nessun elemento nel carrello');
                 store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
                 localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                //e settiamo l'id  del ristorante attivo
+                const activeId = JSON.parse(localStorage.getItem('activeRestaurant'));
+                    
+                    // console.log(activeId, 'activeId');
+                 store.cart.actualVisitedRestaurantId = activeId;
+
             }
             // se ci sono 
             else if (myCart.length) {
