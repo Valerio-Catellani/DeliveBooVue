@@ -302,9 +302,14 @@ export default {
             store.cart.actualVisitedRestaurantId = restaurant.id;
             console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
             //salvo l'oggetto ristorante in localStorage
-            // let activeRestaurant = restaurant;
+            let activeRestaurant = restaurant.id;
+            console.log(activeRestaurant, 'activeRestaurant');
+            localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));
+            console.log(JSON.parse(localStorage.getItem('activeRestaurant')), 'localStorage.getItem(activeRestaurant)');
+
+
             // localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));
-            
+
         //     if (!store.cart.restaurantSlug) {
         //         store.cart.restaurantSlug = restaurant.slug
         //         //se imposto assegno il valore a restaurantSlug, memorizzo anche id e slug
