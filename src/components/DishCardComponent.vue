@@ -42,23 +42,33 @@ export default {
     data() {
         return {
             store,
+            dish : this.dish
         }
     },
 
     methods: {
         addToCart(dish) {
-
+          
             // controllo se ci sono elementi nel carrello
             let myCart = localStorage.getItem('cart');
+            
             myCart = JSON.parse(myCart);
+            if (!myCart) {
+                myCart = [];
+            }
 
+            console.log(myCart, 'carrello');
             // se non ci sono li aggiungo
             if (!myCart.length) {
                 console.log('nessun elemento nel carrello');
-
+                console.log(myCart, 'carrello');
 
                 store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
                 localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+
+                //e settiamo l'id del ristorante nello store e l'id del ristorante attivo
+                store.cart.restaurantId = dish.restaurant_id;
+                store.cart.actualVisitedRestaurantId = dish.restaurant_id;
             }
             // se ci sono 
             else if (myCart.length) {
@@ -69,7 +79,6 @@ export default {
 
                     // se l'elemento esiste nel carrello, e appartiene ad un altro ristorante, disabilito il pulsante aggiungi, inizializzando una variabile di controllo
                     if (element.restaurant_id != dish.restaurant_id) {
-                        this.store.flag = true;
                         break;
                     } 
 
@@ -116,6 +125,8 @@ export default {
             threshold: 0.7 // Imposta il threshold al 50%
         });
         observer.observe(this.$refs.cardEnter);
+
+
 
     }
 

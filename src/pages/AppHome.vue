@@ -51,7 +51,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
     <div class="container">
         <div class="row mt-3" v-if="!store.loading">
             <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
-                :key="restaurant.id" :props="restaurant" @click="askDeleteCart(restaurant)"/>
+                :key="restaurant.id" :props="restaurant" @click="setActiveRestaurant(restaurant)"/>
         </div>
         <div class="col-12 d-flex justify-content-center display-3 fw-bold mb-5" style="color: #B7450A;"
             v-if="store.api_data.restaurants.allRestaurants.data.length < 1">Nessun Ristorante trovato con le categorie
@@ -297,18 +297,28 @@ export default {
                 vm.create3DHamburger();
             });
         },
-        askDeleteCart(restaurant) {
-            if (!store.cart.restaurantSlug) {
-                store.cart.restaurantSlug = restaurant.slug
-                //se imposto assegno il valore a restaurantSlug, memorizzo anche il 
-                store.cart.restaurantId = restaurant.id
-                console.log(store.cart.restaurantSlug);
-            } else if (store.cart.restaurantSlug !== restaurant.slug) {
+        setActiveRestaurant(restaurant) {
+            //prendo id del ristorante caricato e lo salvo nello store
+            store.cart.actualVisitedRestaurantId = restaurant.id;
+            console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
+            //salvo l'oggetto ristorante in localStorage
+            // let activeRestaurant = restaurant;
+            // localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));
+            
+        //     if (!store.cart.restaurantSlug) {
+        //         store.cart.restaurantSlug = restaurant.slug
+        //         //se imposto assegno il valore a restaurantSlug, memorizzo anche id e slug
+        //         store.cart.restaurantId = restaurant.id
+        //         console.log(store.cart.restaurantId, 'store.cart.restaurantId');
+        //         console.log(store.cart.restaurantSlug);
+        //     } else if (store.cart.restaurantSlug !== restaurant.slug) {
            
-            console.log('il carrello ha un ristorante diverso');
-        }
+        //     store.cart.actualVisitedRestaurantId = restaurant.id
+        //     console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
+        // }
     }
     },
+    
 };
 </script>
 

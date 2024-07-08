@@ -131,10 +131,13 @@ export default {
 				this.initials += element.charAt(0)
 			})
 
-		}
+		},
+		
 	},
 	created() {
 		this.getData()
+		// console.log(this.$route.params, 'parametri');
+		
 	},
 }
 </script>
