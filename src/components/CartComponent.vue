@@ -58,7 +58,7 @@ export default {
             // se non ci sono li aggiungo
             if (!myCart.length) {
                 console.log('nessun elemento nel carrello');
-                store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1 });
+                store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug });
                 localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
             }
             // se ci sono 
@@ -115,7 +115,7 @@ export default {
         this.loadCart();
         // this.savedCart();
         // this.addToCart();
-        console.log(store.cart.dishes);
+        console.log('piatto',store.cart.dishes);
 
     }
 }

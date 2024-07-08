@@ -18,7 +18,9 @@
                 <p class="dish-ingredients p-1">{{ dish.ingredients }}</p>
                 <h5>Prezzo: <span>{{ dish.price }}</span>€</h5>
 
-                <button class="recipe-save " type="button" @click="addToCart(dish)">
+                <h3> {{ dish.restaurant_id }}</h3>
+
+                <button class="recipe-save " type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)">
                     <span><i class="fa-solid fa-cart-shopping"></i>Add to cart</span>
                 </button>
 
@@ -37,6 +39,12 @@ export default {
 
     props: ['dish'],
 
+    data() {
+        return {
+            store,
+        }
+    },
+
     methods: {
         addToCart(dish) {
 
@@ -47,7 +55,9 @@ export default {
             // se non ci sono li aggiungo
             if (!myCart.length) {
                 console.log('nessun elemento nel carrello');
-                store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1 });
+
+
+                store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
                 localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
             }
             // se ci sono 
@@ -57,8 +67,14 @@ export default {
                 for (let index = 0; index < myCart.length; index++) {
                     const element = myCart[index];
 
+                    // se l'elemento esiste nel carrello, e appartiene ad un altro ristorante, disabilito il pulsante aggiungi, inizializzando una variabile di controllo
+                    if (element.restaurant_id != dish.restaurant_id) {
+                        this.store.flag = true;
+                        break;
+                    } 
+
                     // se l'elemento esiste nel carrello incremento la qty
-                    if (element.nome == dish.name) {
+                    else if (element.nome == dish.name && element.restaurant_id == dish.restaurant_id) {
                         element.qty++;
                         store.cart.dishes = myCart;
                         localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
@@ -67,7 +83,7 @@ export default {
 
                     // se l'elemento non esiste lo aggiungo
                     else {
-                        store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug });
+                        store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
                         localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
                         console.log(store.cart.dishes);
                     }
