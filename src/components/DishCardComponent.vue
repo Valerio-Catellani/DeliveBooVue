@@ -21,7 +21,8 @@
                 <h3> {{ dish.restaurant_id }}</h3>
 
                 <button class="recipe-save " type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)">
-                    <span><i class="fa-solid fa-cart-shopping"></i>Add to cart</span>
+                    <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i> Aggiungi al
+                        carrello</span>
                 </button>
 
             </div>
@@ -42,16 +43,16 @@ export default {
     data() {
         return {
             store,
-            dish : this.dish
+            dish: this.dish
         }
     },
 
     methods: {
         addToCart(dish) {
-          
+
             // controllo se ci sono elementi nel carrello
             let myCart = localStorage.getItem('cart');
-            
+
             myCart = JSON.parse(myCart);
             if (!myCart) {
                 myCart = [];
@@ -73,14 +74,14 @@ export default {
             // se ci sono 
             else if (myCart.length) {
                 console.log(myCart);
-                
+
                 for (let index = 0; index < myCart.length; index++) {
                     const element = myCart[index];
 
                     // se l'elemento esiste nel carrello, e appartiene ad un altro ristorante, disabilito il pulsante aggiungi, inizializzando una variabile di controllo
                     if (element.restaurant_id != dish.restaurant_id) {
                         break;
-                    } 
+                    }
 
                     // se l'elemento esiste nel carrello incremento la qty
                     else if (element.nome == dish.name && element.restaurant_id == dish.restaurant_id) {
@@ -102,7 +103,7 @@ export default {
 
         },
 
-        
+
 
     },
 
