@@ -1,7 +1,9 @@
 <template>
-    <h2>Il tuo carrello</h2>
+    <HeaderComponent />
+    <h2 class="title">Il tuo carrello</h2>
 
     <div v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto</div>
+
     <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.actualVisitedRestaurantId !== null">Il tuo carrello si riferisce ad un altro ristorante, svuotalo se vuoi continuare o vai al pagamento</div>
     
     <div v-for="(item, index) in store.cart.dishes" :key="index">
@@ -12,10 +14,14 @@
             <li>{{ item.qty }}</li>
             <li>{{ item.restaurant_id }}</li>
         </ul>
-        <button class="btn btn-danger" :class="{ 'disabled': store.cart.actualVisitedRestaurantId !== item.restaurant_id}" @click="removeFromCart(item)"><i class="fa-solid fa-minus">Rimuovi dal carrello</i></button>
-        <button class="btn btn-primary" :class="{ 'disabled':store.cart.actualVisitedRestaurantId !== item.restaurant_id}" @click="addToCart(item)"><i class="fa-solid fa-plus">Aggiungi al carrello</i></button>
-        
-        
+        <button class="btn btn-danger"
+            :class="{ 'disabled': store.cart.actualVisitedRestaurantId !== item.restaurant_id }"
+            @click="removeFromCart(item)"><i class="fa-solid fa-minus">Rimuovi dal carrello</i></button>
+        <button class="btn btn-primary"
+            :class="{ 'disabled': store.cart.actualVisitedRestaurantId !== item.restaurant_id }"
+            @click="addToCart(item)"><i class="fa-solid fa-plus">Aggiungi al carrello</i></button>
+
+
     </div>
 
     <button v-if="store.cart.dishes.length > 0" @click="clearCart()">Svuota carrello
@@ -28,6 +34,7 @@
 
 <script>
 import { store } from '../store';
+import HeaderComponent from './HeaderComponent.vue';
 export default {
     name: 'CartComponent',
     data() {
@@ -53,24 +60,25 @@ export default {
             else {
                 console.log('load cart');
                 store.cart.dishes = JSON.parse(savedCart);
-            // e salvo l'id del ristorante nello store
+                // e salvo l'id del ristorante nello store
                 let myCart = store.cart.dishes;
                 console.log(localStorage);
                 if (myCart.length > 0) {
                     console.log(localStorage, 'localStorage');
                     store.cart.restaurantId = myCart[0].restaurant_id;
+
                     const activeId = JSON.parse(localStorage.getItem('activeRestaurant'));
                     
                     // console.log(activeId, 'activeId');
                     store.cart.actualVisitedRestaurantId = activeId;
 
                 }
-                
-                
-            // lo imposto uguale all'id del ristorante attivo, così da averlo in caso di caricamento della pagina
+
+
+                // lo imposto uguale all'id del ristorante attivo, così da averlo in caso di caricamento della pagina
                 // store.cart.actualVisitedRestaurantId = myCart[0].restaurant_id;
                 // console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
-                
+
 
             }
 
@@ -135,16 +143,16 @@ export default {
             for (let index = 0; index < myCart.length; index++) {
                 const element = myCart[index];
                 if (element.nome == dish.nome && element.qty > 1) {
-                        element.qty--;
-                        store.cart.dishes = myCart;
-                        localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
-                        break;
-                    } else if (element.nome == dish.nome && element.qty == 1) {
-                        myCart.splice(index, 1);
-                        store.cart.dishes = myCart;
-                        localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
-                        break;
-                    }
+                    element.qty--;
+                    store.cart.dishes = myCart;
+                    localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                    break;
+                } else if (element.nome == dish.nome && element.qty == 1) {
+                    myCart.splice(index, 1);
+                    store.cart.dishes = myCart;
+                    localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                    break;
+                }
             };
         },
         clearCart() {
@@ -160,12 +168,14 @@ export default {
 
         // this.savedCart();
         // this.addToCart();
-        console.log('piatto',store.cart.dishes);
-        
+        console.log('piatto', store.cart.dishes);
+
 
     }
 }
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

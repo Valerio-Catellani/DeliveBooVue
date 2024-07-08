@@ -47,6 +47,11 @@ const router = createRouter({
       name: "not-found",
       component: NotFound,
     },
+    /*{
+      path: "/cart",
+      name: "cart",
+      component: CartComponent,
+    },*/
   ],
 });
 
