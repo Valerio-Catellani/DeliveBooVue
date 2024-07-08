@@ -57,6 +57,7 @@
 					<!-- </div> -->
 				</div>
 				<div class="container">
+					<CartComponent :restaurant="restaurant"></CartComponent>
 					<div class="row justify-content-center justify-content-lg-between gap-3">
 						<div id="res-address" class="col-10 col-lg-5 bg-light shadow p-3 rounded-4">
 							<h3>Indirizzo Ristorante</h3>
@@ -105,12 +106,14 @@ import { store } from '../store'
 import JumboComponent from '../components/JumboComponent.vue'
 import DishCardComponent from '../components/DishCardComponent.vue'
 import ApiLoader from '@/components/ApiLoader.vue'
+import CartComponent from '@/components/CartComponent.vue'
 
 export default {
 	components: {
 		JumboComponent,
 		DishCardComponent,
-		ApiLoader
+		ApiLoader,
+		CartComponent
 	},
 
 	data() {
@@ -128,10 +131,13 @@ export default {
 				this.initials += element.charAt(0)
 			})
 
-		}
+		},
+		
 	},
 	created() {
 		this.getData()
+		// console.log(this.$route.params, 'parametri');
+		
 	},
 }
 </script>

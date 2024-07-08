@@ -18,8 +18,11 @@
                 <p class="dish-ingredients p-1">{{ dish.ingredients }}</p>
                 <h5>Prezzo: <span>{{ dish.price }}</span>€</h5>
 
-                <button class="recipe-save " type="button">
-                    <span><i class="fa-solid fa-cart-shopping"></i>Add to cart</span>
+                <h3> {{ dish.restaurant_id }}</h3>
+
+                <button class="recipe-save " type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)">
+                    <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i> Aggiungi al
+                        carrello</span>
                 </button>
 
             </div>
@@ -31,10 +34,78 @@
 </template>
 
 <script>
+import { store } from '../store';
 export default {
     name: 'DishCardComponent',
 
     props: ['dish'],
+
+    data() {
+        return {
+            store,
+            dish: this.dish
+        }
+    },
+
+    methods: {
+        addToCart(dish) {
+
+            // controllo se ci sono elementi nel carrello
+            let myCart = localStorage.getItem('cart');
+
+            myCart = JSON.parse(myCart);
+            if (!myCart) {
+                myCart = [];
+            }
+
+            console.log(myCart, 'carrello');
+            // se non ci sono li aggiungo
+            if (!myCart.length) {
+                console.log('nessun elemento nel carrello');
+                console.log(myCart, 'carrello');
+
+                store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
+                localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+
+                //e settiamo l'id del ristorante nello store e l'id del ristorante attivo
+                store.cart.restaurantId = dish.restaurant_id;
+                store.cart.actualVisitedRestaurantId = dish.restaurant_id;
+            }
+            // se ci sono 
+            else if (myCart.length) {
+                console.log(myCart);
+
+                for (let index = 0; index < myCart.length; index++) {
+                    const element = myCart[index];
+
+                    // se l'elemento esiste nel carrello, e appartiene ad un altro ristorante, disabilito il pulsante aggiungi, inizializzando una variabile di controllo
+                    if (element.restaurant_id != dish.restaurant_id) {
+                        break;
+                    }
+
+                    // se l'elemento esiste nel carrello incremento la qty
+                    else if (element.nome == dish.name && element.restaurant_id == dish.restaurant_id) {
+                        element.qty++;
+                        store.cart.dishes = myCart;
+                        localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                        break;
+                    }
+
+                    // se l'elemento non esiste lo aggiungo
+                    else {
+                        store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
+                        localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                        console.log(store.cart.dishes);
+                    }
+                };
+
+            }
+
+        },
+
+
+
+    },
 
     mounted() {
         const observer = new IntersectionObserver(entries => {
@@ -55,6 +126,8 @@ export default {
             threshold: 0.7 // Imposta il threshold al 50%
         });
         observer.observe(this.$refs.cardEnter);
+
+
 
     }
 
