@@ -20,8 +20,8 @@
 
     <button v-if="store.cart.dishes.length > 0" @click="clearCart()">Svuota carrello
     </button>
-    <button v-if="store.cart.dishes.length > 0" 
-    @click="pay()">Vai al pagamento</button>
+    <RouterLink :to="{ name: 'payment' }" v-if="store.cart.dishes.length > 0">Vai al pagamento</RouterLink>
+ 
     
 
 </template>
