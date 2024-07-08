@@ -134,11 +134,16 @@ export default {
                     return;
                 }
                 this.processPayment(payload.nonce);
+                
             });
         },
         async processPayment(nonce) {
             console.log(this.csrfToken);
             try {
+                let myCart = localStorage.getItem('cart');
+                let dishes = JSON.parse(myCart);
+                console.log(dishes[0].restaurant_id);
+                console.log(dishes[0], 'dishes');
                 const response = await axios.post('http://127.0.0.1:8000/payment', {
                     payment_method_nonce: nonce,
                     customer_name: this.name,
@@ -147,18 +152,9 @@ export default {
                     customer_adress: this.address,
                     customer_phone: this.phone,
                     cart: {
-                        restaurantSlug: 'ristorante-onisto',
-                        dishes: [
-                            {
-                                slug: "ristorante-onisto-temaki",
-                                quantity: 1
-                            },
-                            {
-                                slug: "ristorante-onisto-risotto-alla-milanese",
-                                quantity: 3
-                            }
-                        ],
-                    }
+                        restaurantId: dishes[0].restaurant_id,
+                        dishes: dishes
+                    },
                 }, {
                     headers: {
                         'X-CSRF-TOKEN': this.csrfToken,
@@ -167,6 +163,7 @@ export default {
                 if (response.data.success) {
                     alert('Payment successful!');
                 } else {
+                    console.log(response.data);
                     alert('Payment failed: ' + response.data.error);
                 }
             } catch (error) {
