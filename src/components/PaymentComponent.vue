@@ -1,6 +1,6 @@
 <template>
     <div style="margin-top: 200px;">
-        <p>Visa:
+        <!-- <p>Visa:
 
             Numero: 4111 1111 1111 1111
             Data di scadenza: Qualsiasi data futura
@@ -25,34 +25,47 @@
             Numero: 3530 1113 3330 0000
             Data di scadenza: Qualsiasi data futura
             CVV: Qualsiasi combinazione di 3 cifre
-            Test Specifici con Carte di Credito</p>
-        <button @click="test">TEST</button>
-        <form id="payment-form" @submit.prevent="submitPayment">
-            <div id="dropin-container" style="width: 450px;"></div>
+            Test Specifici con Carte di Credito</p> -->
+        <!-- <button @click="test">TEST</button> -->
+        <div class="container">
+            <div class="m-auto col-4">
+                <form id="payment-form" @submit.prevent="submitPayment">
+                    <div id="dropin-container" style="width: 450px;"></div>
+                    <div>
+                        <label for="name">Nome*</label>
+                        <input class="w-100 mb-4" type="text" id="name" v-model="name" required minlength="3"
+                            maxlength="255">
+                    </div>
+                    <div>
+                        <label for="lastaname">Cognome*</label>
+                        <input class="w-100 mb-4" type="text" id="lastaname" v-model="lastname" required minlength="3"
+                            maxlength="255">
+                    </div>
+                    <div>
+                        <label for="email">Email*</label>
+                        <input class="w-100 mb-4" type="email" id="email" v-model="email" required minlength="3"
+                            maxlength="255">
+                    </div>
+                    <div>
+                        <label for="address">Address*</label>
+                        <input class="w-100 mb-4" type="text" id="address" v-model="address" required minlength="3"
+                            maxlength="255">
+                    </div>
+                    <div>
+                        <label for="phone">Telefono</label>
+                        <input class="w-100 mb-4" type="tel" id="phone" v-model="phone" min="10" max="10">
+                    </div>
+                    <div>
+                        <button class="w-100 mb-4 bg-success text-white" type="submit">Conferma l'ordine</button>
+                    </div>
 
-            <div>
-                <label for="name">Nome*</label>
-                <input type="text" id="name" v-model="name" required minlength="3" maxlength="255">
-            </div>
-            <div>
-                <label for="lastaname">Cognome*</label>
-                <input type="text" id="lastaname" v-model="lastname" required minlength="3" maxlength="255">
-            </div>
-            <div>
-                <label for="email">Email*</label>
-                <input type="email" id="email" v-model="email" required minlength="3" maxlength="255">
-            </div>
-            <div>
-                <label for="address">Address*</label>
-                <input type="text" id="address" v-model="address" required minlength="3" maxlength="255">
-            </div>
-            <div>
-                <label for="phone">Telefono</label>
-                <input type="tel" id="phone" v-model="phone">
+                </form>
             </div>
 
-            <button type="submit">Conferma l'ordine</button>
-        </form>
+        </div>
+
+
+
     </div>
 </template>
 
@@ -134,7 +147,7 @@ export default {
                     return;
                 }
                 this.processPayment(payload.nonce);
-                
+
             });
         },
         async processPayment(nonce) {
