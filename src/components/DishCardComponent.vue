@@ -21,8 +21,7 @@
                 <h3> {{ dish.restaurant_id }}</h3>
 
                 <button class="recipe-save " type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)">
-                    <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i> Aggiungi al
-                        carrello</span>
+                    <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
                 </button>
 
             </div>
@@ -138,6 +137,17 @@ export default {
 .dish-container {
 
     transition: transform 0.5s ease-in-out;
+}
+
+button {
+    border: 1px solid gray;
+    padding: 10px;
+    position: relative;
+    bottom: 30px;
+    position: absolute;
+    right: 30px;
+    height: 50px;
+    border-radius: 10px;
 }
 
 .dish {
