@@ -26,7 +26,7 @@
           </ul>
           <!-- qui bottone carrrello -->
           <button class="btn btn-light position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-            <i class="fa-solid fa-shopping-cart"></i>
+            <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
           </button>
         </div>
       </div>
@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style scoped>
-/* Custom Navbar Styles */
+
 .navbar {
   background: rgba(255, 255, 255, 0.2) !important;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -110,5 +110,10 @@ nav {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   padding: 1rem;
+}
+
+.btn {
+  background-color: #e15624;
+  border: none;
 }
 </style>
