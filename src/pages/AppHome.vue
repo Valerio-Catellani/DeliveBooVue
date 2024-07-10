@@ -209,8 +209,10 @@ export default {
         this.initializeScrollEffect();
         this.create3DHamburger();
         console.log(localStorage);
+        // localStorage.clear();
     },
     methods: {
+        
         initializeCarousel() {
             (async () => {
                 const interval = 1500;
@@ -324,13 +326,12 @@ export default {
             });
         },
         setActiveRestaurant(restaurant) {
-            //prendo id del ristorante caricato e lo salvo nello store
+            //prendo id del ristorante Attivo caricato e lo salvo nello store
             store.cart.actualVisitedRestaurantId = restaurant.id;
             console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
             //salvo l'id ristorante in localStorage
-            let activeRestaurant = restaurant.id;
-            console.log(activeRestaurant, 'activeRestaurant');
-            localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));
+                        
+            localStorage.setItem('activeRestaurant', JSON.stringify(store.cart.actualVisitedRestaurantId));
             console.log(JSON.parse(localStorage.getItem('activeRestaurant')), 'localStorage.getItem(activeRestaurant)');
 
 

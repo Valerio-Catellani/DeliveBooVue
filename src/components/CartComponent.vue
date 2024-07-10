@@ -7,7 +7,7 @@
         </div>
         <div class="offcanvas-body">
           <div v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto</div>
-          <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId">
+          <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
             Il tuo carrello si riferisce ad un altro ristorante, svuotalo se vuoi continuare o vai al pagamento
           </div>
           <div v-if="store.cart.dishes.length > 0" class="table-responsive">
@@ -84,9 +84,12 @@
           if (myCart.length > 0) {
             store.cart.restaurantId = myCart[0].restaurant_id;
             console.log(store.cart.restaurantId, 'store.cart.restaurantId');
-            // if (!store.cart.actualVisitedRestaurantId) {
-            //     store.cart.actualVisitedRestaurantId = myCart[0].restaurant_id;
-            // }
+            //salvo nello store il nome del ristorante al quale appartiene il carrello
+            store.cart.restaurantName = JSON.parse(localStorage.getItem('cartRestaurantName'));
+
+            //salvo nello store l'id del ristorante attivio
+
+            store.cart.actualVisitedRestaurantId = JSON.parse(localStorage.getItem('activeRestaurant'));
           }
   
           // lo imposto uguale all'id del ristorante attivo, così da averlo in caso di caricamento della pagina
@@ -108,9 +111,26 @@
   
         // se non ci sono li aggiungo
         if (!myCart.length) {
-          console.log('nessun elemento nel carrello');
+// salvo nello store l'id del ristorante attivo
+store.cart.actualVisitedRestaurantId = dish.restaurant_id;
+
+// lo salvo anche nel local storage
+localStorage.setItem('activeRestaurant', JSON.stringify(store.cart.actualVisitedRestaurantId));
+
+//salvo nello store l'id del ristorante al quale appartiene il carrello
+store.cart.restaurantId = dish.restaurant_id;
+console.log(store.cart.restaurantId, 'store.cart.restaurantId');
+
+// // lo salvo anche nel local storage
+localStorage.setItem('cartRestaurantId', JSON.stringify(store.cart.restaurantId));
+
+console.log(localStorage);
+
           store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
           localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+
+          
+
         }
         // se ci sono 
         else if (myCart.length) {
@@ -159,8 +179,15 @@
         }
       },
       clearCart() {
+        console.log(localStorage, 'localStorage prima di clear');
+        console.log(store.cart, 'store.cart prima di clear');
         store.cart.dishes = [];
-        localStorage.clear();
+        store.cart.restaurantId = null;
+        localStorage.removeItem('cart');
+        localStorage.removeItem('cartRestaurantId');
+        localStorage.removeItem('cartRestaurantName');
+        console.log(localStorage, 'localStorage dopo di clear');
+        console.log(store.cart, 'store.cart dopo di clear');
       },
     },
     mounted() {

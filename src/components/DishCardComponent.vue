@@ -84,7 +84,11 @@ export default {
                 store.cart.restaurantId = dish.restaurant_id;
                 store.cart.actualVisitedRestaurantId = dish.restaurant_id;
 
-                // chiamo il ristorante dalla rotta e salvo nel localStorage il nome del ristorante che ha il
+                // salvo nel localstorage 
+                localStorage.setItem('restaurantId', JSON.stringify(store.cart.restaurantId));
+
+
+                // il metodo setta il nome del ristorante e lo salva nello storage
                 this.setRestaurantName();
 
 
