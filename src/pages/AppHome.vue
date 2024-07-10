@@ -29,8 +29,8 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                     </span>
                     <span class="button-text">Ordina ora!</span>
                     <div class="w-50 d-none d-lg-block">
-  <img class="food-overflow" src="/images/Image.png" alt="Food Overflow">
-</div>
+                        <img class="food-overflow" src="/images/Image.png" alt="Food Overflow">
+                    </div>
                 </a>
             </div>
             <div class="d-flex justify-content-center align-items-center mb-5">
@@ -44,7 +44,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 
 
     <div class="p-4 mb-4 rounded-3 container my-4 custom-jumbp-background custom-font mb-5">
-        <h1 class="display-3 fw-bold mb-5" style="color: #B7450A;">Di cosa hai Voglia oggi?</h1>
+        <h2 class="display-2 fw-bold mb-5" style="color: #B7450A;">Di cosa hai voglia oggi?</h2>
         <MultiSelect />
 
     </div>
@@ -52,7 +52,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
         <div class="row mt-3" v-if="!store.loading">
             <div class="col-12 d-flex justify-content-center mb-5" v-if="store.api_data.restaurants.allRestaurants.data.length"> {{ store.api_data.restaurants.allRestaurants.data.length }} ristoranti trovati </div>
             <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
-                :key="restaurant.id" :props="restaurant" @click="setActiveRestaurant(restaurant)"/>
+                :key="restaurant.id" :props="restaurant" @click="setActiveRestaurant(restaurant)" />
         </div>
         <ApiLoader v-else />
         <div class="col-12 d-flex justify-content-center display-3 fw-bold mb-5" style="color: #B7450A;"
@@ -148,7 +148,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                 <h1 style="color: #B7450A;">Attualmente attivi a Milano</h1>
                 <p class="fs-4">DeliveBoo è attualmente attiva solo a Milano con i suoi servizi <br> ma presto arriverà
                     anche in altre città!</p>
-             <!--    <div class="mb-3">
+                <!--    <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Rimani aggiornato:</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1"
                         placeholder="name@example.com">
@@ -314,20 +314,20 @@ export default {
 
             // localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));
 
-        //     if (!store.cart.restaurantSlug) {
-        //         store.cart.restaurantSlug = restaurant.slug
-        //         //se imposto assegno il valore a restaurantSlug, memorizzo anche id e slug
-        //         store.cart.restaurantId = restaurant.id
-        //         console.log(store.cart.restaurantId, 'store.cart.restaurantId');
-        //         console.log(store.cart.restaurantSlug);
-        //     } else if (store.cart.restaurantSlug !== restaurant.slug) {
-           
-        //     store.cart.actualVisitedRestaurantId = restaurant.id
-        //     console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
-        // }
-    }
+            //     if (!store.cart.restaurantSlug) {
+            //         store.cart.restaurantSlug = restaurant.slug
+            //         //se imposto assegno il valore a restaurantSlug, memorizzo anche id e slug
+            //         store.cart.restaurantId = restaurant.id
+            //         console.log(store.cart.restaurantId, 'store.cart.restaurantId');
+            //         console.log(store.cart.restaurantSlug);
+            //     } else if (store.cart.restaurantSlug !== restaurant.slug) {
+
+            //     store.cart.actualVisitedRestaurantId = restaurant.id
+            //     console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
+            // }
+        }
     },
-    
+
 };
 </script>
 
@@ -755,5 +755,13 @@ a:hover .button-text {
     right: -240px;
     transform: rotate(140deg);
     width: 600px;
+}
+
+/* risultati di ricerca */
+.result-research {
+    font-size: 1.5rem;
+    color: #B7450A;
+    padding-left: 20px;
+    border-left: 3px solid #B7450A;
 }
 </style>
