@@ -25,7 +25,8 @@
             </li>
           </ul>
           <!-- qui bottone carrrello -->
-          <button class="btn btn-light position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+          <button class="btn btn-light position-relative " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+            <span class="badge text-bg-secondary">4</span>
             <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
           </button>
         </div>

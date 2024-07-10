@@ -20,22 +20,35 @@
 
                 <h3> {{ dish.restaurant_id }}</h3>
 
-                <button class="recipe-save " type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)">
+                
+
+                <!-- Button trigger modal -->
+<button type="button" class="recipe-save" data-bs-toggle="modal" data-bs-target="#exampleModal"
+v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
+    <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
+</button>
+<button class="recipe-save " type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)"
+v-else>
                     <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
                 </button>
-
             </div>
 
         </div>
 
 
     </div>
+    <ModalComponent />
 </template>
 
 <script>
 import { store } from '../store';
+import ModalComponent from './ModalComponent.vue'
 export default {
     name: 'DishCardComponent',
+
+    components: {
+        ModalComponent
+    },
 
     props: ['dish'],
 
