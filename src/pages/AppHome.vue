@@ -188,6 +188,7 @@ export default {
         console.log(localStorage);
     },
     methods: {
+        
         initializeCarousel() {
             (async () => {
                 const interval = 1500;

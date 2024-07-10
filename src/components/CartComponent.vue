@@ -7,7 +7,7 @@
         </div>
         <div class="offcanvas-body">
           <div v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto</div>
-          <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId">
+          <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
             Il tuo carrello si riferisce ad un altro ristorante, svuotalo se vuoi continuare o vai al pagamento
           </div>
           <div v-if="store.cart.dishes.length > 0" class="table-responsive">
@@ -84,9 +84,12 @@
           if (myCart.length > 0) {
             store.cart.restaurantId = myCart[0].restaurant_id;
             console.log(store.cart.restaurantId, 'store.cart.restaurantId');
-            // if (!store.cart.actualVisitedRestaurantId) {
-            //     store.cart.actualVisitedRestaurantId = myCart[0].restaurant_id;
-            // }
+            //salvo nello store il nome del ristorante al quale appartiene il carrello
+            store.cart.restaurantName = JSON.parse(localStorage.getItem('cartRestaurantName'));
+
+            //salvo nello store l'id del ristorante attivio
+
+            store.cart.actualVisitedRestaurantId = JSON.parse(localStorage.getItem('activeRestaurant'));
           }
   
           // lo imposto uguale all'id del ristorante attivo, così da averlo in caso di caricamento della pagina
