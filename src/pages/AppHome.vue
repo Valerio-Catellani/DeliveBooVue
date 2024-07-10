@@ -54,10 +54,11 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
             <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
                 :key="restaurant.id" :props="restaurant" @click="setActiveRestaurant(restaurant)"/>
         </div>
+        <ApiLoader v-else />
         <div class="col-12 d-flex justify-content-center display-3 fw-bold mb-5" style="color: #B7450A;"
             v-if="store.api_data.restaurants.allRestaurants.data.length < 1">Nessun Ristorante trovato con le categorie
             selezionate</div>
-        <!-- <ApiLoader v-else /> -->
+        
     </div>
 
     <div class="container">
@@ -184,6 +185,7 @@ export default {
         this.initializeCarousel();
         this.initializeScrollEffect();
         this.create3DHamburger();
+        console.log(localStorage);
     },
     methods: {
         initializeCarousel() {
@@ -302,11 +304,12 @@ export default {
             //prendo id del ristorante caricato e lo salvo nello store
             store.cart.actualVisitedRestaurantId = restaurant.id;
             console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
-            //salvo l'oggetto ristorante in localStorage
+            //salvo l'id ristorante in localStorage
             let activeRestaurant = restaurant.id;
             console.log(activeRestaurant, 'activeRestaurant');
             localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));
             console.log(JSON.parse(localStorage.getItem('activeRestaurant')), 'localStorage.getItem(activeRestaurant)');
+            
 
 
             // localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));

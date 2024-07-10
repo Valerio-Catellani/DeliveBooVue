@@ -11,7 +11,7 @@
             Il tuo carrello si riferisce ad un altro ristorante, svuotalo se vuoi continuare o vai al pagamento
           </div>
           <div v-if="store.cart.dishes.length > 0" class="table-responsive">
-            <h5>Ristorante: {{ store.cart.restaurantId }}</h5>
+            <h5>Ristorante: {{ store.cart.restaurantName }}</h5>
             <table class="table text-center">
               <thead>
                 <tr>
@@ -97,6 +97,7 @@
       savedCart() {
         store.cart.dishes = JSON.parse(localStorage.getItem('cart'));
         console.log(store.cart.dishes);
+        store.cart.restaurantName = JSON.parse(localStorage.getItem('cartRestaurantName'));
       },
       addToCart(dish) {
         console.log('dish', dish);

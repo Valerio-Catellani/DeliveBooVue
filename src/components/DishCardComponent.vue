@@ -47,7 +47,21 @@ export default {
     },
 
     methods: {
+
+        async getData() {
+            await store.methods.getRestaurantBySlug(this.$route.params.slug)
+            this.restaurant = store.api_data.restaurants.singleRestaurant[0]
+            return this.restaurant.name;
+        },
+        async setRestaurantName() {
+
+            const name = await this.getData();
+            store.cart.restaurantName = name;
+            localStorage.setItem('cartRestaurantName', JSON.stringify(store.cart.restaurantName));
+            console.log(store.cart.restaurantName, 'store.cart.restaurantName');
+        },
         addToCart(dish) {
+
 
             // controllo se ci sono elementi nel carrello
             let myCart = localStorage.getItem('cart');
@@ -69,6 +83,11 @@ export default {
                 //e settiamo l'id del ristorante nello store e l'id del ristorante attivo
                 store.cart.restaurantId = dish.restaurant_id;
                 store.cart.actualVisitedRestaurantId = dish.restaurant_id;
+
+                // chiamo il ristorante dalla rotta e salvo nel localStorage il nome del ristorante che ha il
+                this.setRestaurantName();
+
+
             }
             // se ci sono 
             else if (myCart.length) {
