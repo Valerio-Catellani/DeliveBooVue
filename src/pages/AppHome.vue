@@ -49,15 +49,28 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 
     </div>
     <div class="container">
+        <div class="row mt-3 result-research mb-5" v-if="!store.loading">
+            <!-- ricerca più ristoranti: messaggio plurale -->
+            <div class="col-12 d-flex fw-bold" v-if="store.api_data.restaurants.allRestaurants.data.length > 1"> {{
+                store.api_data.restaurants.allRestaurants.data.length }} ristoranti trovati </div>
+            <!-- ricerca singolo ristorante: messaggio singolare -->
+            <div class="col-12 d-flex fw-bold" v-if="store.api_data.restaurants.allRestaurants.data.length == 1"> {{
+                store.api_data.restaurants.allRestaurants.data.length }} ristorante trovato </div>
+        </div>
+        <!-- Mostra risultati ricerca -->
         <div class="row mt-3" v-if="!store.loading">
-            <div class="col-12 d-flex justify-content-center mb-5" v-if="store.api_data.restaurants.allRestaurants.data.length"> {{ store.api_data.restaurants.allRestaurants.data.length }} ristoranti trovati </div>
             <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
                 :key="restaurant.id" :props="restaurant" @click="setActiveRestaurant(restaurant)" />
         </div>
-        <div class="col-12 d-flex fw-bold mb-5 result-research"
+
+
+
+        <!-- <ApiLoader v-else /> -->
+        <div class="col-12 d-flex result-research fw-bold mb-5"
             v-if="store.api_data.restaurants.allRestaurants.data.length < 1">Nessun ristorante trovato con le categorie
             selezionate</div>
-        <!-- <ApiLoader v-else /> -->
+
+
     </div>
 
     <div class="container">
@@ -145,7 +158,8 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
         <div class="parallax-content container my-4 custom-font d-flex justify-content-around">
             <div>
                 <h1 style="color: #B7450A;">Attualmente attivi a Milano</h1>
-                <p class="fs-4">DeliveBoo è attualmente attiva solo a Milano con i suoi servizi <br> ma presto arriverà
+                <p class="fs-4">DeliveBoo è attualmente attiva solo a Milano con i suoi servizi <br> ma presto
+                    arriverà
                     anche in altre città!</p>
                 <!--    <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Rimani aggiornato:</label>
@@ -184,6 +198,7 @@ export default {
         this.initializeCarousel();
         this.initializeScrollEffect();
         this.create3DHamburger();
+        console.log(localStorage);
     },
     methods: {
         initializeCarousel() {
@@ -302,11 +317,12 @@ export default {
             //prendo id del ristorante caricato e lo salvo nello store
             store.cart.actualVisitedRestaurantId = restaurant.id;
             console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
-            //salvo l'oggetto ristorante in localStorage
+            //salvo l'id ristorante in localStorage
             let activeRestaurant = restaurant.id;
             console.log(activeRestaurant, 'activeRestaurant');
             localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));
             console.log(JSON.parse(localStorage.getItem('activeRestaurant')), 'localStorage.getItem(activeRestaurant)');
+
 
 
             // localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));
