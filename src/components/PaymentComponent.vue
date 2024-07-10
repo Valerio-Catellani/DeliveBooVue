@@ -1,112 +1,72 @@
 <template>
-    <div style="margin-top: 65px;">
 
-        <section class="p-4 p-md-5">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-5">
-                    <div class="card rounded-3">
-                        <div class="card-body p-4">
-                            <div class="text-center mb-4">
-                                <h3>Seleziona il metodo di pagamento</h3>
-                            </div>
-                            <form action="">
-                                <p class="fw-bold mb-4 pb-2">Carte salvate</p>
+    <div style="margin-top: 200px;">
+        <!-- <p>Visa:
 
-                                <div class="d-flex flex-row align-items-center mb-4 pb-1">
-                                    <img class="img-fluid"
-                                        src="https://img.icons8.com/color/48/000000/mastercard-logo.png" />
-                                    <div class="flex-fill mx-3">
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input type="text" id="formControlLgXc" class="form-control form-control-lg"
-                                                value="**** **** **** 3193" />
-                                            <label class="form-label" for="formControlLgXc">Numero carta</label>
-                                        </div>
-                                    </div>
-                                    <a href="#!">Rimuovi carta</a>
-                                </div>
+            Numero: 4111 1111 1111 1111
+            Data di scadenza: Qualsiasi data futura
+            CVV: Qualsiasi combinazione di 3 cifre
+            MasterCard:
 
-                                <div class="d-flex flex-row align-items-center mb-4 pb-1">
-                                    <img class="img-fluid" src="https://img.icons8.com/color/48/000000/visa.png" />
-                                    <div class="flex-fill mx-3">
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input type="text" id="formControlLgXs" class="form-control form-control-lg"
-                                                value="**** **** **** 4296" />
-                                            <label class="form-label" for="formControlLgXs">Numero carta</label>
-                                        </div>
-                                    </div>
-                                    <a href="#!">Rimuovi carta</a>
-                                </div>
+            Numero: 5555 5555 5555 4444
+            Data di scadenza: Qualsiasi data futura
+            CVV: Qualsiasi combinazione di 3 cifre
+            American Express:
 
-                                <p class="fw-bold mb-4">Aggiungi nuova carta</p>
+            Numero: 3782 822463 10005
+            Data di scadenza: Qualsiasi data futura
+            CVV: Qualsiasi combinazione di 4 cifre
+            Discover:
 
-                                <div data-mdb-input-init class="form-outline mb-4">
-                                    <input type="text" id="formControlLgXsd" class="form-control form-control-lg"
-                                        placeholder="Inserisci il nome dell'intestatario" />
-                                    <label class="form-label" for="formControlLgXsd">Intestatario della carta</label>
-                                </div>
+            Numero: 6011 1111 1111 1117
+            Data di scadenza: Qualsiasi data futura
+            CVV: Qualsiasi combinazione di 3 cifre
+            JCB:
 
-                                <div class="row mb-4">
-                                    <div class="col-7">
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input type="text" id="formControlLgXM" class="form-control form-control-lg"
-                                                value="1234 5678 1234 5678" />
-                                            <label class="form-label" for="formControlLgXM">Numero della carta</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input type="password" id="formControlLgExpk"
-                                                class="form-control form-control-lg" placeholder="MM/YYYY" />
-                                            <label class="form-label" for="formControlLgExpk">Data di scadenza</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input type="password" id="formControlLgcvv"
-                                                class="form-control form-control-lg" placeholder="Cvv" />
-                                            <label class="form-label" for="formControlLgcvv">Cvv</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button data-mdb-button-init data-mdb-ripple-init
-                                    class="btn btn-success btn-lg btn-block">Aggiungi carta</button>
-                            </form>
-                        </div>
+            Numero: 3530 1113 3330 0000
+            Data di scadenza: Qualsiasi data futura
+            CVV: Qualsiasi combinazione di 3 cifre
+            Test Specifici con Carte di Credito</p> -->
+        <!-- <button @click="test">TEST</button> -->
+        <div class="container">
+            <div class="m-auto col-4">
+                <form id="payment-form" @submit.prevent="submitPayment">
+                    <div id="dropin-container" style="width: 450px;"></div>
+                    <div>
+                        <label for="name">Nome*</label>
+                        <input class="w-100 mb-4" type="text" id="name" v-model="name" required minlength="3"
+                            maxlength="255">
                     </div>
-                </div>
-            </div>
-        </section>
-        
+                    <div>
+                        <label for="lastaname">Cognome*</label>
+                        <input class="w-100 mb-4" type="text" id="lastaname" v-model="lastname" required minlength="3"
+                            maxlength="255">
+                    </div>
+                    <div>
+                        <label for="email">Email*</label>
+                        <input class="w-100 mb-4" type="email" id="email" v-model="email" required minlength="3"
+                            maxlength="255">
+                    </div>
+                    <div>
+                        <label for="address">Address*</label>
+                        <input class="w-100 mb-4" type="text" id="address" v-model="address" required minlength="3"
+                            maxlength="255">
+                    </div>
+                    <div>
+                        <label for="phone">Telefono</label>
+                        <input class="w-100 mb-4" type="tel" id="phone" v-model="phone" min="10" max="10">
+                    </div>
+                    <div>
+                        <button class="w-100 mb-4 bg-success text-white" type="submit">Conferma l'ordine</button>
+                    </div>
 
-
-    
-        <form id="payment-form" @submit.prevent="submitPayment">
-            <div id="dropin-container" style="width: 450px;"></div>
-
-            <div>
-                <label for="name">Nome*</label>
-                <input type="text" id="name" v-model="name" required minlength="3" maxlength="255">
-            </div>
-            <div>
-                <label for="lastaname">Cognome*</label>
-                <input type="text" id="lastaname" v-model="lastname" required minlength="3" maxlength="255">
-            </div>
-            <div>
-                <label for="email">Email*</label>
-                <input type="email" id="email" v-model="email" required minlength="3" maxlength="255">
-            </div>
-            <div>
-                <label for="address">Address*</label>
-                <input type="text" id="address" v-model="address" required minlength="3" maxlength="255">
-            </div>
-            <div>
-                <label for="phone">Telefono</label>
-                <input type="tel" id="phone" v-model="phone">
+                </form>
             </div>
 
-            <button type="submit">Conferma l'ordine</button>
-        </form>
+        </div>
+
+
+
     </div>
 </template>
 
@@ -188,11 +148,16 @@ export default {
                     return;
                 }
                 this.processPayment(payload.nonce);
+
             });
         },
         async processPayment(nonce) {
             console.log(this.csrfToken);
             try {
+                let myCart = localStorage.getItem('cart');
+                let dishes = JSON.parse(myCart);
+                console.log(dishes[0].restaurant_id);
+                console.log(dishes[0], 'dishes');
                 const response = await axios.post('http://127.0.0.1:8000/payment', {
                     payment_method_nonce: nonce,
                     customer_name: this.name,
@@ -201,18 +166,9 @@ export default {
                     customer_adress: this.address,
                     customer_phone: this.phone,
                     cart: {
-                        restaurantSlug: 'ristorante-onisto',
-                        dishes: [
-                            {
-                                slug: "ristorante-onisto-temaki",
-                                quantity: 1
-                            },
-                            {
-                                slug: "ristorante-onisto-risotto-alla-milanese",
-                                quantity: 3
-                            }
-                        ],
-                    }
+                        restaurantId: dishes[0].restaurant_id,
+                        dishes: dishes
+                    },
                 }, {
                     headers: {
                         'X-CSRF-TOKEN': this.csrfToken,
@@ -221,6 +177,7 @@ export default {
                 if (response.data.success) {
                     alert('Payment successful!');
                 } else {
+                    console.log(response.data);
                     alert('Payment failed: ' + response.data.error);
                 }
             } catch (error) {

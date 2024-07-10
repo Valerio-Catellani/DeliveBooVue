@@ -24,6 +24,10 @@
               </template>
             </li>
           </ul>
+          <!-- qui bottone carrrello -->
+          <button class="btn btn-light position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+            <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
+          </button>
         </div>
       </div>
     </nav>
@@ -31,10 +35,8 @@
 </template>
 
 <script>
-import CartComponent from './CartComponent.vue';
-
 export default {
-  name: 'HeaderComponent',
+  name: 'NavbarComponent',
   data() {
     return {
       menuItems: [
@@ -62,7 +64,7 @@ export default {
 </script>
 
 <style scoped>
-/* Custom Navbar Styles */
+
 .navbar {
   background: rgba(254, 221, 6, 0.7);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -112,5 +114,10 @@ nav {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   padding: 1rem;
+}
+
+.btn {
+  background-color: #e15624;
+  border: none;
 }
 </style>

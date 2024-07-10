@@ -50,6 +50,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
     </div>
     <div class="container">
         <div class="row mt-3" v-if="!store.loading">
+            <div class="col-12 d-flex justify-content-center mb-5" v-if="store.api_data.restaurants.allRestaurants.data.length"> {{ store.api_data.restaurants.allRestaurants.data.length }} ristoranti trovati </div>
             <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
                 :key="restaurant.id" :props="restaurant" @click="setActiveRestaurant(restaurant)" />
         </div>
