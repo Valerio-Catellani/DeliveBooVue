@@ -213,6 +213,7 @@ export default {
     },
     methods: {
         
+        
         initializeCarousel() {
             (async () => {
                 const interval = 1500;
