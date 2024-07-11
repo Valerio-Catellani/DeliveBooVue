@@ -25,8 +25,9 @@
             </li>
           </ul>
           <!-- qui bottone carrrello -->
-          <button class="btn btn-light position-relative " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-            <span class="badge text-bg-secondary">{{ store.cart.elements}}</span>
+          <button class="btn btn-light position-relative " type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+            <span class="badge text-bg-secondary">{{ store.cart.elements }}</span>
             <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
           </button>
         </div>
@@ -52,14 +53,14 @@ export default {
           routeName: 'partner',
           externalUrl: 'http://127.0.0.1:8000/register'
         },
-        {
-          label: 'About',
-          routeName: 'about-us'
-        },
-        {
-          label: 'Contact',
-          routeName: 'contact'
-        },
+        // {
+        //   label: 'About',
+        //   routeName: 'about-us'
+        // },
+        // {
+        //   label: 'Contact',
+        //   routeName: 'contact'
+        // },
       ]
     }
   },
@@ -70,7 +71,6 @@ export default {
 </script>
 
 <style scoped>
-
 .navbar {
   background: rgba(254, 221, 6, 0.7);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -129,6 +129,6 @@ nav {
 
 /* styles.css */
 .nav-link.active {
-  color: #9c3e3e; 
+  color: #9c3e3e;
 }
 </style>
