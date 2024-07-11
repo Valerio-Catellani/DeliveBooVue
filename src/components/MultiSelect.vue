@@ -95,7 +95,7 @@ export default {
   }
 
   &.category-card-selected {
-    border: 3px solid $background-primary; //colore a caso che mi sembra suggerisca il fatto che la card è attiva
+    border: 3px solid $background-primary;
     transform: scale(1.2);
     transition: all .3s ease-out;
   }

@@ -16,15 +16,14 @@
     <div class="p-4 mb-5 rounded-3 position-relative container my-4 custom-jumbp-background overflow-hidden" style="background: rgb(80,0,0);
 background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rgba(253,181,22,1) 50%);">
         <div class="container-fluid py-5 custom-jumbotron">
-            <div class="d-flex flex-column justify-content-start">
-                <h1 class="display-1 fw-bold mb-5 z-3" style="color: #B7450A;">Hai fame?</h1>
-                <p class="col-md-8 fs-4 w-100 z-3">Scopri una vasta selezione di ristoranti locali e ordina i tuoi
-                    piatti
-                    preferiti
-                    con pochi clic. Siamo qui per rendere la tua esperienza di food delivery veloce, comoda e deliziosa.
+            <div class="d-flex flex-column justify-content-center mt-5">
+                <h1 class="display-1 fw-bold mb-4 z-3 w-100" style="color: #B7450A;">Hai fame?</h1>
+                <p class="col-md-9 fs-4 z-3 mb-3">Scopri una vasta selezione di ristoranti locali e ordina i tuoi
+                    piatti preferiti con pochi clic. Siamo qui per rendere la tua esperienza di food delivery veloce,
+                    comoda e deliziosa.
                 </p>
                 <a href="#multiselect" class="learn-more">
-                    <span class="circle" aria-hidden="true">
+                    <span class="circle circle-hero" aria-hidden="true">
                         <span class="icon arrow"></span>
                     </span>
                     <span class="button-text">Ordina ora!</span>
@@ -169,8 +168,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
             <div>
                 <h1 style="color: #B7450A;">Attualmente attivi a Milano</h1>
                 <p class="fs-4">DeliveBoo è attualmente attiva solo a Milano con i suoi servizi <br> ma presto
-                    arriverà
-                    anche in altre città!</p>
+                    arriverà anche in altre città!</p>
                 <!--    <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Rimani aggiornato:</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1"
@@ -212,8 +210,8 @@ export default {
         // localStorage.clear();
     },
     methods: {
-        
-        
+
+
         initializeCarousel() {
             (async () => {
                 const interval = 1500;
@@ -331,7 +329,7 @@ export default {
             store.cart.actualVisitedRestaurantId = restaurant.id;
             console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
             //salvo l'id ristorante in localStorage
-                        
+
             localStorage.setItem('activeRestaurant', JSON.stringify(store.cart.actualVisitedRestaurantId));
             console.log(JSON.parse(localStorage.getItem('activeRestaurant')), 'localStorage.getItem(activeRestaurant)');
 
@@ -640,7 +638,6 @@ article:has(:hover, :focus) {
 }
 
 .parallax-milano::after {
-
     content: '';
     background-color: rgba(0, 0, 0, 0.6);
     width: 100%;
@@ -694,6 +691,10 @@ a.learn-more .circle {
     border-radius: 1.625rem;
 }
 
+.circle-hero {
+    margin-left: 0px !important;
+}
+
 button.learn-more .circle .icon,
 a.learn-more .circle .icon {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -736,7 +737,7 @@ a.learn-more .button-text {
     bottom: 0;
     padding: 0.75rem 0;
     margin: 0 0 0 2.8rem;
-    color: #B7450A;
+    color: #000;
     font-weight: 700;
     line-height: 1.6;
     text-align: center;
@@ -794,5 +795,10 @@ a:hover .button-text {
 
 .text {
     font-size: 1.18rem;
+}
+
+.btn-hero {
+    color: #2a2a2a !important;
+    font-size: 1rem;
 }
 </style>
