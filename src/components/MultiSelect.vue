@@ -1,22 +1,22 @@
 <template>
 
-    <div class="row gap-1 d-flex justify-content-evenly">
-      <div class="col-12 col-md-6 col-lg-2 mb-4" v-for="option in options" :key="option.value">
-        <div class="category-card d-flex flex-column justify-content-center align-items-center"
-          :class="{ 'category-card-selected': selectedValues.includes(option) }" @click="toggleSelection(option)">
+  <div class="row gap-1 mb-2 d-flex justify-content-evenly">
+    <div class="col-12 col-md-6 col-lg-2 mb-4" v-for="option in options" :key="option.value">
+      <div class="category-card d-flex flex-column justify-content-center align-items-center"
+        :class="{ 'category-card-selected': selectedValues.includes(option) }" @click="toggleSelection(option)">
 
-          <div class="image">
-            <img v-if="option.image" :src="option.image" class="card-img-top mb-2 img-fluid" alt="category image">
-            <div class="overlay">
-              <div class="svg-container" v-if="option.icon">
-                <div v-html="option.icon"></div>
-              </div>
-              <div class="category-card-text">{{ option.text }}</div>
+        <div class="image">
+          <img v-if="option.image" :src="option.image" class="card-img-top mb-2 img-fluid" alt="category image">
+          <div class="overlay">
+            <div class="svg-container" v-if="option.icon">
+              <div v-html="option.icon"></div>
             </div>
+            <div class="category-card-text">{{ option.text }}</div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
 </template>
 
@@ -75,6 +75,7 @@ export default {
 
 <style lang="scss">
 @import '../assets/styles/general.scss';
+@import '../assets/styles/partials/_variables.scss';
 
 .category-card {
 
@@ -94,7 +95,9 @@ export default {
   }
 
   &.category-card-selected {
-    border-color: #3cff00;//colore a caso che mi sembra suggerisca il fatto che la card è attiva
+    border: 3px solid $background-primary;
+    transform: scale(1.2);
+    transition: all .3s ease-out;
   }
 
   .image {
@@ -134,5 +137,14 @@ export default {
       }
     }
   }
+}
+
+@media (max-width: 768px) {
+  .category-card {
+    &.category-card-selected {
+      transform: scale(1);
+    }
+  }
+
 }
 </style>

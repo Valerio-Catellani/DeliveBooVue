@@ -174,41 +174,41 @@
         totalAmount() {
       return this.store.cart.dishes.reduce((total, item) => total + item.prezzo * item.qty, 0);
     }
-    }
-  };
-  </script>
-  
-  <style scoped>
+  }
+};
+</script>
+
+<style scoped>
 .offcanvas {
-    z-index: 99999;
-    width: 35%;
+  z-index: 99999;
+  width: 35%;
 }
 
-  .image-container {
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .cart-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  .btn-group {
-    margin-top: 10px;
-  }
+.image-container {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .text-center {
-    text-align: center;
-  }
+.cart-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.btn-group {
+  margin-top: 10px;
+}
+
+.text-center {
+  text-align: center;
+}
 
 
-  .custom-offcanvas {
+.custom-offcanvas {
   width: 100%;
 }
 
@@ -225,7 +225,7 @@
 }
 
 .cart-image {
-  width: 50% !important; 
+  width: 50% !important;
 }
 
 .table th,
@@ -238,8 +238,9 @@
   width: 50%;
 }
 
-.btn-primary, .btn-empty {
-    padding: 10px;
-    margin: 20px;
+.btn-primary,
+.btn-empty {
+  padding: 10px;
+  margin: 20px;
 }
-  </style>
+</style>

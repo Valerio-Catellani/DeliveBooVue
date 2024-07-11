@@ -18,26 +18,35 @@
                 <p class="dish-ingredients p-1">{{ dish.ingredients }}</p>
                 <h5>Prezzo: <span>{{ dish.price }}</span>€</h5>
 
-                <h3> {{ dish.restaurant_id }}</h3>
-
-                <button class="recipe-save btn btn-outline-success" type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)">
+                <!-- Button trigger modal -->
+                <button type="button" class="recipe-save" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
                     <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
                 </button>
-
+                <button class="recipe-save " type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)"
+                    v-else>
+                    <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
+                </button>
             </div>
 
         </div>
 
 
     </div>
+    <ModalComponent />
 </template>
 
 <script>
 import { store } from '../store';
+import ModalComponent from './ModalComponent.vue'
 export default {
     name: 'DishCardComponent',
 
-    props: ['dish'],
+    components: {
+        ModalComponent
+    },
+
+    props: ['dish', 'restaurant'],
 
     data() {
         return {
@@ -48,19 +57,12 @@ export default {
 
     methods: {
 
-        async getData() {
-            await store.methods.getRestaurantBySlug(this.$route.params.slug)
-            this.restaurant = store.api_data.restaurants.singleRestaurant[0]
-            return this.restaurant.name;
-        },
-        async setRestaurantName() {
-
-            const name = await this.getData();
-            store.cart.restaurantName = name;
+        getRestaurantName() {
+            store.cart.restaurantName = this.restaurant.name
             localStorage.setItem('cartRestaurantName', JSON.stringify(store.cart.restaurantName));
-            console.log(store.cart.restaurantName, 'store.cart.restaurantName');
         },
         addToCart(dish) {
+
 
 
             // controllo se ci sono elementi nel carrello
@@ -84,8 +86,13 @@ export default {
                 store.cart.restaurantId = dish.restaurant_id;
                 store.cart.actualVisitedRestaurantId = dish.restaurant_id;
 
-                // chiamo il ristorante dalla rotta e salvo nel localStorage il nome del ristorante che ha il
-                this.setRestaurantName();
+                // salvo nel localstorage 
+                localStorage.setItem('restaurantId', JSON.stringify(store.cart.restaurantId));
+
+                // il metodo setta il nome del ristorante e lo salva nello storage
+                this.getRestaurantName();
+
+                console.log(store.cart.elements, 'store.cart.elements');
 
 
             }
@@ -93,31 +100,33 @@ export default {
             else if (myCart.length) {
                 console.log(myCart);
 
-                for (let index = 0; index < myCart.length; index++) {
-                    const element = myCart[index];
+                const cartItem = myCart.find(item => item.nome === dish.name && item.restaurant_id === dish.restaurant_id);
+                if (cartItem) {
+                    cartItem.qty++;
+                }
+                else if (myCart.some(item => item.restaurant_id !== dish.restaurant_id)) {
+                    // Se c'è un elemento di un altro ristorante, gestisci il caso (potresti voler mostrare un avviso o resettare il carrello)
+                    console.log('Elemento di un altro ristorante trovato');
+                    return;
+                }
+                else {
+                    // Se l'elemento non esiste, aggiungilo al carrello
+                    myCart.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
+                    console.log(myCart, 'nuovo elemento aggiunto');
+                }
+                
+                store.cart.dishes = myCart;
+                localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
 
-                    // se l'elemento esiste nel carrello, e appartiene ad un altro ristorante, disabilito il pulsante aggiungi, inizializzando una variabile di controllo
-                    if (element.restaurant_id != dish.restaurant_id) {
-                        break;
-                    }
+            };
+           
+                //incremento gli elementi del carrello
+                store.cart.elements++;
 
-                    // se l'elemento esiste nel carrello incremento la qty
-                    else if (element.nome == dish.name && element.restaurant_id == dish.restaurant_id) {
-                        element.qty++;
-                        store.cart.dishes = myCart;
-                        localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
-                        break;
-                    }
+                // salvo il dato nel localStorage
+                localStorage.setItem('elements', JSON.stringify(store.cart.elements));
 
-                    // se l'elemento non esiste lo aggiungo
-                    else {
-                        store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
-                        localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
-                        console.log(store.cart.dishes);
-                    }
-                };
-
-            }
+                console.log();
 
         },
 

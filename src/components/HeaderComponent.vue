@@ -24,8 +24,9 @@
               </template>
             </li>
           </ul>
-          <!-- qui bottone carrello -->
-          <button class="btn btn-light position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+          <!-- qui bottone carrrello -->
+          <button class="btn btn-light position-relative " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+            <span class="badge text-bg-secondary">{{ store.cart.elements}}</span>
             <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
           </button>
         </div>
@@ -35,10 +36,12 @@
 </template>
 
 <script>
+import { store } from '../store';
 export default {
   name: 'NavbarComponent',
   data() {
     return {
+      store,
       menuItems: [
         {
           label: 'Home',
@@ -59,6 +62,9 @@ export default {
         },
       ]
     }
+  },
+  mounted() {
+    console.log(store);
   }
 }
 </script>

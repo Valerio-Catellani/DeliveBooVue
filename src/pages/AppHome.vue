@@ -16,15 +16,14 @@
     <div class="p-4 mb-5 rounded-3 position-relative container my-4 custom-jumbp-background overflow-hidden" style="background: rgb(80,0,0);
 background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rgba(253,181,22,1) 50%);">
         <div class="container-fluid py-5 custom-jumbotron">
-            <div class="d-flex flex-column justify-content-start">
-                <h1 class="display-1 fw-bold mb-5 z-3" style="color: #B7450A;">Hai fame?</h1>
-                <p class="col-md-8 fs-4 w-100 z-3">Scopri una vasta selezione di ristoranti locali e ordina i tuoi
-                    piatti
-                    preferiti
-                    con pochi clic. Siamo qui per rendere la tua esperienza di food delivery veloce, comoda e deliziosa.
+            <div class="d-flex flex-column justify-content-center mt-5">
+                <h1 class="display-1 fw-bold mb-4 z-3 w-100" style="color: #B7450A;">Hai fame?</h1>
+                <p class="col-md-9 fs-4 z-3 mb-3">Scopri una vasta selezione di ristoranti locali e ordina i tuoi
+                    piatti preferiti con pochi clic. Siamo qui per rendere la tua esperienza di food delivery veloce,
+                    comoda e deliziosa.
                 </p>
                 <a href="#multiselect" class="learn-more">
-                    <span class="circle" aria-hidden="true">
+                    <span class="circle circle-hero" aria-hidden="true">
                         <span class="icon arrow"></span>
                     </span>
                     <span class="button-text">Ordina ora!</span>
@@ -49,16 +48,23 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 
     </div>
     <div class="container">
+        <div class="row mt-3 result-research mb-5" v-if="!store.loading">
+            <!-- ricerca più ristoranti: messaggio plurale -->
+            <div class="col-12 d-flex fw-bold" v-if="store.api_data.restaurants.allRestaurants.data.length > 1"> {{
+                store.api_data.restaurants.allRestaurants.data.length }} ristoranti trovati </div>
+            <!-- ricerca singolo ristorante: messaggio singolare -->
+            <div class="col-12 d-flex fw-bold" v-if="store.api_data.restaurants.allRestaurants.data.length == 1"> {{
+                store.api_data.restaurants.allRestaurants.data.length }} ristorante trovato </div>
+        </div>
+        <!-- Mostra risultati ricerca -->
         <div class="row mt-3" v-if="!store.loading">
-            <div class="col-12 d-flex justify-content-center mb-5" v-if="store.api_data.restaurants.allRestaurants.data.length"> {{ store.api_data.restaurants.allRestaurants.data.length }} ristoranti trovati </div>
             <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
                 :key="restaurant.id" :props="restaurant" @click="setActiveRestaurant(restaurant)" />
         </div>
-        <ApiLoader v-else />
-        <div class="col-12 d-flex justify-content-center display-3 fw-bold mb-5" style="color: #B7450A;"
-            v-if="store.api_data.restaurants.allRestaurants.data.length < 1">Nessun Ristorante trovato con le categorie
+        <div class="col-12 d-flex fw-bold mb-5 result-research"
+            v-if="store.api_data.restaurants.allRestaurants.data.length < 1">Nessun ristorante trovato con le categorie
             selezionate</div>
-        
+        <!-- <ApiLoader v-else /> -->
     </div>
 
     <div class="container">
@@ -72,19 +78,34 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
             <img class="img-fluid w-100" src="/images/partner.jpg" alt="lavora-con-noi" />
         </div>
         <div class="article-body mx-5 bg-light rounded-3">
-            <h2>Hai un Ristorante? Registrati gratuitamente al sito e inizia a Guadagnare</h2>
-            <p>
-                Raggiungi più clienti con DeliveBoo. Gestiamo noi la consegna, così tu puoi dedicarti a
-                offrire i migliori piatti e prodotti.
-            </p>
-            <a href="http://127.0.0.1:8000/register">
-                <button class="learn-more" style="scale: 1.3;">
-                    <span class="circle" aria-hidden="true">
-                        <span class="icon arrow"></span>
-                    </span>
-                    <span class="button-text ps-3">Registrati Ora!</span>
-                </button>
-            </a>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h3 class="display-4 fw-bold">Hai un ristorante?</h3>
+                    <div class="text fw-bold">
+                        Registrati gratuitamente al sito e inizia a guadagnare
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="text mb-3">
+                        Raggiungi più clienti con DeliveBoo. Gestiamo noi la consegna, così tu puoi dedicarti a
+                        offrire i migliori piatti e prodotti.
+                    </div>
+                    <div>
+                        <a href="http://127.0.0.1:8000/register">
+                            <button class="learn-more" style="scale: 1.3;">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text ps-3">Registrati Ora!</span>
+                            </button>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+
         </div>
 
 
@@ -146,8 +167,8 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
         <div class="parallax-content container my-4 custom-font d-flex justify-content-around">
             <div>
                 <h1 style="color: #B7450A;">Attualmente attivi a Milano</h1>
-                <p class="fs-4">DeliveBoo è attualmente attiva solo a Milano con i suoi servizi <br> ma presto arriverà
-                    anche in altre città!</p>
+                <p class="fs-4">DeliveBoo è attualmente attiva solo a Milano con i suoi servizi <br> ma presto
+                    arriverà anche in altre città!</p>
                 <!--    <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Rimani aggiornato:</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1"
@@ -186,8 +207,11 @@ export default {
         this.initializeScrollEffect();
         this.create3DHamburger();
         console.log(localStorage);
+        // localStorage.clear();
     },
     methods: {
+
+
         initializeCarousel() {
             (async () => {
                 const interval = 1500;
@@ -301,15 +325,15 @@ export default {
             });
         },
         setActiveRestaurant(restaurant) {
-            //prendo id del ristorante caricato e lo salvo nello store
+            //prendo id del ristorante Attivo caricato e lo salvo nello store
             store.cart.actualVisitedRestaurantId = restaurant.id;
             console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
             //salvo l'id ristorante in localStorage
-            let activeRestaurant = restaurant.id;
-            console.log(activeRestaurant, 'activeRestaurant');
-            localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));
+
+            localStorage.setItem('activeRestaurant', JSON.stringify(store.cart.actualVisitedRestaurantId));
             console.log(JSON.parse(localStorage.getItem('activeRestaurant')), 'localStorage.getItem(activeRestaurant)');
-            
+
+
 
 
             // localStorage.setItem('activeRestaurant', JSON.stringify(activeRestaurant));
@@ -614,7 +638,6 @@ article:has(:hover, :focus) {
 }
 
 .parallax-milano::after {
-
     content: '';
     background-color: rgba(0, 0, 0, 0.6);
     width: 100%;
@@ -661,10 +684,15 @@ a.learn-more .circle {
     position: relative;
     display: block;
     margin: 0;
+    margin-left: 20px;
     width: 3rem;
     height: 3rem;
-    background: #282936;
+    background-color: #B7450A;
     border-radius: 1.625rem;
+}
+
+.circle-hero {
+    margin-left: 0px !important;
 }
 
 button.learn-more .circle .icon,
@@ -708,8 +736,8 @@ a.learn-more .button-text {
     right: 0;
     bottom: 0;
     padding: 0.75rem 0;
-    margin: 0 0 0 1.85rem;
-    color: #282936;
+    margin: 0 0 0 2.8rem;
+    color: #000;
     font-weight: 700;
     line-height: 1.6;
     text-align: center;
@@ -763,5 +791,14 @@ a:hover .button-text {
     color: #B7450A;
     padding-left: 20px;
     border-left: 3px solid #B7450A;
+}
+
+.text {
+    font-size: 1.18rem;
+}
+
+.btn-hero {
+    color: #2a2a2a !important;
+    font-size: 1rem;
 }
 </style>
