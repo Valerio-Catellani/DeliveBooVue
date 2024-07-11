@@ -24,7 +24,7 @@
               </template>
             </li>
           </ul>
-          <!-- qui bottone carrrello -->
+          <!-- qui bottone carrello -->
           <button class="btn btn-light position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
             <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
           </button>
@@ -119,5 +119,10 @@ nav {
 .btn {
   background-color: #e15624;
   border: none;
+}
+
+/* styles.css */
+.nav-link.active {
+  color: #9c3e3e; 
 }
 </style>

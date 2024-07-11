@@ -20,7 +20,7 @@
 
                 <h3> {{ dish.restaurant_id }}</h3>
 
-                <button class="recipe-save " type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)">
+                <button class="recipe-save btn btn-outline-success" type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)">
                     <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
                 </button>
 
