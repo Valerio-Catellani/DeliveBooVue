@@ -18,10 +18,6 @@
                 <p class="dish-ingredients p-1">{{ dish.ingredients }}</p>
                 <h5>Prezzo: <span>{{ dish.price }}</span>€</h5>
 
-                <h3> {{ dish.restaurant_id }}</h3>
-
-
-
                 <!-- Button trigger modal -->
                 <button type="button" class="recipe-save" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
@@ -50,7 +46,7 @@ export default {
         ModalComponent
     },
 
-    props: ['dish'],
+    props: ['dish', 'restaurant'],
 
     data() {
         return {
@@ -61,17 +57,9 @@ export default {
 
     methods: {
 
-        async getData() {
-            await store.methods.getRestaurantBySlug(this.$route.params.slug)
-            this.restaurant = store.api_data.restaurants.singleRestaurant[0]
-            return this.restaurant.name;
-        },
-        async setRestaurantName() {
-
-            const name = await this.getData();
-            store.cart.restaurantName = name;
+        getRestaurantName() {
+            store.cart.restaurantName = this.restaurant.name
             localStorage.setItem('cartRestaurantName', JSON.stringify(store.cart.restaurantName));
-            console.log(store.cart.restaurantName, 'store.cart.restaurantName');
         },
         addToCart(dish) {
 
@@ -102,7 +90,7 @@ export default {
                 localStorage.setItem('restaurantId', JSON.stringify(store.cart.restaurantId));
 
                 // il metodo setta il nome del ristorante e lo salva nello storage
-                this.setRestaurantName();
+                this.getRestaurantName();
 
                 console.log(store.cart.elements, 'store.cart.elements');
 

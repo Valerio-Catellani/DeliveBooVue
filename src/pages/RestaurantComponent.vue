@@ -93,7 +93,7 @@
 				<h2 class="text-center py-4 display-4">Menu</h2>
 				<div class="row">
 					<DishCardComponent v-for="(dish, index) in restaurant.dishes"
-						:class="index % 2 ? 'dish-right' : 'dish-left'" :key="dish.id" :dish="dish">
+						:class="index % 2 ? 'dish-right' : 'dish-left'" :key="dish.id" :dish="dish" :restaurant="restaurant">
 					</DishCardComponent>
 				</div>
 			</div>
