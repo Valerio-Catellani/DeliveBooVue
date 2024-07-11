@@ -1,10 +1,10 @@
 <template>
-    <div class="container mt-5">
+    <div class="container mt-5 pt-5">
         <div class="row">
             <!-- riepilogo del carrello -->
             <div class="col-md-5">
                 <div class="pt-3">
-                    <h2>Riepilogo dell'ordine</h2>
+                    <h2 class="display-6">Riepilogo dell'ordine</h2>
                     <h5>Ristorante: {{ store.cart.restaurantName }}</h5>
                     <div v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto</div>
                     <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId">
@@ -32,10 +32,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="text-center">
-                        <h5>Totale: € {{ totalAmount.toFixed(2) }}</h5>
-                        <button class="btn btn-empty btn-danger" @click="clearCart()">Svuota carrello</button>
-                    </div>
                 </div>
             </div>
 
@@ -46,7 +42,7 @@
 
             <!-- modulo di pagamento -->
             <div class="col-md-6 pt-3">
-                <h2>Metodo di pagamento</h2>
+                <h2 class="display-6" >Metodo di pagamento</h2>
                 <form id="payment-form" @submit.prevent="submitPayment">
                     <div class="form-group mt-4">
                         <label for="name">Nome*</label>
@@ -73,7 +69,7 @@
                         <input class="form-control" type="tel" id="phone" v-model="phone" minlength="10" maxlength="10">
                     </div>
                     <div id="dropin-container" style="width: 100%; max-width: 450px; margin: auto;" class="mt-4"></div>
-                    <button class="btn btn-success w-100 mt-4" type="submit">Conferma l'ordine</button>
+                    <button class="btn btn-success w-100 m-4" type="submit">Conferma l'ordine</button>
                 </form>
             </div>
         </div>

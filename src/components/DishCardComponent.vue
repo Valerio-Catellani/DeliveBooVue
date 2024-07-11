@@ -23,7 +23,7 @@
                     v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
                     <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
                 </button>
-                <button class="recipe-save " type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)"
+                <button class="recipe-save btn btn-outline-success" type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)"
                     v-else>
                     <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
                 </button>
