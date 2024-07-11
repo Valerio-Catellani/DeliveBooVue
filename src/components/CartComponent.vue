@@ -20,7 +20,6 @@
                 <th>Nome</th>
                 <th>Prezzo</th>
                 <th>Quantità</th>
-                <th>Subtotale</th>
                 <th>Azioni</th>
               </tr>
             </thead>
@@ -31,15 +30,14 @@
                 <td>{{ item.nome }}</td>
                 <td>€ {{ item.prezzo }}</td>
                 <td>{{ item.qty }}</td>
-                <td>€ {{ (item.prezzo * item.qty).toFixed(2) }}</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button class="btn btn-danger btn-sm"
+                    <button class="btn btn-outline-danger btn-sm"
                       :class="{ 'disabled': store.cart.actualVisitedRestaurantId !== item.restaurant_id }"
                       @click="removeFromCart(item)">
                       <i class="fa-solid fa-minus"></i>
                     </button>
-                    <button class="btn btn-danger btn-sm"
+                    <button class="btn btn-outline-success btn-sm"
                       :class="{ 'disabled': store.cart.actualVisitedRestaurantId !== item.restaurant_id }"
                       @click="addToCart(item)">
                       <i class="fa-solid fa-plus"></i>
