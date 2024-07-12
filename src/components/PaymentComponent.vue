@@ -1,4 +1,7 @@
 <template>
+    <div v-if="store.loading">
+        <ApiLoader/>
+    </div>
     <div class="container mt-5 pt-5">
         <div class="row">
             <!-- riepilogo del carrello -->
@@ -98,9 +101,13 @@
 import axios from 'axios';
 import dropin from 'braintree-web-drop-in';
 import { store } from '../store';
+import ApiLoader from './ApiLoader.vue';
 
 export default {
     name: 'PaymentComponent',
+    components: {
+        ApiLoader
+    },
     data() {
         return {
             clientToken: null,
@@ -293,8 +300,10 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
             });
         },
         submitPayment() {
+            store.loading = true;
             if (!this.dropinInstance) {
                 console.error('Braintree instance is not initialized.');
+                store.loading = false;
                 return;
             }
 
@@ -302,6 +311,7 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
             this.dropinInstance.requestPaymentMethod((err, payload) => {
                 if (err) {
                     console.error(err);
+                    store.loading = false;
                     return;
                 }
                 this.processPayment(payload.nonce);
@@ -329,11 +339,13 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
                     }
                 });
                 if (response.data.success) {
+                    store.loading = false;
                     localStorage.clear();
                     store.cart.elements = 0;
                     alert('Il pagamento è andato a buon fine! Controlla la mail per il riepilogo dell\'ordine');
                     this.$router.push('/');
                 } else {
+                    store.loading = false;
                     console.log(response.data);
                     alert('Payment failed: ' + response.data.error);
                 }
