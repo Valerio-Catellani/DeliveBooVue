@@ -4,8 +4,8 @@
             <!-- riepilogo del carrello -->
             <div class="col-md-5">
                 <div class="pt-3">
-                    <h2 class="display-6">Riepilogo dell'ordine</h2>
-                    <h5>Ristorante: {{ store.cart.restaurantName }}</h5>
+                    <h2 class="display-6 text-center">Riepilogo dell'ordine</h2>
+                    <h5 class="text-center">Ristorante: {{ store.cart.restaurantName }}</h5>
                     <div v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto</div>
         <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
           Il tuo carrello si riferisce ad un altro ristorante, svuotalo se vuoi continuare o vai al pagamento
@@ -18,6 +18,7 @@
                                     <th>Nome</th>
                                     <th>Prezzo</th>
                                     <th>Quantità</th>
+                                    <th>Azioni</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,6 +45,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="text-center">
+                            <h5>Totale: € {{ totalAmount.toFixed(2) }}</h5>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -70,12 +70,10 @@ export default {
   },
   methods: {
     goToPayment() {
-      console.log('store.cart.actualVisitedRestaurantId', store.cart.actualVisitedRestaurantId);
-      console.log('store.cart.restaurantId', store.cart.restaurantId);
+
       store.cart.actualVisitedRestaurantId = store.cart.restaurantId
       localStorage.setItem('activeRestaurant', JSON.stringify(store.cart.actualVisitedRestaurantId));
-      console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
-      console.log(localStorage);
+     
     },
     loadCart() {
       //controllo se c'è già un carrello
