@@ -26,7 +26,8 @@
           </ul>
           <!-- qui bottone carrrello -->
           <button class="btn btn-light position-relative " type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+            data-bs-target="#offcanvasCart" aria-controls="offcanvasCart"
+            v-if="this.$route.name === 'restaurant-details' ">
             <span class="badge me-1 text-bg-secondary">{{ store.cart.elements }}</span>
             <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
           </button>
