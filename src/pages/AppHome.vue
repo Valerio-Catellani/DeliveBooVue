@@ -22,7 +22,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                     piatti preferiti con pochi clic. Siamo qui per rendere la tua esperienza di food delivery veloce,
                     comoda e deliziosa.
                 </p>
-                <a href="#multiselect" class="learn-more">
+                <a href="#multiselect" id="button-hero" class="learn-more">
                     <span class="circle circle-hero" aria-hidden="true">
                         <span class="icon arrow"></span>
                     </span>
@@ -100,7 +100,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                                 <span class="circle" aria-hidden="true">
                                     <span class="icon arrow"></span>
                                 </span>
-                                <span class="button-text ps-3">Registrati Ora!</span>
+                                <span class="button-text ps-3">Registrati!</span>
                             </button>
                         </a>
                     </div>
@@ -748,9 +748,14 @@ a.learn-more .button-text {
     text-transform: uppercase;
 }
 
-button:hover .circle,
-a:hover .circle {
-    width: 100%;
+#button-hero:hover .circle, .btn-hero
+a:hover .circle, .btn-hero {
+    width: 100% !important;
+}
+
+button:hover .circle, .learn-more,
+a:hover .circle, .learn-more {
+    width: 90%;
 }
 
 button:hover .circle .icon.arrow,
