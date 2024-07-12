@@ -164,14 +164,7 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
             break;
           }
 
-          // se l'elemento non esiste lo aggiungo
-          else {
-            store.cart.dishes.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
-            localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
-            console.log(store.cart.dishes);
-
-            break;
-          }
+          
         }
       }
     },
