@@ -59,7 +59,7 @@
 
             <!-- modulo di pagamento -->
             <div class="col-md-6 pt-3">
-                <h2 class="display-6" >Metodo di pagamento</h2>
+                <h2 class="display-6 text-center">Dati cliente</h2>
                 <form id="payment-form" @submit.prevent="submitPayment">
                     
                     <div class="form-group mt-4">
@@ -83,8 +83,8 @@
                             maxlength="255">
                     </div>
                     <div class="form-group">
-                        <label for="phone">Telefono</label>
-                        <input class="form-control" type="tel" id="phone" v-model="phone" minlength="10" maxlength="10">
+                        <label for="phone">Telefono*</label>
+                        <input class="form-control" type="tel" id="phone" v-model="phone" minlength="10" maxlength="10" required >
                     </div>
                     <div id="dropin-container" style="width: 100%; max-width: 450px; margin: auto;" class="mt-4"></div>
                     <button class="btn btn-success w-100 m-4" type="submit">Conferma l'ordine</button>
@@ -330,7 +330,7 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
                 });
                 if (response.data.success) {
                     localStorage.clear();
-                    cart.elements = 0;
+                    store.cart.elements = 0;
                     alert('Il pagamento è andato a buon fine! Controlla la mail per il riepilogo dell\'ordine');
                     this.$router.push('/');
                 } else {
