@@ -93,10 +93,24 @@ export const store = reactive({
         store.loading = false;
       })
 
-    }
+    },
 
+    clearCart() {
+      console.log(localStorage, 'localStorage prima di clear');
+      console.log(store.cart, 'store.cart prima di clear');
+      store.cart.dishes = [];
+      store.cart.restaurantId = null;
+      store.cart.elements = 0;
+      localStorage.removeItem('elements');
+      localStorage.removeItem('cartRestaurantId');
+      localStorage.removeItem('cart');
+      localStorage.removeItem('cartRestaurantId');
+      localStorage.removeItem('cartRestaurantName');
+      console.log(localStorage, 'localStorage dopo di clear');
+      console.log(store.cart, 'store.cart dopo di clear');
+    },
 
-
+  
   },
 
 },
