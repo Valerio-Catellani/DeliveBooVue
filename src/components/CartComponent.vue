@@ -52,7 +52,7 @@
       <div class="offcanvas-footer text-center">
         <h5>Totale: € {{ totalAmount.toFixed(2) }}</h5>
         <button class="btn btn-empty btn-danger" @click="clearCart()">Svuota carrello</button>
-        <RouterLink :to="{ name: 'payment' }" class="btn btn-primary" v-if="store.cart.dishes.length > 0">Vai al
+        <RouterLink :to="{ name: 'payment' }" class="btn btn-primary" @click="goToPayment()" v-if="store.cart.dishes.length > 0">Vai al
           pagamento</RouterLink>
       </div>
     </div>
@@ -69,6 +69,14 @@ export default {
     };
   },
   methods: {
+    goToPayment() {
+      console.log('store.cart.actualVisitedRestaurantId', store.cart.actualVisitedRestaurantId);
+      console.log('store.cart.restaurantId', store.cart.restaurantId);
+      store.cart.actualVisitedRestaurantId = store.cart.restaurantId
+      localStorage.setItem('activeRestaurant', JSON.stringify(store.cart.actualVisitedRestaurantId));
+      console.log(store.cart.actualVisitedRestaurantId, 'store.cart.actualVisitedRestaurantId');
+      console.log(localStorage);
+    },
     loadCart() {
       //controllo se c'è già un carrello
       console.log('localStorage', localStorage);
