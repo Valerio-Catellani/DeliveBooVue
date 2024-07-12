@@ -329,7 +329,10 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
                     }
                 });
                 if (response.data.success) {
-                    alert('Payment successful!');
+                    localStorage.clear();
+                    cart.elements = 0;
+                    alert('Il pagamento è andato a buon fine! Controlla la mail per il riepilogo dell\'ordine');
+                    this.$router.push('/');
                 } else {
                     console.log(response.data);
                     alert('Payment failed: ' + response.data.error);
