@@ -61,6 +61,7 @@
             <div class="col-md-6 pt-3">
                 <h2 class="display-6" >Metodo di pagamento</h2>
                 <form id="payment-form" @submit.prevent="submitPayment">
+                    
                     <div class="form-group mt-4">
                         <label for="name">Nome*</label>
                         <input class="form-control" type="text" id="name" v-model="name" required minlength="3"
@@ -286,19 +287,19 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
                     return;
                 }
                 this.dropinInstance = instance;
-                console.log('Braintree dropin instance created successfully:', this.instance);
+                console.log('Braintree dropin instance created successfully:', this.dropinInstance);
                 this.enableScroll();
                 this.loading = false;
             });
         },
         submitPayment() {
-            if (!this.instance) {
+            if (!this.dropinInstance) {
                 console.error('Braintree instance is not initialized.');
                 return;
             }
 
             console.log('Requesting payment method...');
-            this.instance.requestPaymentMethod((err, payload) => {
+            this.dropinInstance.requestPaymentMethod((err, payload) => {
                 if (err) {
                     console.error(err);
                     return;
