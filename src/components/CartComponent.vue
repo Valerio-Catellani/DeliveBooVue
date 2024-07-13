@@ -9,7 +9,7 @@
       <div class="offcanvas-body">
         <div v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto</div>
         <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
-          Il tuo carrello si riferisce ad un altro ristorante, svuotalo se vuoi continuare o vai al pagamento
+          Il tuo carrello si riferisce ad un altro ristorante, svuotalo per continuare l'ordine
         </div>
         <div v-if="store.cart.dishes.length > 0" class="table-responsive">
           <h5>Ristorante: {{ store.cart.restaurantName }}</h5>
@@ -51,7 +51,7 @@
       </div>
       <div class="offcanvas-footer text-center">
         <h5>Totale: € {{ totalAmount.toFixed(2) }}</h5>
-        <button class="btn btn-empty btn-danger" @click="clearCart()">Svuota carrello</button>
+        <button class="btn btn-empty btn-danger" @click="store.methods.clearCart()">Svuota carrello</button>
         <RouterLink :to="{ name: 'payment' }" class="btn btn-primary" @click="goToPayment()" v-if="store.cart.dishes.length > 0">Vai al
           pagamento</RouterLink>
       </div>
@@ -199,20 +199,7 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
         }
       }
     },
-    clearCart() {
-      console.log(localStorage, 'localStorage prima di clear');
-      console.log(store.cart, 'store.cart prima di clear');
-      store.cart.dishes = [];
-      store.cart.restaurantId = null;
-      store.cart.elements = 0;
-      localStorage.removeItem('elements');
-      localStorage.removeItem('cartRestaurantId');
-      localStorage.removeItem('cart');
-      localStorage.removeItem('cartRestaurantId');
-      localStorage.removeItem('cartRestaurantName');
-      console.log(localStorage, 'localStorage dopo di clear');
-      console.log(store.cart, 'store.cart dopo di clear');
-    },
+  
   },
   mounted() {
     console.log('Component mounted.');
