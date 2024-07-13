@@ -176,6 +176,7 @@ button {
 }
 
 @media (max-width: 576px) {
+
     .dish {
         overflow: visible;
         .dish-img {

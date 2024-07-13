@@ -1,8 +1,8 @@
 <template>
 
-  <div class="row gap-1 mb-2 d-flex justify-content-evenly">
-    <div class="col-4 col-md-4 col-lg-2 mb-4" v-for="option in options" :key="option.value">
-      <div class="category-card d-flex flex-column justify-content-center align-items-center"
+  <div class="row gap-3 mb-2 d-flex justify-content-center">
+    <div class="small col-5 col-md-4 col-lg-2 mb-4" v-for="option in options" :key="option.value">
+      <div class="category-card"
         :class="{ 'category-card-selected': selectedValues.includes(option) }" @click="toggleSelection(option)">
         <div class="image">
           <img v-if="option.image" :src="option.image" class="card-img-top mb-2 img-fluid" alt="category image">
@@ -133,5 +133,19 @@ export default {
     }
   }
 }
-
+@media (max-width: 576px) {
+  .small {
+    
+ padding: 1px;
+ margin-right: 20px;
+  }
+  .category-card {
+    width: 110%;
+    justify-content: center;
+    margin: auto;
+  }
+  .category-card-text{
+    font-size: 0px;
+  }
+}
 </style>
