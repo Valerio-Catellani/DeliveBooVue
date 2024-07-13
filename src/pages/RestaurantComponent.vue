@@ -41,7 +41,7 @@
 							alt="nome resturant">
 						<div v-else
 							class="placeholder-logo logo-resturant bg-warning d-flex justify-content-center align-items-center">
-							<h2 class="title-font-family display-5 fw-bold hype-text-shadow text-white">{{ initials }}
+							<h2 class="title-font-family display-1 fw-bold hype-text-shadow text-white">{{ initials }}
 							</h2>
 						</div>
 					</div>
