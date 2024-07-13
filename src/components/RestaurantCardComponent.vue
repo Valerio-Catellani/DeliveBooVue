@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ props.name }}</h5>
-                    <p class="text-secondary fw-light fs-6">{{ props.address }}</p>
+                    <p class="d-none d-md-block text-secondary fw-light fs-6">{{ props.address }}</p>
                     <hr class="m-0">
                     <span>Categorie:</span>
                     <div class="icons-container d-flex gap-2 mb-3">
@@ -45,7 +45,7 @@ export default {
 <style lang="scss" scoped>
 /* cards */
 .card {
-    height: 400px;
+    height: auto;
     width: 100%;
     background: #fff0e8;
     border-radius: 16px;

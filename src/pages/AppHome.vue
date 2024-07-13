@@ -4,8 +4,8 @@
             <source src="/images/0705.mov" type="video/mp4">
         </video>
         <div class="video-overlay">
-            <div class="container">
-                <h1 class="custom-font" style="color:rgb(253, 181, 22); font-size: 5rem; text-align: left">DeliveBoo,
+            <div class="container pt-5">
+                <h1 class="custom-font" style="color:rgb(253, 181, 22); font-size: 4rem; text-align: left">DeliveBoo,
                     <br>il gusto che vuoi tu!
                 </h1>
             </div>
@@ -33,7 +33,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
                 </a>
             </div>
             <div class="d-flex justify-content-center align-items-center mb-5">
-                <div id="hamburger-3d" style="width: 500px; height: 500px;"></div>
+                <div id="hamburger-3d" style="width: 500px; height: 500px;  position: relative; right: 50px;"></div>
             </div>
         </div>
         <div id="multiselect"><!-- questo div è vuoto serve solo per lo scroll al premere del bottonee "ordina ora" -->
@@ -251,7 +251,7 @@ export default {
                 const scrollPos = window.scrollY + window.innerHeight;
 
                 sections.forEach(section => {
-                    if (scrollPos > section.offsetTop + section.offsetHeight / 3) {
+                    if (scrollPos > section.offsetTop + section.offsetHeight / 10   ) {
                         section.classList.add('visible');
                     }
                 });
@@ -285,13 +285,13 @@ export default {
             loader.load(' /models/hamburger.glb', (gltf) => {
                 model = gltf.scene;
 
-                // Centra modell nella scena
+                // Centra modello nella scena
                 const box = new THREE.Box3().setFromObject(model);
                 const center = box.getCenter(new THREE.Vector3());
                 model.position.sub(center);
 
                 // scala del modello
-                model.scale.set(1, 1, 1);
+                model.scale.set(1.1, 1.1, 1.1);
 
                 scene.add(model);
             }, undefined, (error) => {
@@ -369,12 +369,6 @@ export default {
 .img>img {
     max-width: 80%;
     max-height: 80%;
-}
-
-#hamburger-3d {
-    width: 50%;
-    height: 50%;
-    margin: 0 auto;
 }
 
 .custom-jumbp-background {
@@ -788,7 +782,7 @@ a:hover .button-text {
 
 .food-overflow {
     position: absolute;
-    bottom: 290px;
+    bottom: 330px;
     right: -240px;
     transform: rotate(140deg);
     width: 600px;

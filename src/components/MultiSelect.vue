@@ -1,14 +1,13 @@
 <template>
 
   <div class="row gap-1 mb-2 d-flex justify-content-evenly">
-    <div class="col-12 col-md-6 col-lg-2 mb-4" v-for="option in options" :key="option.value">
+    <div class="col-4 col-md-4 col-lg-2 mb-4" v-for="option in options" :key="option.value">
       <div class="category-card d-flex flex-column justify-content-center align-items-center"
         :class="{ 'category-card-selected': selectedValues.includes(option) }" @click="toggleSelection(option)">
-
         <div class="image">
           <img v-if="option.image" :src="option.image" class="card-img-top mb-2 img-fluid" alt="category image">
           <div class="overlay">
-            <div class="svg-container" v-if="option.icon">
+            <div class="svg-container p-2" v-if="option.icon">
               <div v-html="option.icon"></div>
             </div>
             <div class="category-card-text">{{ option.text }}</div>
@@ -78,13 +77,9 @@ export default {
 @import '../assets/styles/partials/_variables.scss';
 
 .category-card {
-
+  width: 100%;
   border-radius: 20px;
   overflow: hidden;
-
-
-
-
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
   border: 2px solid transparent;
@@ -139,12 +134,4 @@ export default {
   }
 }
 
-@media (max-width: 768px) {
-  .category-card {
-    &.category-card-selected {
-      transform: scale(1);
-    }
-  }
-
-}
 </style>

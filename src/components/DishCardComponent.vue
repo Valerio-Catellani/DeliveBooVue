@@ -135,26 +135,6 @@ export default {
     },
 
     mounted() {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
-                    entry.target.style.transform = "translateX(0)"
-                } else {
-                    // if (window.innerWidth > 1200) {
-                    entry.target.className.includes('dish-right') ? entry.target.style.transform = "translateX(+10%)" : entry.target.style.transform = "translateX(-10%)"
-
-                    // } else {
-                    //     entry.target.style.transform = "rotateY(0deg) rotateX(15deg)"
-                    // }
-
-                }
-            });
-        }, {
-            threshold: 0.7 // Imposta il threshold al 50%
-        });
-        observer.observe(this.$refs.cardEnter);
-
-
 
     }
 
@@ -163,7 +143,6 @@ export default {
 
 <style lang="scss" scoped>
 .dish-container {
-
     transition: transform 0.5s ease-in-out;
 }
 
@@ -180,6 +159,7 @@ button {
 
 .dish {
     height: 300px;
+    position: relative;
 
     .dish-img {
         aspect-ratio: 1/1;
@@ -195,110 +175,50 @@ button {
     }
 }
 
+@media (max-width: 576px) {
+    .dish {
+        overflow: visible;
+        .dish-img {
+            position: relative;
+            width: 100%;
+            height: auto;
 
-// .recipe,
-// .dish-box {
-//     display: flex;
-//     flex-wrap: wrap;
-//     align-items: center;
-//     background: linear-gradient(321deg, rgb(165, 164, 164) 4%, white 50%, rgba(253, 181, 22, 1) 50%);
+            img {
+                width: 100%;
+                height: 100%;
+                filter: brightness(0.5);
+            }
+        }
 
+        .dish-info {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: transparent;
+            color: white;
+            text-align: center;
+            h2, h5, p, button {
+                padding: 5px;
+                border-radius: 5px;
+            }
 
-// }
-
-// .dish-box {
-//     flex: 3 1 30ch;
-//     height: calc(282px + 5vw);
-//     overflow: hidden;
-
-
-//     img {
-//         max-width: 100%;
-//         min-height: 100%;
-//         width: auto;
-//         height: auto;
-//         object-fit: cover;
-//         object-position: 50% 50%;
-//     }
-// }
-
-// .recipe {
-//     border: 2px solid red;
-//     border-radius: 8px;
-//     overflow: hidden;
-//     background-color: rgb(255, 255, 255);
-
-//     &-content {
-//         padding: 16px 32px;
-//         flex: 4 1 40ch;
-//     }
-
-//     &-tags {
-//         margin: 0 -8px;
-//     }
-
-//     &-tag {
-//         display: inline-block;
-//         margin: 8px;
-//         font-size: .875em;
-//         text-transform: uppercase;
-//         font-weight: 600;
-//         letter-spacing: .02em;
-//         color: var(--primary);
-//     }
-
-//     &-title {
-//         margin: 0;
-//         font-size: clamp(1.4em, 2.1vw, 2.1em);
-//         font-family: "Roboto Slab", Helvetica, Arial, sans-serif;
-
-//         a {
-//             text-decoration: none;
-//             color: inherit;
-//         }
-//     }
-
-//     &-metadata {
-//         margin: 0;
-//     }
-
-//     &-rating {
-//         font-size: 1.2em;
-//         letter-spacing: 0.05em;
-//         color: var(--primary);
-
-//         span {
-//             color: var(--grey);
-//         }
-//     }
-
-//     &-votes {
-//         font-size: .825em;
-//         font-style: italic;
-//         color: var(--lightgrey);
-//     }
-
-//     &-save {
-//         display: flex;
-//         align-items: center;
-//         padding: 6px 14px 6px 12px;
-//         border-radius: 4px;
-//         border: 2px solid currentColor;
-//         color: var(--primary);
-//         background: none;
-//         cursor: pointer;
-//         font-weight: bold;
-
-//         svg {
-//             margin-right: 6px;
-//         }
-//     }
-// }
-
-
-
-// /* Body Layout */
-
-// .big {
-//     //width: clamp(320px, 65%, 65%);
-//     padding: 24px;</style>
+            button {
+                position: absolute;
+                bottom: -30px;
+                right: -55px;
+                transform: translate(-50%, 0);
+                color: #5eff07;
+                border: 5px solid #FAF9F5;
+                background-color: #318d00;;
+                border-radius: 100%;
+                width: 80px;
+                height: 80px;
+                &:hover {
+                    background-color: #215f00;
+                }
+            }
+        }
+    }
+}
+</style>

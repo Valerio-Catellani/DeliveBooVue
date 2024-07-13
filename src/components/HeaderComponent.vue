@@ -1,17 +1,17 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light position-fixed top-0 w-100">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg position-fixed top-0 w-100 d-flex justify-content" style="border: 1px solid red;">
+      <div class="container-fluid d-flex align-items-center">
         <a class="navbar-brand" href="#">
           <img class="logo" src="../../src/assets/img/logo-trasparente.png" alt="Logo">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item" v-for="(link, index) in menuItems" :key="index">
+        </button> -->
+        <div id="navbarSupportedContent" class="d-flex justify-content-between align-items-center gap-2">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row justify-content-between align-items-center gap-2">
+            <li class="nav-item d-flex align-items-center" v-for="(link, index) in menuItems" :key="index">
               <template v-if="link.routeName !== 'partner'">
                 <router-link :to="{ name: link.routeName }" class="nav-link" active-class="active">
                   {{ link.label }}
