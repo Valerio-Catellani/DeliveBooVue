@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg position-fixed top-0 w-100 d-flex justify-content" style="border: 1px solid red;">
+    <nav class="navbar navbar-expand-lg position-fixed top-0 w-100 d-flex justify-content">
       <div class="container-fluid d-flex align-items-center">
         <a class="navbar-brand" href="#">
           <img class="logo" src="../../src/assets/img/logo-trasparente.png" alt="Logo">

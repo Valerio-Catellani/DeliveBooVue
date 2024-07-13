@@ -191,6 +191,10 @@ button {
             }
         }
 
+        .dish-title {
+            background-color: #FDB516;
+        }
+
         .dish-info {
             position: absolute;
             top: 50%;

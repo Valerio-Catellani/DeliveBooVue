@@ -3,11 +3,11 @@
     <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasCart"
       aria-labelledby="offcanvasCartLabel">
       <div class="offcanvas-header">
-        <h2 class="offcanvas-title" id="offcanvasCartLabel">Il tuo carrello</h2>
+        <h2 class="offcanvas-title display-5 fw-bold" id="offcanvasCartLabel">Il tuo carrello</h2>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto</div>
+        <div  v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto</div>
         <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
           Il tuo carrello si riferisce ad un altro ristorante, svuotalo per continuare l'ordine
         </div>
@@ -16,8 +16,7 @@
           <table class="table text-center">
             <thead>
               <tr>
-                <th>Immagine</th>
-                <th>Nome</th>
+                <th>Dettagli</th>
                 <th>Prezzo</th>
                 <th>Quantità</th>
                 <th>Azioni</th>
@@ -25,9 +24,10 @@
             </thead>
             <tbody>
               <tr v-for="(item, index) in store.cart.dishes" :key="index">
-                <td class="image-container"><img :src="item.img" alt="Immagine del piatto" class="cart-image"
-                    style="width: 50%;"></td>
-                <td>{{ item.nome }}</td>
+                <td class="image-container">
+                  <div>{{ item.nome }}</div>
+                  <img :src="item.img" alt="Immagine del piatto" class="cart-image">
+                </td>
                 <td>€ {{ item.prezzo }}</td>
                 <td>{{ item.qty }}</td>
                 <td>
@@ -229,58 +229,59 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
   height: 100px;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.cart-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+.cart-image{
+width: 100%;
+height: auto;
+object-fit: cover;
 }
 
 .btn-group {
-  margin-top: 10px;
+margin-top: 10px;
 }
 
 .text-center {
-  text-align: center;
+text-align: center;
 }
 
-
 .custom-offcanvas {
-  width: 100%;
+width: 100%;
 }
 
 @media (min-width: 768px) {
-  .custom-offcanvas {
-    width: 70%;
-  }
+.custom-offcanvas {
+width: 70%;
+}
 }
 
 @media (min-width: 992px) {
-  .custom-offcanvas {
-    width: 35%;
-  }
+.custom-offcanvas {
+width: 35%;
+}
 }
 
 .cart-image {
-  width: 50% !important;
+width: 50% !important;
 }
 
 .table th,
 .table td {
-  vertical-align: middle;
-  text-align: center;
+vertical-align: middle;
+text-align: center;
 }
 
 .cart-image {
-  width: 50%;
+width: 50%;
 }
 
 .btn-primary,
 .btn-empty {
-  padding: 10px;
-  margin: 20px;
+padding: 10px;
+margin: 20px;
 }
+
 </style>
