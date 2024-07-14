@@ -2,8 +2,8 @@
 
   <div class="row gap-3 mb-2 d-flex justify-content-center">
     <div class="small col-5 col-md-4 col-lg-2 mb-4" v-for="option in options" :key="option.value">
-      <div class="category-card"
-        :class="{ 'category-card-selected': selectedValues.includes(option) }" @click="toggleSelection(option)">
+      <div class="category-card" :class="{ 'category-card-selected': selectedValues.includes(option) }"
+        @click="toggleSelection(option)">
         <div class="image">
           <img v-if="option.image" :src="option.image" class="card-img-top mb-2 img-fluid" alt="category image">
           <div class="overlay">
@@ -62,6 +62,7 @@ export default {
       } else {
         this.selectedValues.splice(index, 1);
       }
+      store.selectedValues = this.selectedValues.map(element => element.text);
       this.handChange();
     }
   },
@@ -133,18 +134,21 @@ export default {
     }
   }
 }
+
 @media (max-width: 576px) {
   .small {
-    
- padding: 1px;
- margin-right: 20px;
+
+    padding: 1px;
+    margin-right: 20px;
   }
+
   .category-card {
     width: 110%;
     justify-content: center;
     margin: auto;
   }
-  .category-card-text{
+
+  .category-card-text {
     font-size: 0px;
   }
 }

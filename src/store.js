@@ -28,20 +28,24 @@ export const store = reactive({
   animation: {
 
   },
+
   loading: false,
 
   params: {
 
   },
+
   cart: {
     elements: 0,
-    restaurantSlug : '',
-    restaurantId : '',
-    restaurantName : '',
-    actualVisitedRestaurantId : '',
+    restaurantSlug: '',
+    restaurantId: '',
+    restaurantName: '',
+    actualVisitedRestaurantId: '',
     dishes: [],
 
   },
+
+  selectedValues: [],
 
   methods: {
     // params = { page: 1, type: '' } da inserire dnetro alla funzione getMovies
@@ -66,6 +70,7 @@ export const store = reactive({
                 element.image = `${store.imgBasePath}${element.image}`
               }
             });
+            console.log(store);
             break;
           }
         }
@@ -110,7 +115,7 @@ export const store = reactive({
       console.log(store.cart, 'store.cart dopo di clear');
     },
 
-  
+
   },
 
 },

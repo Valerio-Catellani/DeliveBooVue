@@ -14,8 +14,11 @@
                     <hr class="m-0">
                     <span>Categorie:</span>
                     <div class="icons-container d-flex gap-2 mb-3">
-                        <template v-for="typo in props.typologies" :key="typo.id">
-                            <div class="svg-container" v-html="typo.icon"></div>
+                        <template v-for="typo in sortedTypologies" :key="typo.id">
+                            <div class="svg-container" v-html="typo.icon"
+                                :class="{ 'svg-selected': isSelected(typo.name) }">
+
+                            </div>
                         </template>
                     </div>
                 </div>
@@ -38,7 +41,25 @@ export default {
         // console.log(this.props.image);
     },
     methods: {
-    }
+        isSelected(name) {
+            return !this.store.selectedValues.includes(name) && this.store.selectedValues.length > 0;
+        }
+    },
+    computed: {
+        sortedTypologies() {
+            if (this.store.selectedValues.length === 0) {
+                return this.props.typologies;
+            }
+            return this.props.typologies.slice().sort((a, b) => {
+                const indexA = this.store.selectedValues.indexOf(a.name);
+                const indexB = this.store.selectedValues.indexOf(b.name);
+                if (indexA === -1) return 1;
+                if (indexB === -1) return -1;
+                return indexA - indexB;
+            });
+        }
+    },
+
 }
 </script>
 
@@ -68,5 +89,9 @@ export default {
     transform: translateY(-1.5%);
     box-shadow: rgba(253, 181, 21, 0.4) 0px 5px, rgba(253, 181, 21, 0.3) 0px 10px, rgba(253, 181, 21, 0.2) 0px 15px, rgba(253, 181, 21, 0.1) 0px 20px, rgba(253, 181, 21, 0.05) 0px 25px;
     cursor: pointer;
+}
+
+.svg-selected {
+    filter: grayscale(100%) !important;
 }
 </style>
