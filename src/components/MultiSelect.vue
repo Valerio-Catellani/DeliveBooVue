@@ -1,7 +1,8 @@
 <template>
 
-  <div class="row gap-4 gap-lg-1 gap-xl-0 mb-2 d-flex justify-content-around justify-content-xl-around">
-    <div class=" col-5 my-2 my-lg-4 col-lg-3 col-xl-3 p-lg-0 px-xl-3" v-for="option in options" :key="option.value">
+  <div class="row gap-2 gap-lg-1 gap-xl-0 mb-2 d-flex justify-content-around justify-content-xl-around">
+    <div class=" col-10 col-md-5 col-lg-3 col-xl-3 my-2 my-lg-4 p-lg-0 px-xl-3" v-for="option in options"
+      :key="option.value">
       <div class="category-card w-100" :class="{ 'category-card-selected': selectedValues.includes(option) }"
         @click="toggleSelection(option)">
         <div class="image img-fluid">
