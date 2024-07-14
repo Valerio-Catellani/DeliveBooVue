@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound.vue";
 import AboutComponent from "./pages/AboutComponent.vue";
 import RestaurantComponent from "./pages/RestaurantComponent.vue";
 import PaymentComponent from "./pages/PaymentComponent.vue";
+import PaymentResponse from "./pages/PaymentResponse.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -34,7 +35,11 @@ const router = createRouter({
       path: "/payment",
       name: "payment",
       component: PaymentComponent,
-
+    },
+    {
+      path: "/payment-response",
+      name: "paymentResponse",
+      component: PaymentResponse,
     },
     {
       path: "/:pathMatch(.*)*",
