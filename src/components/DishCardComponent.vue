@@ -15,10 +15,29 @@
                 <h5>Prezzo: <span>{{ dish.price }}</span>€</h5>
 
                 <!-- Button trigger modal -->
-                <button type="button" class="recipe-save" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
-                    <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
-                </button>
+                <div class="d-flex flex-row mx-auto mx-md-0 ms-md-auto mt-auto"
+                    v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0"
+                    style="height: 50px; width: 150px;">
+                    <button
+                        class="btn-remove-dish border hype-w-33x100 rounded-start-3 bg-white d-flex align-items-center justify-content-center h-100 p-0 recipe-save"
+                        type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <span class="small p-0 m-0 text-danger"><i class="fa-solid fa-cart-shopping"></i><i
+                                class="fa-solid fa-minus"></i></span>
+                    </button>
+                    <div
+                        class="border hype-w-34x100 bg-white d-flex justify-content-center align-items-center fs-5 text-black">
+                        {{
+                            dishNumber }}
+                    </div>
+
+                    <button
+                        class="btn-add-dish border hype-w-33x100 rounded-end-3 bg-white d-flex align-items-center justify-content-center h-100 p-0 recipe-save"
+                        type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <span class="small p-o m-0 text-success"><i class="fa-solid fa-cart-shopping"></i><i
+                                class="fa-solid fa-plus"></i></span>
+                    </button>
+                </div>
+
                 <div v-else class="d-flex flex-row mx-auto mx-md-0 ms-md-auto mt-auto"
                     style="height: 50px; width: 150px;">
                     <button
@@ -27,8 +46,11 @@
                         <span class="small p-0 m-0 text-danger"><i class="fa-solid fa-cart-shopping"></i><i
                                 class="fa-solid fa-minus"></i></span>
                     </button>
-                    <div class="border hype-w-34x100 bg-white d-flex justify-content-center align-items-center fs-5 ">{{
-                        dishNumber }}
+                    <div
+                        class="border hype-w-34x100 bg-white d-flex justify-content-center align-items-center text-black fs-5">
+                        {{
+                            dishNumber }}
+
                     </div>
 
                     <button
@@ -37,7 +59,6 @@
                         <span class="small p-o m-0 text-success"><i class="fa-solid fa-cart-shopping"></i><i
                                 class="fa-solid fa-plus"></i></span>
                     </button>
-
                 </div>
 
                 <!-- <button class="recipe-save btn btn-outline-success" type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)"

@@ -1,5 +1,5 @@
 <template>
-    <div class="col-6 col-lg-3 mb-4 d-flex">
+    <div class="col-10 mx-auto mx-sm-0 col-sm-6 col-lg-4 col-xl-3 mb-4 d-flex">
         <router-link :to="`/restaurant/${props.slug}`" class="text-decoration-none w-100">
             <div class="card flex-fill w-100">
                 <div class="ratio ratio-16x9">
