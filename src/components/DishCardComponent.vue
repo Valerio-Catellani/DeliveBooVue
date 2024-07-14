@@ -5,17 +5,13 @@
                 <img :src="dish.image" :alt="dish.name" width="300" height="300">
             </div>
 
-            <div class="dish-info w-100 py-4 px-4">
+            <div class="dish-info w-100 py-4 px-4 h-100 d-flex flex-column">
 
                 <h2 class="dish-title fs-3">{{ dish.name }}</h2>
-                <!-- 
-                    <p class="recipe-metadata">
-                        <span class="recipe-rating">★★★★<span>☆</span></span>
-                        <span class="recipe-votes">(12 votes)</span>
-                    </p> -->
+
 
                 <h5 class="">ingredienti:</h5>
-                <p class="dish-ingredients p-1">{{ dish.ingredients }}</p>
+                <p class="dish-ingredients pt-1">{{ dish.ingredients }}</p>
                 <h5>Prezzo: <span>{{ dish.price }}</span>€</h5>
 
                 <!-- Button trigger modal -->
@@ -23,10 +19,32 @@
                     v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
                     <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
                 </button>
-                <button class="recipe-save btn btn-outline-success" type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)"
+                <div v-else class="d-flex flex-row mx-auto mx-md-0 ms-md-auto mt-auto"
+                    style="height: 50px; width: 150px;">
+                    <button
+                        class="btn-remove-dish border hype-w-33x100 rounded-start-3 bg-white d-flex align-items-center justify-content-center h-100 p-0"
+                        type="button" @click="removeFromCart(dish)">
+                        <span class="small p-0 m-0 text-danger"><i class="fa-solid fa-cart-shopping"></i><i
+                                class="fa-solid fa-minus"></i></span>
+                    </button>
+                    <div class="border hype-w-34x100 bg-white d-flex justify-content-center align-items-center fs-5 ">{{
+                        dishNumber }}
+                    </div>
+
+                    <button
+                        class="btn-add-dish border hype-w-33x100 rounded-end-3 bg-white d-flex align-items-center justify-content-center h-100 p-0"
+                        type="button" @click="addToCart(dish)">
+                        <span class="small p-o m-0 text-success"><i class="fa-solid fa-cart-shopping"></i><i
+                                class="fa-solid fa-plus"></i></span>
+                    </button>
+
+                </div>
+
+                <!-- <button class="recipe-save btn btn-outline-success" type="button" :class="{ 'disabled': store.flag }" @click="addToCart(dish)"
                     v-else>
                     <span><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-plus"></i></span>
-                </button>
+                </button> -->
+
             </div>
 
         </div>
@@ -51,7 +69,9 @@ export default {
     data() {
         return {
             store,
-            dish: this.dish
+            dish: this.dish,
+            dishNumber: 0,
+
         }
     },
 
@@ -114,28 +134,84 @@ export default {
                     myCart.push({ nome: dish.name, prezzo: dish.price, img: dish.image, qty: 1, slug: dish.slug, restaurant_id: dish.restaurant_id });
                     console.log(myCart, 'nuovo elemento aggiunto');
                 }
-                
+
                 store.cart.dishes = myCart;
                 localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                console.log(store, 'sotrage');
 
             };
-           
-                //incremento gli elementi del carrello
-                store.cart.elements++;
 
-                // salvo il dato nel localStorage
-                localStorage.setItem('elements', JSON.stringify(store.cart.elements));
+            //incremento gli elementi del carrello
+            store.cart.elements++;
 
-                console.log();
+            // salvo il dato nel localStorage
+            localStorage.setItem('elements', JSON.stringify(store.cart.elements));
+
+            //aggiorno gli elementi della pagina
+            this.numberOfDish();
 
         },
+        removeFromCart(dish) {
+            let myCart = localStorage.getItem('cart');
+            myCart = JSON.parse(myCart);
 
+            //diminuisco gli elementi del carrello
 
+            // salvo il dato nel localStorage
+            localStorage.setItem('elements', JSON.stringify(store.cart.elements));
+
+            myCart.forEach((element, index) => {
+                if (element.slug === dish.slug && element.qty > 1) {
+                    element.qty--;
+                    store.cart.elements--;
+                    localStorage.setItem('elements', JSON.stringify(store.cart.elements));
+                    store.cart.dishes = myCart;
+                    localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                    //aggiorno gli elementi della pagina
+                    this.numberOfDish();
+                } else if (element.qty === 1) {
+                    store.cart.elements--;
+                    localStorage.setItem('elements', JSON.stringify(store.cart.elements));
+                    element.qty--;
+                    myCart.splice(index, 1);
+                    store.cart.dishes = myCart;
+                    localStorage.setItem('cart', JSON.stringify(store.cart.dishes));
+                    //aggiorno gli elementi della pagina
+                    this.numberOfDish();
+                }
+            });
+
+        },
+        numberOfDish() {
+            if (!store.cart.dishes.length) {
+                this.dishNumber = 0
+            } else {
+                let myCart = store.cart.dishes
+                const filteredArray = myCart.filter(element => {
+                    return element.slug === this.dish.slug
+                });
+                if (filteredArray.length) {
+                    this.dishNumber = filteredArray[0].qty
+                } else {
+                    this.dishNumber = 0
+                }
+            }
+        },
+        changedValue(newVal, oldVal) {
+            this.numberOfDish()
+        }
 
     },
 
     mounted() {
-
+        this.numberOfDish()
+    },
+    computed: {
+    },
+    watch: {
+        'store.cart.dishes': function (newVal, oldVal) {
+            this.changedValue(newVal, oldVal);
+        },
     }
 
 }
@@ -146,16 +222,16 @@ export default {
     transition: transform 0.5s ease-in-out;
 }
 
-button {
-    border: 1px solid gray;
-    padding: 10px;
-    position: relative;
-    bottom: 30px;
-    position: absolute;
-    right: 30px;
-    height: 50px;
-    border-radius: 10px;
-}
+// button {
+//     border: 1px solid gray;
+//     padding: 10px;
+//     position: relative;
+//     bottom: 30px;
+//     position: absolute;
+//     right: 30px;
+//     height: 50px;
+//     border-radius: 10px;
+// }
 
 .dish {
     height: 300px;
@@ -169,8 +245,22 @@ button {
         background: linear-gradient(321deg, rgb(255, 255, 255) 4%, white 50%, rgba(253, 181, 22, 1) 50%);
 
         .dish-ingredients {
-            height: 80px;
+            height: 60px;
             overflow-y: auto;
+        }
+    }
+
+    .btn-remove-dish {
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(243, 179, 179) !important;
+        }
+    }
+
+    .btn-add-dish {
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(155, 218, 149) !important;
         }
     }
 }
@@ -179,6 +269,7 @@ button {
 
     .dish {
         overflow: visible;
+
         .dish-img {
             position: relative;
             width: 100%;
@@ -203,26 +294,16 @@ button {
             background: transparent;
             color: white;
             text-align: center;
-            h2, h5, p, button {
+
+            h2,
+            h5,
+            p {
                 padding: 5px;
                 border-radius: 5px;
             }
 
-            button {
-                position: absolute;
-                bottom: -30px;
-                right: -55px;
-                transform: translate(-50%, 0);
-                color: #5eff07;
-                border: 5px solid #FAF9F5;
-                background-color: #318d00;;
-                border-radius: 100%;
-                width: 80px;
-                height: 80px;
-                &:hover {
-                    background-color: #215f00;
-                }
-            }
+
+
         }
     }
 }

@@ -1,9 +1,13 @@
 /* Color styles */
 $text-primary: #000000;
-$title-primary: #B7450A;
-$banner-primary: #FFCC01;
+$title-primary: #b7450a;
+$banner-primary: #ffcc01;
 $banner-secondary: rgb(253, 181, 21);
-$banner-tertiary: #F79400;
-$background-primary: #EEEEEE;
+$banner-tertiary: #f79400;
+$background-primary: #eeeeee;
 
-$basefont:"Ubuntu", sans-serif;
+$basefont: "Ubuntu", sans-serif;
+
+.title-primary {
+  color: $title-primary;
+}

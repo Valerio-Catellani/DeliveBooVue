@@ -1,13 +1,13 @@
 <template>
 
-  <div class="row gap-4 gap-lg-1 mb-2 d-flex justify-content-around justify-content-xl-around">
-    <div class=" col-5 my-2 my-lg-4 col-lg-3 col-xl-2 p-lg-0" v-for="option in options" :key="option.value">
+  <div class="row gap-4 gap-lg-1 gap-xl-0 mb-2 d-flex justify-content-around justify-content-xl-around">
+    <div class=" col-5 my-2 my-lg-4 col-lg-3 col-xl-3 p-lg-0 px-xl-3" v-for="option in options" :key="option.value">
       <div class="category-card w-100" :class="{ 'category-card-selected': selectedValues.includes(option) }"
         @click="toggleSelection(option)">
         <div class="image img-fluid">
           <img v-if="option.image" :src="option.image" class="card-img-top mb-2 img-fluid" alt="category image">
           <div class="overlay">
-            <div class="svg-container p-2" v-if="option.icon">
+            <div class="svg-container" v-if="option.icon">
               <div v-html="option.icon"></div>
             </div>
             <div class="category-card-text hype-unslectable">{{ option.text }}</div>
@@ -56,6 +56,7 @@ export default {
       await store.methods.getAllElements('restaurants');
     },
     toggleSelection(option) {
+      if (store.loading.restaurantList) return;
       const index = this.selectedValues.findIndex(item => item.value === option.value);
       if (index === -1) {
         this.selectedValues.push(option);
@@ -91,8 +92,9 @@ export default {
   }
 
   &.category-card-selected {
-    border: 3px solid $background-primary;
-    transform: scale(1.2);
+    border: 3px solid rgb(138, 248, 11);
+    ;
+    transform: scale(1.075);
     transition: all .3s ease-out;
   }
 
@@ -123,7 +125,7 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: rgb(255, 255, 255);
       text-align: center;
       padding: 10px;
 

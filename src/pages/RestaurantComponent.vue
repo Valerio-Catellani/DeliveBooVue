@@ -7,32 +7,7 @@
 		<!-- Layout -->
 		<div class="container">
 			<div class="row d-flex justify-content-center">
-				<!-- colonna destra -->
-				<!-- <div class="col-md-3 debug">
-					 <nav>
-		 
-						 <ul>
-							 <a href="#">
-								 <li class="active">Panini</li>
-							 </a>
-							 <a href="#">
-								 <li>Fritti</li>
-							 </a>
-							 <a href="#">
-								 <li>Dolci</li>
-							 </a>
-							 <a href="#">
-								 <li>Bevande</li>
-							 </a>
-							 <a href="#">
-								 <li>info</li>
-							 </a>
-							 <a href="#">
-								 <li>Pizze</li>
-							 </a>
-						 </ul>
-					 </nav>
-				 </div> -->
+
 				<!-- colonna centrale -->
 				<div class="col-12 rest-card bg-light rounded-5 shadow">
 					<!-- <div class="absolute-card-logo"> -->
@@ -93,7 +68,8 @@
 				<h2 class="text-center py-4 display-4">Menu</h2>
 				<div class="row">
 					<DishCardComponent v-for="(dish, index) in restaurant.dishes"
-						:class="index % 2 ? 'dish-right' : 'dish-left'" :key="dish.id" :dish="dish" :restaurant="restaurant">
+						:class="index % 2 ? 'dish-right' : 'dish-left'" :key="dish.id" :dish="dish"
+						:restaurant="restaurant">
 					</DishCardComponent>
 				</div>
 			</div>
@@ -132,12 +108,12 @@ export default {
 			})
 
 		},
-		
+
 	},
 	created() {
 		this.getData()
 		// console.log(this.$route.params, 'parametri');
-		
+
 	},
 }
 </script>

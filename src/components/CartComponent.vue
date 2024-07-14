@@ -7,7 +7,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div  v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto</div>
+        <div class="fst-italic" v-if="store.cart.dishes.length === 0">Il tuo carrello è vuoto. Aggiungi
+          qualcosa per continuare...</div>
         <div v-if="store.cart.actualVisitedRestaurantId !== store.cart.restaurantId && store.cart.dishes.length > 0">
           Il tuo carrello si riferisce ad un altro ristorante, svuotalo per continuare l'ordine
         </div>
@@ -17,19 +18,18 @@
             <thead>
               <tr>
                 <th>Dettagli</th>
-                <th>Prezzo</th>
                 <th>Quantità</th>
+                <th>Prezzo</th>
                 <th>Azioni</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(item, index) in store.cart.dishes" :key="index">
-                <td class="image-container">
+                <td>
                   <div>{{ item.nome }}</div>
-                  <img :src="item.img" alt="Immagine del piatto" class="cart-image">
                 </td>
-                <td>€ {{ item.prezzo }}</td>
                 <td>{{ item.qty }}</td>
+                <td>{{ item.prezzo }} €</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
                     <button class="btn btn-outline-danger btn-sm"
@@ -50,9 +50,11 @@
         </div>
       </div>
       <div class="offcanvas-footer text-center">
-        <h5>Totale: € {{ totalAmount.toFixed(2) }}</h5>
-        <button class="btn btn-empty btn-danger" @click="store.methods.clearCart()">Svuota carrello</button>
-        <RouterLink :to="{ name: 'payment' }" class="btn btn-primary" @click="goToPayment()" v-if="store.cart.dishes.length > 0">Vai al
+        <h5>Totale: {{ totalAmount.toFixed(2) }} €</h5>
+        <button v-if="store.cart.dishes.length > 0" class="btn btn-empty btn-danger"
+          @click="store.methods.clearCart()">Svuota carrello</button>
+        <RouterLink :to="{ name: 'payment' }" class="btn btn-primary" @click="goToPayment()"
+          v-if="store.cart.dishes.length > 0">Vai al
           pagamento</RouterLink>
       </div>
     </div>
@@ -73,7 +75,7 @@ export default {
 
       store.cart.actualVisitedRestaurantId = store.cart.restaurantId
       localStorage.setItem('activeRestaurant', JSON.stringify(store.cart.actualVisitedRestaurantId));
-     
+
     },
     loadCart() {
       //controllo se c'è già un carrello
@@ -122,11 +124,11 @@ export default {
       let myCart = localStorage.getItem('cart');
       myCart = JSON.parse(myCart);
       console.log(myCart, 'carrello');
-//in ogni caso incremento gli elementi del carrello
-store.cart.elements++;
+      //in ogni caso incremento gli elementi del carrello
+      store.cart.elements++;
 
-// salvo il dato nel localStorage
-localStorage.setItem('elements', JSON.stringify(store.cart.elements));
+      // salvo il dato nel localStorage
+      localStorage.setItem('elements', JSON.stringify(store.cart.elements));
 
       // se non ci sono li aggiungo
       if (!myCart.length) {
@@ -154,7 +156,7 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
       // se ci sono modifico la quantità
       else if (myCart.length) {
         console.log(myCart);
-        
+
 
         for (let index = 0; index < myCart.length; index++) {
           const element = myCart[index];
@@ -170,7 +172,7 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
             break;
           }
 
-          
+
         }
       }
     },
@@ -181,8 +183,8 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
       //diminuisco gli elementi del carrello
       store.cart.elements--;
 
-// salvo il dato nel localStorage
-localStorage.setItem('elements', JSON.stringify(store.cart.elements));
+      // salvo il dato nel localStorage
+      localStorage.setItem('elements', JSON.stringify(store.cart.elements));
 
       for (let index = 0; index < myCart.length; index++) {
         const element = myCart[index];
@@ -199,7 +201,7 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
         }
       }
     },
-  
+
   },
   mounted() {
     console.log('Component mounted.');
@@ -234,54 +236,53 @@ localStorage.setItem('elements', JSON.stringify(store.cart.elements));
   align-items: center;
 }
 
-.cart-image{
-width: 100%;
-height: auto;
-object-fit: cover;
+.cart-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .btn-group {
-margin-top: 10px;
+  margin-top: 10px;
 }
 
 .text-center {
-text-align: center;
+  text-align: center;
 }
 
 .custom-offcanvas {
-width: 100%;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
-.custom-offcanvas {
-width: 70%;
-}
+  .custom-offcanvas {
+    width: 70%;
+  }
 }
 
 @media (min-width: 992px) {
-.custom-offcanvas {
-width: 35%;
-}
+  .custom-offcanvas {
+    width: 35%;
+  }
 }
 
 .cart-image {
-width: 50% !important;
+  width: 50% !important;
 }
 
 .table th,
 .table td {
-vertical-align: middle;
-text-align: center;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .cart-image {
-width: 50%;
+  width: 50%;
 }
 
 .btn-primary,
 .btn-empty {
-padding: 10px;
-margin: 20px;
+  padding: 10px;
+  margin: 20px;
 }
-
 </style>

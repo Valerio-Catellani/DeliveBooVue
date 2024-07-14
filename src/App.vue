@@ -1,10 +1,10 @@
 <template>
 
-  <HeaderComponent />
+  <HeaderComponent v-if="!store.loading.restaurant" />
   <main>
     <router-view></router-view>
   </main>
-  <FooterComponent />
+  <FooterComponent v-if="!store.loading.restaurant" />
 </template>
 
 

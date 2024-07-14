@@ -45,7 +45,6 @@ export const store = reactive({
     restaurantName: '',
     actualVisitedRestaurantId: '',
     dishes: [],
-
   },
 
   selectedValues: [],
@@ -118,6 +117,8 @@ export const store = reactive({
       console.log(localStorage, 'localStorage dopo di clear');
       console.log(store.cart, 'store.cart dopo di clear');
     },
+
+
 
 
   },

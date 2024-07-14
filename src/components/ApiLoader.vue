@@ -21,6 +21,5 @@ div {
     color: black;
     font-size: 4rem;
     z-index: 10000;
-
 }
 </style>
