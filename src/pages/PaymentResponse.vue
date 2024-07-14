@@ -1,7 +1,8 @@
 <template>
     <div>
         <div id="resp" class="container">
-            <div class="row justify-content-center d-flex flex-column align-items-center">
+            <div v-if="store.api_data.payment.success"
+                class="row justify-content-center d-flex flex-column align-items-center">
                 <div id="response-success" class="col-10 col-md-8 col-lg-6 col-xl-5 rounded-5 shadow py-3">
                     <div class="spec-img-container d-flex justify-content-center">
                         <div class="check-container">
@@ -23,7 +24,8 @@
                 </div>
 
             </div>
-            <div class="row justify-content-center d-flex flex-column align-items-center">
+            <div v-if="!store.api_data.payment.success"
+                class="row justify-content-center d-flex flex-column align-items-center">
                 <div id="response-error" class="col-10 col-md-8 col-lg-6 col-xl-5 rounded-5 shadow py-3">
                     <div class="spec-img-container d-flex justify-content-center">
                         <div class="check-container">
@@ -44,18 +46,27 @@
                     <h2 class="text-center">Pagamento Declinato!</h2>
                     <p>Il tuo ordine non e' stato effettuato. Riprova più tardi.</p>
                 </div>
-                <div class="img-container col-10 col-md-8 col-lg-6 col-xl-5 pt-5 mt-5">
-                    <img class="img-fluid w-100" src="/public/images/payment-success-img.png" alt="payment success">
-                </div>
-
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { store } from '../store';
 export default {
-    name: 'PaymentResponse'
+    name: 'PaymentResponse',
+
+    data() {
+        return {
+            store
+        }
+    },
+    created() {
+        store.methods.clearCart()
+        setTimeout(() => {
+            this.$router.push('/')
+        }, 5000)
+    }
 }
 </script>
 

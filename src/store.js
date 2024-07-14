@@ -21,7 +21,9 @@ export const store = reactive({
       },
       singleRestaurant: []
     },
-
+    payment: {
+      success: '',
+    }
   },
 
 
@@ -32,6 +34,7 @@ export const store = reactive({
   loading: {
     restaurant: false,
     restaurantList: false,
+    payment: false,
   },
 
   params: {

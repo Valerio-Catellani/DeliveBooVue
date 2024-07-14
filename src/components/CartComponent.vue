@@ -119,11 +119,9 @@ export default {
       store.cart.restaurantName = JSON.parse(localStorage.getItem('cartRestaurantName'));
     },
     addToCart(dish) {
-      console.log('dish', dish);
       // controllo se ci sono elementi nel carrello
       let myCart = localStorage.getItem('cart');
       myCart = JSON.parse(myCart);
-      console.log(myCart, 'carrello');
       //in ogni caso incremento gli elementi del carrello
       store.cart.elements++;
 

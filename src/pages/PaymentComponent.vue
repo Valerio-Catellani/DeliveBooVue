@@ -99,7 +99,10 @@
 
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button class="btn btn-success w-25 p-2 m-5" type="submit">Conferma l'ordine</button>
+                        <button class="btn btn-success w-25 p-2 m-5" type="submit" :disabled="store.loading.payment">
+                            <span v-if="!store.loading.payment">Conferma l'ordine</span>
+                            <span v-else>Processo il Pagamento <i class="fa-solid fa-circle-notch fa-spin"></i></span>
+                        </button>
                     </div>
                 </form>
 
@@ -199,7 +202,7 @@ export default {
             });
         },
         async processPayment(nonce) {
-            console.log(this.csrfToken);
+            store.loading.payment = true;
             try {
                 let myCart = localStorage.getItem('cart');
                 let dishes = JSON.parse(myCart);
@@ -220,13 +223,16 @@ export default {
                     }
                 });
                 if (response.data.success) {
-                    alert('Payment successful!');
+                    store.api_data.payment.success = true;
+                    this.$router.push('/payment-response')
                 } else {
-                    console.log(response.data);
-                    alert('Payment failed: ' + response.data.error);
+                    store.api_data.payment.success = false;
+                    this.$router.push('/payment-response')
                 }
             } catch (error) {
                 console.error('Error processing payment:', error);
+            } finally {
+                store.loading.payment = false;
             }
         },
         removeFromCart(item) {
