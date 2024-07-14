@@ -1,5 +1,5 @@
 <template>
-	<ApiLoader v-if="store.loading"></ApiLoader>
+	<ApiLoader v-if="store.loading.restaurant"></ApiLoader>
 	<div v-else>
 
 		<JumboComponent :img_name="restaurant.image"></JumboComponent>

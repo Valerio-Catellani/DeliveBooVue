@@ -29,7 +29,10 @@ export const store = reactive({
 
   },
 
-  loading: false,
+  loading: {
+    restaurant: false,
+    restaurantList: false,
+  },
 
   params: {
 
@@ -51,8 +54,9 @@ export const store = reactive({
     // params = { page: 1, type: '' } da inserire dnetro alla funzione getMovies
 
     async getAllElements(element, params = {}) {
-      store.loading = true;
+      store.loading.restaurantList = true;
       return axios.get(`${store.apiBaseUrl}/get-${element}`, { params }).then((response) => {
+        console.log(response);
         switch (element) {
           case 'typologies': {
             store.api_data.typologies.allTypologies.data = response.data.results.data;
@@ -78,14 +82,14 @@ export const store = reactive({
         console.log(error);
         router.push({ name: 'not-found' })
       }).finally(() => {
-        store.loading = false;
+        store.loading.restaurantList = false;
       })
     },
 
     //  # ottieni uno specifico ristorante (restaurant-slug)
     //http://127.0.0.1:8000/api/get-restaurants/ristorante-onisto
     async getRestaurantBySlug(slug) {
-      store.loading = true;
+      store.loading.restaurant = true;
       return axios.get(`${store.apiBaseUrl}/get-restaurants/${slug}`).then((response) => {
         store.api_data.restaurants.singleRestaurant = response.data.results;
         if (!store.api_data.restaurants.singleRestaurant[0].image.startsWith('http')) {
@@ -95,7 +99,7 @@ export const store = reactive({
         console.log(error);
         router.push({ name: 'not-found' })
       }).finally(() => {
-        store.loading = false;
+        store.loading.restaurant = false;
       })
 
     },

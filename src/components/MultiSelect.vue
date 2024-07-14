@@ -1,16 +1,16 @@
 <template>
 
-  <div class="row gap-3 mb-2 d-flex justify-content-center">
-    <div class="small col-5 col-md-4 col-lg-2 mb-4" v-for="option in options" :key="option.value">
-      <div class="category-card" :class="{ 'category-card-selected': selectedValues.includes(option) }"
+  <div class="row gap-4 gap-lg-1 mb-2 d-flex justify-content-around justify-content-xl-around">
+    <div class=" col-5 my-2 my-lg-4 col-lg-3 col-xl-2 p-lg-0" v-for="option in options" :key="option.value">
+      <div class="category-card w-100" :class="{ 'category-card-selected': selectedValues.includes(option) }"
         @click="toggleSelection(option)">
-        <div class="image">
+        <div class="image img-fluid">
           <img v-if="option.image" :src="option.image" class="card-img-top mb-2 img-fluid" alt="category image">
           <div class="overlay">
             <div class="svg-container p-2" v-if="option.icon">
               <div v-html="option.icon"></div>
             </div>
-            <div class="category-card-text">{{ option.text }}</div>
+            <div class="category-card-text hype-unslectable">{{ option.text }}</div>
           </div>
         </div>
       </div>

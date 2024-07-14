@@ -48,27 +48,33 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 
     </div>
     <div class="container">
-        <div class="row mt-3 result-research mb-5" v-if="!store.loading">
-            <!-- ricerca più ristoranti: messaggio plurale -->
-            <div class="col-12 d-flex fw-bold" v-if="store.api_data.restaurants.allRestaurants.data.length > 1"> {{
-                store.api_data.restaurants.allRestaurants.data.length }} ristoranti trovati </div>
-            <!-- ricerca singolo ristorante: messaggio singolare -->
-            <div class="col-12 d-flex fw-bold" v-if="store.api_data.restaurants.allRestaurants.data.length == 1"> {{
-                store.api_data.restaurants.allRestaurants.data.length }} ristorante trovato </div>
+        <div v-if="store.loading.restaurantList" style="height: 500px"
+            class="d-flex justify-content-center align-items-center">
+            <RestaurantLoader />
         </div>
-        <!-- Mostra risultati ricerca -->
-        <div class="row mt-3" v-if="!store.loading">
-            <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
-                :key="restaurant.id" :props="restaurant" @click="setActiveRestaurant(restaurant)" />
+
+        <div v-else>
+
+            <div class="row mt-3 result-research mb-5">
+                <!-- ricerca più ristoranti: messaggio plurale -->
+                <div class="col-12 d-flex fw-bold" v-if="store.api_data.restaurants.allRestaurants.data.length > 1"> {{
+                    store.api_data.restaurants.allRestaurants.data.length }} ristoranti trovati </div>
+                <!-- ricerca singolo ristorante: messaggio singolare -->
+                <div class="col-12 d-flex fw-bold" v-if="store.api_data.restaurants.allRestaurants.data.length == 1"> {{
+                    store.api_data.restaurants.allRestaurants.data.length }} ristorante trovato </div>
+            </div>
+            <!-- Mostra risultati ricerca -->
+            <div class="row mt-3">
+                <RestaurantCardComponent v-for="restaurant in store.api_data.restaurants.allRestaurants.data"
+                    :key="restaurant.id" :props="restaurant" @click="setActiveRestaurant(restaurant)" />
+            </div>
+
+            <div class="col-12 d-flex fw-bold result-research" style="margin-bottom: 500px"
+                v-if="store.api_data.restaurants.allRestaurants.data.length < 1">Nessun ristorante trovato con le
+                categorie
+                selezionate</div>
         </div>
-        <div class="row mt-3" v-else >
-            <ApiLoader />
-        </div>
-        
-        <div class="col-12 d-flex fw-bold mb-5 result-research"
-            v-if="store.api_data.restaurants.allRestaurants.data.length < 1">Nessun ristorante trovato con le categorie
-            selezionate</div>
-        
+
     </div>
 
     <div class="container">
@@ -188,6 +194,7 @@ background: linear-gradient(321deg, rgba(80,0,0,1) 4%, rgba(183,69,10,1) 50%, rg
 import MultiSelect from '../components/MultiSelect.vue';
 import RestaurantCardComponent from '../components/RestaurantCardComponent.vue';
 import ApiLoader from '../components/ApiLoader.vue';
+import RestaurantLoader from '../components/RestaurantLoader.vue';
 import { store } from '../store';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -198,7 +205,8 @@ export default {
     components: {
         MultiSelect,
         RestaurantCardComponent,
-        ApiLoader
+        ApiLoader,
+        RestaurantLoader
     },
     data() {
         return {
@@ -251,7 +259,7 @@ export default {
                 const scrollPos = window.scrollY + window.innerHeight;
 
                 sections.forEach(section => {
-                    if (scrollPos > section.offsetTop + section.offsetHeight / 10   ) {
+                    if (scrollPos > section.offsetTop + section.offsetHeight / 10) {
                         section.classList.add('visible');
                     }
                 });
@@ -742,13 +750,16 @@ a.learn-more .button-text {
     text-transform: uppercase;
 }
 
-#button-hero:hover .circle, .btn-hero
-a:hover .circle, .btn-hero {
+#button-hero:hover .circle,
+.btn-hero a:hover .circle,
+.btn-hero {
     width: 100% !important;
 }
 
-button:hover .circle, .learn-more,
-a:hover .circle, .learn-more {
+button:hover .circle,
+.learn-more,
+a:hover .circle,
+.learn-more {
     width: 90%;
 }
 
