@@ -219,11 +219,10 @@ export default {
         this.initializeScrollEffect();
         this.create3DHamburger();
         console.log(localStorage);
+        store.selectedValues = [];
         // localStorage.clear();
     },
     methods: {
-
-
         initializeCarousel() {
             (async () => {
                 const interval = 1500;

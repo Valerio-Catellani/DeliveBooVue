@@ -134,6 +134,7 @@ export default {
         };
     },
     mounted() {
+        this.enableScroll();
         this.getClientToken();
         this.getCsfrToken();
         this.updateStore();

@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ props.name }}</h5>
-                    <p class="d-none d-md-block text-secondary fw-light fs-6">{{ props.address }}</p>
+                    <p class="text-secondary fw-light fs-6">{{ props.address }}</p>
                     <hr class="mx-0 mb-0 mt-auto">
                     <span>Categorie:</span>
                     <div class="icons-container d-flex gap-2 mb-2">
